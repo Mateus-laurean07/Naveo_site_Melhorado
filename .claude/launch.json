@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "naveo-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "serve", "dist", "-p", "3737"],
+      "port": 3737
+    },
+    {
+      "name": "naveo-v2",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "serve", "v2/dist", "-p", "4040", "--single"],
+      "port": 4040
+    }
+  ]
+}

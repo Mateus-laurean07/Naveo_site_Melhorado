@@ -1,0 +1,113 @@
+import { Content, IMG } from "./types";
+
+export const en: Content = {
+  locale: "en",
+  nav: { portfolio: "Portfolio", method: "Method", cases: "Cases", about: "About", contact: "Book a diagnosis" },
+  hero: {
+    eyebrow: "Creative Engineering Builder",
+    headline: [
+      { text: "We build" },
+      { text: "digital products" },
+      { text: "and platforms" },
+      { text: "tailored", italic: true },
+      { text: "to your business." },
+    ],
+    sub: "Systems, marketplaces, automations, applied AI. We build, integrate and sustain the technology your operation needs.",
+    ctaPrimary: "Book a diagnosis",
+    ctaSecondary: "View portfolio",
+    scroll: "Scroll to explore",
+  },
+  marquee: ["Creative Engineering", "Systems", "Marketplaces", "Automations", "Applied AI", "Fintech", "Conversion Sites", "PWA", "Owner Mindset"],
+  stats: {
+    eyebrow: "Skin in the game",
+    title: "The numbers that matter.",
+    lead: "We apply the method to our own ventures first. Before offering it to you, we prove it on ourselves.",
+    items: [
+      { value: 12, label: "In-house ventures built" },
+      { value: 4, label: "Digital banks delivered" },
+      { value: 8, label: "Industries served", suffix: "+" },
+      { value: 100, label: "In-house team · no outsourcing", suffix: "%" },
+    ],
+  },
+  method: {
+    eyebrow: "Creative Engineering",
+    title: "The 6-step method.",
+    lead: "From first conversation to system in production. Deep investigation, MVP in days, phased build and ongoing sustainment.",
+    steps: [
+      { num: "01", title: "Connect & Diagnose", desc: "We understand your context, ERP, flows and bottlenecks.", list: ["Free 1h diagnosis", "Context investigation", "Stakeholder mapping", "Strategic briefing"] },
+      { num: "02", title: "Strategic Direction", desc: "Roadmap, macro vision and priority matrix.", list: ["Custom roadmap", "Positioning + value prop", "Priority matrix", "Vision document"] },
+      { num: "03", title: "MVP in Days", desc: "Functional prototype before the contract, live validation.", list: ["Prototype in 3 to 7 days", "Live demonstration", "Expanded vision", "Skin in the game"] },
+      { num: "04", title: "Phased Build", desc: "Short sprints, incremental delivery, validation by step.", list: ["Short sprints with clear goals", "Continuous delivery", "Shared Notion panel", "Biweekly meetings"] },
+      { num: "05", title: "Integration & Go-Live", desc: "Connection to your current ERP, training, phased go-live.", list: ["API integration", "Team training", "Phased go-live", "LGPD/GDPR compliance"] },
+      { num: "06", title: "Ongoing Sustainment", desc: "10 monthly tech hours, WhatsApp support, 90-day warranty.", list: ["10 tech hours/month", "WhatsApp support in 4h", "90-day warranty", "Evolution roadmap"] },
+    ],
+  },
+  capabilities: {
+    eyebrow: "What we build",
+    title: "Technical capabilities across six fronts.",
+    lead: "Clients don't buy capabilities — they buy pain resolution. But the technical kit has to be ready.",
+    items: [
+      { icon: "</>", title: "Custom systems", desc: "Web platforms, PWAs, internal ERPs, document systems and multi-unit setups designed for your operation." },
+      { icon: "⌬", title: "AI marketplaces", desc: "Buy and sell with intelligent agents negotiating via WhatsApp, lead automation and integrated management." },
+      { icon: "∞", title: "Smart automations", desc: "Automated flows with n8n, API integrations, agents that replace repetitive manual work." },
+      { icon: "◈", title: "Applied AI", desc: "Negotiator agents, OCR, automatic classification, predictive analytics. AI with purpose and outcome." },
+      { icon: "$", title: "Fintech & payments", desc: "Whitelabel accounts, sub-acquiring, integrated payments, digital banking. We've built 4 to date." },
+      { icon: "⚡", title: "High-conversion sites", desc: "Institutional sites and landing pages that convert — not decorative, metric-driven." },
+    ],
+  },
+  portfolio: {
+    eyebrow: "Naveo Portfolio",
+    title: "12 in-house ventures. Real skin in the game.",
+    lead: "Before offering it to you, we built ours. Each in-house business is a living lab for the method.",
+    heroes: [
+      { name: "Agrodesapego", tag: "Marketplace · AI", desc: "Used farm equipment sales with AI negotiator", url: "https://agrodesapego.com.br", img: IMG.agro },
+      { name: "Cruzeta Club", tag: "Community · SaaS", desc: "Car club management platform", url: "https://cruzetaclub.com.br", img: IMG.cruzeta },
+      { name: "Navbarber", tag: "Vertical SaaS", desc: "Modern barbershop management", url: "https://navbarber.com.br", img: IMG.navbarber },
+      { name: "Pharma Genius", tag: "Coming soon", desc: "Pharmaceutical platform · launching soon", url: "#", img: IMG.pharma },
+    ],
+    mini: [
+      { name: "Criativando", tag: "Platform" },
+      { name: "uRocket", tag: "Fintech" },
+      { name: "VaiPedindo", tag: "Fintech" },
+      { name: "Farol Entidades", tag: "Community" },
+      { name: "automapost", tag: "Automation" },
+      { name: "talk", tag: "SaaS" },
+      { name: "eventeu", tag: "Platform" },
+      { name: "obafestinha", tag: "Platform" },
+    ],
+  },
+  cases: {
+    eyebrow: "Client cases",
+    title: "You bring the pain. We build the solution.",
+    lead: "Companies that came with a specific demand and left with a complete digital operation.",
+    items: [
+      { tag: "Operational platform · Document management", title: "Facilita Higienização", desc: "Industrial cleaning network with multiple units. They were pushing paper, certificates expiring unnoticed, labor risk latent. We built a multi-unit DMS with legal e-signature, PWA for managers and deadline dashboard.", quote: "“You brought something I didn't imagine was possible.”", metrics: [{ v: "PWA", l: "iPhone, Android, iPad" }, { v: "LGPD", l: "Full compliance" }, { v: "90d", l: "From signing to go-live" }], img: IMG.facilita },
+      { tag: "Vertical ERP · Construction", title: "ObraSimples", desc: "Client came asking for a fintech solution. We identified a bigger opportunity: a custom ERP/Micro SaaS for small construction entrepreneurs. Invoices, PIX, financial management, inventory control, quotes and tax invoices.", quote: "“They showed us a new opportunity for a new business.”", metrics: [{ v: "Custom", l: "Client owns the code" }, { v: "Fintech", l: "PIX + invoices integrated" }, { v: "MRR", l: "Ongoing sustainment" }], img: IMG.obrasimples },
+      { tag: "Healthcare platform · from zero", title: "Cuidar Bem Card", desc: "Healthcare company built from scratch, from business model to complete platform. Concept, development, branding, go-to-market — Creative Engineering end-to-end.", quote: "“It turned into a complete business that is changing how people access healthcare services.”", metrics: [{ v: "300%", l: "12-month growth" }, { v: "3", l: "Brazilian states" }, { v: "0→1", l: "Concept to operation" }], img: IMG.cuidarbem },
+    ],
+  },
+  logos: { eyebrow: "Trusted by", title: "Teams that chose to build together.", lead: "From regional networks to cooperative systems. Different industries, same method." },
+  stack: { eyebrow: "Stack", title: "Modern and battle-tested technology.", lead: "The tools we use to build products that scale — proven across 12 in-house ventures." },
+  testimonials: {
+    eyebrow: "Voices", title: "Owner mindset, in practice.", lead: "What clients say after they get in our boat.",
+    items: [
+      { quote: "You brought something I didn't imagine was possible. I left with a system that changed our entire operation.", name: "Facilita Higienização client", role: "Director · Industrial network · BR" },
+      { quote: "We didn't just need a system — you showed us a new business opportunity. Real skin in the game.", name: "Thiago Piccini", role: "Founder · ObraSimples" },
+      { quote: "You turned our vision into a complete business that is changing how people access healthcare.", name: "Renata Jacomeli", role: "CEO · Cuidar Bem Card" },
+    ],
+  },
+  manifesto: { quote: "We don't sell hours. We build the operation.", attr: "Naveo · Lucas do Rio Verde, MT · Brazil" },
+  ctaFinal: { title: "Let's build together?", sub: "1-hour diagnosis, free and no strings attached. We understand your operation, map bottlenecks and return a structured diagnosis within 5 business days.", btn: "Talk on WhatsApp" },
+  footer: {
+    about: "Creative Engineering Builder. We build digital products and platforms tailored to your business — systems, marketplaces, automations and applied AI.",
+    location: "Lucas do Rio Verde, MT · Brazil",
+    cols: [
+      { title: "Company", items: [{ label: "About", href: "/en/about" }, { label: "Portfolio", href: "/en/portfolio" }, { label: "Cases", href: "/en/cases" }, { label: "Method", href: "/en/method" }, { label: "Contact", href: "/en/contact" }] },
+      { title: "Our products", items: [{ label: "Agrodesapego", href: "/en/agrodesapego" }, { label: "Cruzeta Club", href: "/en/cruzetaclub" }, { label: "Navbarber", href: "/en/navbarber" }, { label: "Pharma Genius (soon)", href: "/en/pharmagenius" }] },
+      { title: "Contact", items: [{ label: "contato@naveo.com.br", href: "mailto:contato@naveo.com.br" }, { label: "WhatsApp", href: "https://wa.me/5565996865004" }, { label: "LinkedIn", href: "https://www.linkedin.com" }, { label: "Instagram", href: "https://www.instagram.com/naveoce" }] },
+      { title: "Legal", items: [{ label: "Terms", href: "/en/terms" }, { label: "Privacy", href: "/en/privacy" }, { label: "Português · English · Español", href: "/" }] },
+    ],
+    copyright: "© {year} Naveo Engenharia Criativa.", tag: "Built with Creative Engineering.",
+  },
+  seo: { title: "Naveo · Creative Engineering", description: "We develop digital products and platforms tailored to your business. Systems, marketplaces, automations, applied AI. We build, integrate and sustain the technology your operation needs." },
+};

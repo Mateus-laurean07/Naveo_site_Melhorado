@@ -1,0 +1,6 @@
+# Naveo v2 — staging
+User-agent: *
+Disallow: /
+
+# This is a staging/preview environment, not for indexing.
+# Will switch to Allow when promoted to production naveo.com.br.

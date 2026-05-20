@@ -1,0 +1,187 @@
+import { Content, IMG } from "./types";
+
+export const pt: Content = {
+  locale: "pt-BR",
+  nav: { portfolio: "Portfólio", method: "Método", cases: "Cases", about: "Sobre", contact: "Agendar diagnóstico" },
+  hero: {
+    eyebrow: "Builder de Engenharia Criativa",
+    headline: [
+      { text: "Desenvolvemos" },
+      { text: "produtos digitais" },
+      { text: "e plataformas" },
+      { text: "customizadas", italic: true },
+      { text: "ao seu negócio." },
+    ],
+    sub: "Sistemas, marketplaces, automações, IA aplicada. Construímos, integramos e sustentamos a tecnologia que sua operação precisa.",
+    ctaPrimary: "Agendar diagnóstico",
+    ctaSecondary: "Ver portfólio",
+    scroll: "Role para descobrir",
+  },
+  marquee: ["Engenharia Criativa", "Sistemas", "Marketplaces", "Automações", "IA Aplicada", "Fintech", "Sites de Conversão", "PWA", "Visão de Dono"],
+  stats: {
+    eyebrow: "Skin in the game",
+    title: "Os números que importam.",
+    lead: "Aplicamos o método primeiro nos nossos negócios. Antes de oferecer pra você, provamos com a gente.",
+    items: [
+      { value: 12, label: "Empresas próprias criadas" },
+      { value: 4, label: "Bancos digitais construídos" },
+      { value: 8, label: "Setores atendidos", suffix: "+" },
+      { value: 100, label: "Equipe interna · sem terceirização", suffix: "%" },
+    ],
+  },
+  method: {
+    eyebrow: "Engenharia Criativa",
+    title: "O método em 6 passos.",
+    lead: "Da primeira conversa ao sistema rodando. Investigação profunda, MVP em dias, construção faseada e sustentação contínua.",
+    steps: [
+      { num: "01", title: "Conexão & Diagnóstico", desc: "Entendemos seu contexto, ERP, fluxos e gargalos.", list: ["Diagnóstico de 1h gratuito", "Investigação do contexto", "Mapeamento de stakeholders", "Briefing estratégico"] },
+      { num: "02", title: "Direcionamento Estratégico", desc: "Roadmap, visão macro e matriz de prioridades.", list: ["Roadmap personalizado", "Posicionamento + proposta de valor", "Matriz de priorização", "Documento de visão"] },
+      { num: "03", title: "MVP em Dias", desc: "Protótipo funcional antes do contrato, validação ao vivo.", list: ["Protótipo em 3 a 7 dias", "Demonstração ao vivo", "Visão expandida", "Skin in the game"] },
+      { num: "04", title: "Construção Faseada", desc: "Sprints curtos, entrega incremental, validação por etapa.", list: ["Sprints curtos com metas claras", "Entrega contínua", "Painel Notion compartilhado", "Reuniões quinzenais"] },
+      { num: "05", title: "Integração & Go-Live", desc: "Conexão com seu ERP atual, treinamento, go-live faseado.", list: ["Integração via API", "Treinamento da equipe", "Go-live faseado", "Conformidade LGPD"] },
+      { num: "06", title: "Sustentação Contínua", desc: "10h técnicas mensais, suporte WhatsApp, garantia 90 dias.", list: ["10h técnicas/mês", "Suporte WhatsApp em 4h", "Garantia de 90 dias", "Roadmap evolutivo"] },
+    ],
+  },
+  capabilities: {
+    eyebrow: "O que construímos",
+    title: "Capacidades técnicas em seis frentes.",
+    lead: "Cliente não compra capacidade — compra resolução de dor. Mas o conjunto técnico precisa estar pronto.",
+    items: [
+      { icon: "</>", title: "Sistemas sob medida", desc: "Plataformas web, PWAs, ERPs internos, GEDs e sistemas multi-unidade desenhados pra sua operação." },
+      { icon: "⌬", title: "Marketplaces com IA", desc: "Compra e venda com agentes inteligentes negociando via WhatsApp, automação de leads e gestão integrada." },
+      { icon: "∞", title: "Automações inteligentes", desc: "Fluxos automatizados com n8n, integrações por API, agentes que substituem trabalho manual repetitivo." },
+      { icon: "◈", title: "IA aplicada", desc: "Agentes negociadores, OCR, classificação automática, análise preditiva. IA com propósito e resultado." },
+      { icon: "$", title: "Fintech & pagamentos", desc: "Conta whitelabel, sub-acquiring, pagamentos integrados, banco digital. Construímos 4 até hoje." },
+      { icon: "⚡", title: "Sites de alta conversão", desc: "Sites institucionais e landing pages que convertem — não decorativos, orientados a métrica." },
+    ],
+  },
+  portfolio: {
+    eyebrow: "Portfólio Naveo",
+    title: "12 empresas próprias. Skin in the game de verdade.",
+    lead: "Antes de oferecer pra você, construímos pros nossos. Cada negócio próprio é um laboratório vivo do método.",
+    heroes: [
+      { name: "Agrodesapego", tag: "Marketplace · IA", desc: "Venda de máquinas agrícolas com IA negociadora", url: "https://agrodesapego.com.br", img: IMG.agro },
+      { name: "Cruzeta Club", tag: "Comunidade · SaaS", desc: "Gestão de clubes de carros", url: "https://cruzetaclub.com.br", img: IMG.cruzeta },
+      { name: "Navbarber", tag: "SaaS Vertical", desc: "Gestão para barbearias modernas", url: "https://navbarber.com.br", img: IMG.navbarber },
+      { name: "Pharma Genius", tag: "Em breve", desc: "Plataforma farmacêutica · lançamento próximo", url: "#", img: IMG.pharma },
+    ],
+    mini: [
+      { name: "Criativando", tag: "Plataforma" },
+      { name: "uRocket", tag: "Fintech" },
+      { name: "VaiPedindo", tag: "Fintech" },
+      { name: "Farol Entidades", tag: "Comunidade" },
+      { name: "automapost", tag: "Automação" },
+      { name: "talk", tag: "SaaS" },
+      { name: "eventeu", tag: "Plataforma" },
+      { name: "obafestinha", tag: "Plataforma" },
+    ],
+  },
+  cases: {
+    eyebrow: "Cases de cliente",
+    title: "Você nos traz a dor. A gente desenvolve.",
+    lead: "Empresas que chegaram com uma demanda pontual e saíram com uma operação digital completa.",
+    items: [
+      {
+        tag: "Plataforma operacional · GED",
+        title: "Facilita Higienização",
+        desc: "Rede de higienização industrial com múltiplas unidades. Empurrava papel, ASOs vencendo sem ninguém ver, risco trabalhista latente. Construímos um GED multi-unidade com assinatura jurídica, PWA pros gerentes e dashboard de prazos.",
+        quote: "“Vocês trouxeram algo que eu não imaginava.”",
+        metrics: [
+          { v: "PWA", l: "iPhone, Android, iPad" },
+          { v: "LGPD", l: "Conformidade total" },
+          { v: "90d", l: "Da assinatura ao go-live" },
+        ],
+        img: IMG.facilita,
+      },
+      {
+        tag: "ERP Vertical · Construção civil",
+        title: "ObraSimples",
+        desc: "Cliente chegou pedindo solução fintech. A gente identificou oportunidade maior: um ERP/Micro SaaS sob medida pra pequenos empreendedores da construção civil. Boletos, PIX, gestão financeira, controle de estoque, orçamentos e notas fiscais.",
+        quote: "“Nos mostraram uma nova oportunidade de novo negócio.”",
+        metrics: [
+          { v: "Sob medida", l: "Cliente é dono do código" },
+          { v: "Fintech", l: "PIX + boletos integrados" },
+          { v: "MRR", l: "Sustentação contínua" },
+        ],
+        img: IMG.obrasimples,
+      },
+      {
+        tag: "Plataforma de saúde · do zero",
+        title: "Cuidar Bem Card",
+        desc: "Empresa de saúde criada do zero, do modelo de negócio à plataforma completa. Conceito, desenvolvimento, branding, go-to-market — Engenharia Criativa de ponta a ponta.",
+        quote: "“Transformou em um negócio completo que está mudando a forma como as pessoas acessam serviços de saúde.”",
+        metrics: [
+          { v: "300%", l: "Crescimento em 12 meses" },
+          { v: "3", l: "Estados brasileiros" },
+          { v: "0→1", l: "Conceito até operação" },
+        ],
+        img: IMG.cuidarbem,
+      },
+    ],
+  },
+  logos: {
+    eyebrow: "Quem confia",
+    title: "Empresas que escolheram construir junto.",
+    lead: "De redes regionais a sistemas cooperativos. Diferentes setores, mesmo método.",
+  },
+  stack: {
+    eyebrow: "Stack",
+    title: "Tecnologia moderna e batalhada.",
+    lead: "As ferramentas que usamos pra construir produtos que escalam — testadas em 12 negócios próprios.",
+  },
+  testimonials: {
+    eyebrow: "O que dizem",
+    title: "Visão de dono, na prática.",
+    lead: "O que falam os clientes depois que entram no nosso barco.",
+    items: [
+      { quote: "Vocês trouxeram algo que eu não imaginava era possível. Saí com um sistema que mudou nossa operação inteira.", name: "Cliente Facilita Higienização", role: "Diretor · Rede industrial · MT" },
+      { quote: "Não precisamos só fazer um sistema, vocês nos mostraram uma nova oportunidade de negócio. Skin in the game de verdade.", name: "Thiago Piccini", role: "Fundador · ObraSimples" },
+      { quote: "Transformaram nossa visão em um negócio completo que está mudando a forma como as pessoas acessam saúde.", name: "Renata Jacomeli", role: "CEO · Cuidar Bem Card" },
+    ],
+  },
+  manifesto: {
+    quote: "Não vendemos hora. Construímos a operação.",
+    attr: "Naveo · Lucas do Rio Verde, MT · Brasil",
+  },
+  ctaFinal: {
+    title: "Bora construir junto?",
+    sub: "Diagnóstico de 1h, gratuito e sem compromisso. A gente entende sua operação, mapeia gargalos e devolve um diagnóstico estruturado em até 5 dias úteis.",
+    btn: "Chamar no WhatsApp",
+  },
+  footer: {
+    about: "Builder de Engenharia Criativa. Desenvolvemos produtos digitais e plataformas sob medida — sistemas, marketplaces, automações e IA aplicada.",
+    location: "Lucas do Rio Verde, MT · Brasil",
+    cols: [
+      { title: "Empresa", items: [
+        { label: "Sobre", href: "/sobre" },
+        { label: "Portfólio Naveo", href: "/portfolio" },
+        { label: "Cases de cliente", href: "/cases" },
+        { label: "Método", href: "/metodo" },
+        { label: "Contato", href: "/contato" },
+      ]},
+      { title: "Produtos próprios", items: [
+        { label: "Agrodesapego", href: "/agrodesapego" },
+        { label: "Cruzeta Club", href: "/cruzetaclub" },
+        { label: "Navbarber", href: "/navbarber" },
+        { label: "Pharma Genius (em breve)", href: "/pharmagenius" },
+      ]},
+      { title: "Contato", items: [
+        { label: "contato@naveo.com.br", href: "mailto:contato@naveo.com.br" },
+        { label: "WhatsApp", href: "https://wa.me/5565996865004" },
+        { label: "LinkedIn", href: "https://www.linkedin.com" },
+        { label: "Instagram", href: "https://www.instagram.com/naveoce" },
+      ]},
+      { title: "Legal", items: [
+        { label: "Termos de Uso", href: "/termos" },
+        { label: "Política de Privacidade", href: "/privacidade" },
+        { label: "Português · English · Español", href: "/" },
+      ]},
+    ],
+    copyright: "© {year} Naveo Engenharia Criativa.",
+    tag: "Construído com Engenharia Criativa.",
+  },
+  seo: {
+    title: "Naveo · Engenharia Criativa",
+    description: "Desenvolvemos produtos digitais e plataformas customizadas ao seu negócio. Sistemas, marketplaces, automações, IA aplicada. Construímos, integramos e sustentamos a tecnologia que sua operação precisa.",
+  },
+};
