@@ -718,7 +718,7 @@ function renderPage(lang) {
   ).join("\n        ");
 
   return `<!doctype html>
-<html lang="${t.locale}">
+<html lang="${t.locale}" translate="no">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -743,6 +743,8 @@ function renderPage(lang) {
 
   <meta name="theme-color" content="#000000" />
   <meta name="color-scheme" content="dark" />
+  <meta name="google" content="notranslate" />
+  <meta name="robots" content="notranslate" />
 
   <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
   <link rel="apple-touch-icon" href="/assets/isotipo-verde.webp" />
@@ -1047,9 +1049,9 @@ ${JSON.stringify(orgJsonLd, null, 2)}
       <div class="site-footer__big-mark">naveo</div>
       <div class="site-footer__grid">
         <div class="footer-brand">
-          <img src="/assets/logo-verde.webp" alt="Naveo" />
+          <div class="footer-brand__mark">naveo<span>·</span><em>creative engineering</em></div>
           <p>${escapeHtml(t.footer.about)}</p>
-          <p style="margin-top:14px;font-size:13px;color:var(--text-faint);">${escapeHtml(t.footer.location)}</p>
+          <p class="footer-brand__location">${escapeHtml(t.footer.location)}</p>
         </div>
         ${t.footer.cols.map(col => `
         <div class="footer-col">
