@@ -2,7 +2,7 @@ import { Content, IMG } from "./types";
 
 export const es: Content = {
   locale: "es",
-  nav: { portfolio: "Portafolio", method: "Método", cases: "Casos", about: "Sobre", contact: "Agendar diagnóstico" },
+  nav: { home: "Inicio", portfolio: "Portafolio", method: "Método", cases: "Casos", about: "Sobre", contact: "Agendar diagnóstico" },
   hero: {
     eyebrow: "Builder de Ingeniería Creativa",
     headline: [

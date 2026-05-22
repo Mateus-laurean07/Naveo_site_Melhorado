@@ -22,32 +22,33 @@ export function Header({ t, lang }: Props) {
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-line"
-          : "bg-white border-b border-transparent"
+          ? "bg-black/90 backdrop-blur-md border-b border-white/10"
+          : "bg-black border-b border-transparent"
       )}
     >
-      <div className="container-x flex items-center justify-between h-[68px]">
-        <a href={langPath(lang)} className="flex items-center gap-2" aria-label="Naveo">
-          <img src="/assets/isotipo-preto.webp" alt="" className="h-6 w-auto" />
-          <span className="font-display text-[18px] font-semibold text-ink tracking-tight">Naveo</span>
+      <div className="container-x flex items-center justify-between h-[96px]">
+        <a href={langPath(lang)} className="flex items-center" aria-label="Naveo">
+          <img src="/assets/logo-naveo-branco.png" alt="Naveo" className="h-14 w-auto" />
         </a>
 
         <nav className="hidden md:flex items-center gap-1">
+          <a href={langPath(lang)}
+            className="px-3.5 py-2 text-[14px] text-white/70 hover:text-white transition-colors">{t.nav.home}</a>
           <a href={path({ pt: "/portfolio", en: "/en/portfolio", es: "/es/portafolio" })}
-            className="px-3.5 py-2 text-[14px] text-ink-1 hover:text-ink transition-colors">{t.nav.portfolio}</a>
+            className="px-3.5 py-2 text-[14px] text-white/70 hover:text-white transition-colors">{t.nav.portfolio}</a>
           <a href={path({ pt: "/metodo", en: "/en/method", es: "/es/metodo" })}
-            className="px-3.5 py-2 text-[14px] text-ink-1 hover:text-ink transition-colors">{t.nav.method}</a>
+            className="px-3.5 py-2 text-[14px] text-white/70 hover:text-white transition-colors">{t.nav.method}</a>
           <a href={path({ pt: "/cases", en: "/en/cases", es: "/es/casos" })}
-            className="px-3.5 py-2 text-[14px] text-ink-1 hover:text-ink transition-colors">{t.nav.cases}</a>
+            className="px-3.5 py-2 text-[14px] text-white/70 hover:text-white transition-colors">{t.nav.cases}</a>
           <a href={path({ pt: "/sobre", en: "/en/about", es: "/es/sobre" })}
-            className="px-3.5 py-2 text-[14px] text-ink-1 hover:text-ink transition-colors">{t.nav.about}</a>
+            className="px-3.5 py-2 text-[14px] text-white/70 hover:text-white transition-colors">{t.nav.about}</a>
 
-          <div className="px-3 ml-2 flex items-center gap-0.5 text-[11px] font-mono uppercase tracking-wider text-ink-mute">
-            <a href="/" className={cn("px-1.5 py-1 hover:text-ink transition-colors", lang === "pt" && "text-accent")}>PT</a>
+          <div className="px-3 ml-2 flex items-center gap-0.5 text-[11px] font-mono uppercase tracking-wider text-white/50">
+            <a href="/" className={cn("px-1.5 py-1 hover:text-white transition-colors", lang === "pt" && "text-accent")}>PT</a>
             <span>·</span>
-            <a href="/en" className={cn("px-1.5 py-1 hover:text-ink transition-colors", lang === "en" && "text-accent")}>EN</a>
+            <a href="/en" className={cn("px-1.5 py-1 hover:text-white transition-colors", lang === "en" && "text-accent")}>EN</a>
             <span>·</span>
-            <a href="/es" className={cn("px-1.5 py-1 hover:text-ink transition-colors", lang === "es" && "text-accent")}>ES</a>
+            <a href="/es" className={cn("px-1.5 py-1 hover:text-white transition-colors", lang === "es" && "text-accent")}>ES</a>
           </div>
 
           <a

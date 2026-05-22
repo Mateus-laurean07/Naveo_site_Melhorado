@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Naveo · Ingeniería Creativa</title>
+  <meta name="description" content="Desarrollamos productos digitales y plataformas personalizadas para tu negocio. Sistemas, marketplaces, automatizaciones, IA aplicada. Construimos, integramos y sostenemos la tecnología que tu operación necesita." />
+  <link rel="canonical" href="https://naveo-docs.pages.dev/es" />
+
+  <link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/" />
+  <link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en" />
+  <link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es" />
+  <link rel="alternate" hreflang="x-default" href="https://naveo-docs.pages.dev/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es" />
+  <meta property="og:site_name" content="Naveo" />
+  <meta property="og:title" content="Naveo · Ingeniería Creativa" />
+  <meta property="og:description" content="Desarrollamos productos digitales y plataformas personalizadas para tu negocio. Sistemas, marketplaces, automatizaciones, IA aplicada. Construimos, integramos y sostenemos la tecnología que tu operación necesita." />
+  <meta property="og:url" content="https://naveo-docs.pages.dev/es" />
+  <meta property="og:image" content="https://naveo-docs.pages.dev/assets/logo-verde.webp" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Naveo · Ingeniería Creativa" />
+  <meta name="twitter:description" content="Desarrollamos productos digitales y plataformas personalizadas para tu negocio. Sistemas, marketplaces, automatizaciones, IA aplicada. Construimos, integramos y sostenemos la tecnología que tu operación necesita." />
+  <meta name="twitter:image" content="https://naveo-docs.pages.dev/assets/logo-verde.webp" />
+
+  <meta name="theme-color" content="#000000" />
+  <meta name="color-scheme" content="dark" />
+
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="apple-touch-icon" href="/assets/isotipo-verde.webp" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <link rel="stylesheet" href="/style.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Naveo",
+  "legalName": "Naveo Engenharia Criativa",
+  "url": "https://naveo-docs.pages.dev",
+  "logo": "https://naveo-docs.pages.dev/assets/logo-verde.webp",
+  "description": "Desarrollamos productos digitales y plataformas personalizadas para tu negocio. Sistemas, marketplaces, automatizaciones, IA aplicada. Construimos, integramos y sostenemos la tecnología que tu operación necesita.",
+  "foundingLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lucas do Rio Verde",
+      "addressRegion": "MT",
+      "addressCountry": "BR"
+    }
+  },
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "Jonathan Tebaldi"
+    },
+    {
+      "@type": "Person",
+      "name": "Vitor Righi"
+    }
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "tebaldi@naveo.com.br",
+    "telephone": "+55-65-99686-5004",
+    "areaServed": "BR",
+    "availableLanguage": [
+      "pt-BR",
+      "en",
+      "es"
+    ]
+  }
+}
+  </script>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="loader" aria-hidden="true">
+    <img src="/assets/isotipo-verde.webp" alt="" class="loader__mark" />
+  </div>
+
+  <!-- Grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="/es" class="site-header__home" aria-label="Início"></a>
+
+    <nav class="site-nav" aria-label="Main">
+      <a href="#portfolio">Portafolio</a>
+      <a href="#metodo">Método</a>
+      <a href="#cases">Casos</a>
+      <span class="site-nav__lang">
+        <a href="/" class="">PT</a>
+        <span>·</span>
+        <a href="/en" class="">EN</a>
+        <span>·</span>
+        <a href="/es" class="active">ES</a>
+      </span>
+      <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="site-nav__cta">Agendar diagnóstico →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <canvas id="hero-canvas" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <span class="hero__eyebrow">Builder de Ingeniería Creativa</span>
+        <h1 class="hero__headline">
+          <span class="word"><span>Desarrollamos</span></span> <span class="word"><span>productos digitales</span></span> <span class="word"><span>y plataformas</span></span> <span class="word"><span><em>personalizadas</em></span></span> <span class="word"><span>para tu negocio.</span></span>
+        </h1>
+        <p class="hero__sub">Sistemas, marketplaces, automatizaciones, IA aplicada. Construimos, integramos y sostenemos la tecnología que tu operación necesita.</p>
+        <div class="hero__ctas">
+          <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="btn btn--primary magnetic" data-magnetic="0.3">
+            <span class="magnetic__inner">Agendar diagnóstico <span class="arrow">↗</span></span>
+          </a>
+          <a href="#portfolio" class="btn btn--ghost magnetic" data-magnetic="0.2">
+            <span class="magnetic__inner">Ver portafolio <span class="arrow">→</span></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero__scroll">
+        Desplázate para explorar
+        <span class="hero__scroll__line"></span>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee">
+        <span class="marquee__item">Ingeniería Creativa</span>
+        <span class="marquee__item dim">Sistemas</span>
+        <span class="marquee__item">Marketplaces</span>
+        <span class="marquee__item dim">Automatizaciones</span>
+        <span class="marquee__item">IA Aplicada</span>
+        <span class="marquee__item dim">Fintech</span>
+        <span class="marquee__item">Sitios de Conversión</span>
+        <span class="marquee__item dim">PWA</span>
+        <span class="marquee__item">Visión de Dueño</span>
+        <span class="marquee__item dim">Ingeniería Creativa</span>
+        <span class="marquee__item">Sistemas</span>
+        <span class="marquee__item dim">Marketplaces</span>
+        <span class="marquee__item">Automatizaciones</span>
+        <span class="marquee__item dim">IA Aplicada</span>
+        <span class="marquee__item">Fintech</span>
+        <span class="marquee__item dim">Sitios de Conversión</span>
+        <span class="marquee__item">PWA</span>
+        <span class="marquee__item dim">Visión de Dueño</span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Skin in the game</span>
+          <h2 class="section-title">Los números que importan.</h2>
+          <p class="section-lead">Aplicamos el método primero en nuestras propias empresas. Antes de ofrecértelo, lo probamos en nosotros.</p>
+        </div>
+        <div class="stats-row">
+          
+          <div class="stat reveal">
+            <div class="stat__value" data-counter="12" data-suffix="">0</div>
+            <div class="stat__label">Empresas propias creadas</div>
+          </div>
+          <div class="stat reveal">
+            <div class="stat__value" data-counter="4" data-suffix="">0</div>
+            <div class="stat__label">Bancos digitales construidos</div>
+          </div>
+          <div class="stat reveal">
+            <div class="stat__value" data-counter="8" data-suffix="+">0</div>
+            <div class="stat__label">Sectores atendidos</div>
+          </div>
+          <div class="stat reveal">
+            <div class="stat__value" data-counter="100" data-suffix="%">0</div>
+            <div class="stat__label">Equipo interno · sin tercerización</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHOD horizontal scroll -->
+    <section id="metodo" class="method section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Ingeniería Creativa</span>
+          <h2 class="section-title">El método en 6 pasos.</h2>
+          <p class="section-lead">De la primera conversación al sistema funcionando. Investigación profunda, MVP en días, construcción por fases y soporte continuo.</p>
+        </div>
+      </div>
+      <div class="method__horizontal-wrap" role="region" aria-label="Pasos del método" tabindex="0">
+        <div class="method__horizontal">
+          
+          <article class="method-card" data-num="01">
+            <div>
+              <div class="method-card__num">01</div>
+              <h3 class="method-card__title">Conexión &amp; Diagnóstico</h3>
+              <p class="method-card__desc">Entendemos tu contexto, ERP, flujos y cuellos de botella.</p>
+            </div>
+            <ul class="method-card__list">
+              <li>Diagnóstico gratuito de 1h</li>
+              <li>Investigación del contexto</li>
+              <li>Mapeo de stakeholders</li>
+              <li>Briefing estratégico</li>
+            </ul>
+          </article>
+          <article class="method-card" data-num="02">
+            <div>
+              <div class="method-card__num">02</div>
+              <h3 class="method-card__title">Dirección Estratégica</h3>
+              <p class="method-card__desc">Roadmap, visión macro y matriz de prioridades.</p>
+            </div>
+            <ul class="method-card__list">
+              <li>Roadmap personalizado</li>
+              <li>Posicionamiento + propuesta de valor</li>
+              <li>Matriz de priorización</li>
+              <li>Documento de visión</li>
+            </ul>
+          </article>
+          <article class="method-card" data-num="03">
+            <div>
+              <div class="method-card__num">03</div>
+              <h3 class="method-card__title">MVP en Días</h3>
+              <p class="method-card__desc">Prototipo funcional antes del contrato, validación en vivo.</p>
+            </div>
+            <ul class="method-card__list">
+              <li>Prototipo en 3 a 7 días</li>
+              <li>Demostración en vivo</li>
+              <li>Visión expandida</li>
+              <li>Skin in the game</li>
+            </ul>
+          </article>
+          <article class="method-card" data-num="04">
+            <div>
+              <div class="method-card__num">04</div>
+              <h3 class="method-card__title">Construcción por Fases</h3>
+              <p class="method-card__desc">Sprints cortos, entrega incremental, validación por etapa.</p>
+            </div>
+            <ul class="method-card__list">
+              <li>Sprints cortos con metas claras</li>
+              <li>Entrega continua</li>
+              <li>Panel Notion compartido</li>
+              <li>Reuniones quincenales</li>
+            </ul>
+          </article>
+          <article class="method-card" data-num="05">
+            <div>
+              <div class="method-card__num">05</div>
+              <h3 class="method-card__title">Integración &amp; Go-Live</h3>
+              <p class="method-card__desc">Conexión con tu ERP actual, capacitación, go-live por fases.</p>
+            </div>
+            <ul class="method-card__list">
+              <li>Integración vía API</li>
+              <li>Capacitación del equipo</li>
+              <li>Go-live por fases</li>
+              <li>Cumplimiento LGPD</li>
+            </ul>
+          </article>
+          <article class="method-card" data-num="06">
+            <div>
+              <div class="method-card__num">06</div>
+              <h3 class="method-card__title">Soporte Continuo</h3>
+              <p class="method-card__desc">10h técnicas mensuales, soporte WhatsApp, garantía 90 días.</p>
+            </div>
+            <ul class="method-card__list">
+              <li>10h técnicas/mes</li>
+              <li>Soporte WhatsApp en 4h</li>
+              <li>Garantía de 90 días</li>
+              <li>Roadmap evolutivo</li>
+            </ul>
+          </article>
+        </div>
+        <div class="method__hint" aria-hidden="true">← arrastra o desliza al lado →</div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Lo que construimos</span>
+          <h2 class="section-title">Capacidades técnicas en <em>seis frentes</em>.</h2>
+          <p class="section-lead">El cliente no compra capacidad — compra resolución de dolor. Pero el kit técnico tiene que estar listo.</p>
+        </div>
+        <div class="capabilities">
+          
+          <div class="capability reveal">
+            <div class="capability__icon">&lt;/&gt;</div>
+            <div>
+              <h3 class="capability__title">Sistemas a medida</h3>
+              <p class="capability__desc">Plataformas web, PWAs, ERPs internos, gestores documentales y configuraciones multiunidad diseñadas para tu operación.</p>
+            </div>
+          </div>
+          <div class="capability reveal">
+            <div class="capability__icon">⌬</div>
+            <div>
+              <h3 class="capability__title">Marketplaces con IA</h3>
+              <p class="capability__desc">Compra y venta con agentes inteligentes negociando vía WhatsApp, automatización de leads y gestión integrada.</p>
+            </div>
+          </div>
+          <div class="capability reveal">
+            <div class="capability__icon">∞</div>
+            <div>
+              <h3 class="capability__title">Automatizaciones inteligentes</h3>
+              <p class="capability__desc">Flujos automatizados con n8n, integraciones por API, agentes que reemplazan el trabajo manual repetitivo.</p>
+            </div>
+          </div>
+          <div class="capability reveal">
+            <div class="capability__icon">◈</div>
+            <div>
+              <h3 class="capability__title">IA aplicada</h3>
+              <p class="capability__desc">Agentes negociadores, OCR, clasificación automática, análisis predictivo. IA con propósito y resultado.</p>
+            </div>
+          </div>
+          <div class="capability reveal">
+            <div class="capability__icon">$</div>
+            <div>
+              <h3 class="capability__title">Fintech &amp; pagos</h3>
+              <p class="capability__desc">Cuenta whitelabel, sub-acquiring, pagos integrados, banca digital. Hemos construido 4 hasta hoy.</p>
+            </div>
+          </div>
+          <div class="capability reveal">
+            <div class="capability__icon">⚡</div>
+            <div>
+              <h3 class="capability__title">Sitios de alta conversión</h3>
+              <p class="capability__desc">Sitios institucionales y landing pages que convierten — no decorativos, orientados a métrica.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Portafolio Naveo</span>
+          <h2 class="section-title">12 empresas propias. <em>Skin in the game</em> real.</h2>
+          <p class="section-lead">Antes de ofrecértelo, lo construimos para nosotros. Cada negocio propio es un laboratorio vivo del método.</p>
+        </div>
+        <div class="portfolio-heroes">
+          
+          <a href="https://agrodesapego.com.br" target="_blank" rel="noopener" class="portfolio-hero reveal">
+            <div class="portfolio-hero__media" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=80')"></div>
+            <div class="portfolio-hero__overlay"></div>
+            <div class="portfolio-hero__link">↗</div>
+            <div class="portfolio-hero__content">
+              <span class="portfolio-hero__tag">Marketplace · IA</span>
+              <h3 class="portfolio-hero__name">Agrodesapego</h3>
+              <p class="portfolio-hero__desc">Venta de maquinaria agrícola con IA negociadora</p>
+            </div>
+          </a>
+          <a href="https://cruzetaclub.com.br" target="_blank" rel="noopener" class="portfolio-hero reveal">
+            <div class="portfolio-hero__media" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80')"></div>
+            <div class="portfolio-hero__overlay"></div>
+            <div class="portfolio-hero__link">↗</div>
+            <div class="portfolio-hero__content">
+              <span class="portfolio-hero__tag">Comunidad · SaaS</span>
+              <h3 class="portfolio-hero__name">Cruzeta Club</h3>
+              <p class="portfolio-hero__desc">Gestión de clubes de autos</p>
+            </div>
+          </a>
+          <a href="https://navbarber.com.br" target="_blank" rel="noopener" class="portfolio-hero reveal">
+            <div class="portfolio-hero__media" style="background-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1400&q=80')"></div>
+            <div class="portfolio-hero__overlay"></div>
+            <div class="portfolio-hero__link">↗</div>
+            <div class="portfolio-hero__content">
+              <span class="portfolio-hero__tag">SaaS Vertical</span>
+              <h3 class="portfolio-hero__name">Navbarber</h3>
+              <p class="portfolio-hero__desc">Gestión para barberías modernas</p>
+            </div>
+          </a>
+          <a href="#"  class="portfolio-hero reveal">
+            <div class="portfolio-hero__media" style="background-image:url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1400&q=80')"></div>
+            <div class="portfolio-hero__overlay"></div>
+            <div class="portfolio-hero__link">↗</div>
+            <div class="portfolio-hero__content">
+              <span class="portfolio-hero__tag">Próximamente</span>
+              <h3 class="portfolio-hero__name">Pharma Genius</h3>
+              <p class="portfolio-hero__desc">Plataforma farmacéutica · lanzamiento próximo</p>
+            </div>
+          </a>
+        </div>
+        <div class="portfolio-mini-grid">
+          
+          <div class="portfolio-mini reveal" style="transition-delay: 0.00s">
+            <div class="portfolio-mini__name">Criativando</div>
+            <div class="portfolio-mini__tag">Plataforma</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+          <div class="portfolio-mini reveal" style="transition-delay: 0.06s">
+            <div class="portfolio-mini__name">uRocket</div>
+            <div class="portfolio-mini__tag">Fintech</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+          <div class="portfolio-mini reveal" style="transition-delay: 0.12s">
+            <div class="portfolio-mini__name">VaiPedindo</div>
+            <div class="portfolio-mini__tag">Fintech</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+          <div class="portfolio-mini reveal" style="transition-delay: 0.18s">
+            <div class="portfolio-mini__name">Farol Entidades</div>
+            <div class="portfolio-mini__tag">Comunidad</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+          <div class="portfolio-mini reveal" style="transition-delay: 0.24s">
+            <div class="portfolio-mini__name">automapost</div>
+            <div class="portfolio-mini__tag">Automatización</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+          <div class="portfolio-mini reveal" style="transition-delay: 0.30s">
+            <div class="portfolio-mini__name">talk</div>
+            <div class="portfolio-mini__tag">SaaS</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+          <div class="portfolio-mini reveal" style="transition-delay: 0.36s">
+            <div class="portfolio-mini__name">eventeu</div>
+            <div class="portfolio-mini__tag">Plataforma</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+          <div class="portfolio-mini reveal" style="transition-delay: 0.42s">
+            <div class="portfolio-mini__name">obafestinha</div>
+            <div class="portfolio-mini__tag">Plataforma</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASES -->
+    <section id="cases" class="section section--lg">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Casos de cliente</span>
+          <h2 class="section-title">Tú nos traes el dolor. <em>Nosotros desarrollamos.</em></h2>
+          <p class="section-lead">Empresas que llegaron con una demanda puntual y salieron con una operación digital completa.</p>
+        </div>
+        <div class="cases">
+          
+          <article class="case ">
+            <div class="case__media reveal">
+              <div class="case__media__inner" style="background-image:url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1400&q=80')"></div>
+            </div>
+            <div class="case__body reveal">
+              <div class="case__tag">Plataforma operacional · Gestión documental</div>
+              <h3 class="case__title">Facilita Higienização</h3>
+              <p class="case__desc">Red de higienización industrial con múltiples unidades. Empujaba papel, certificados venciendo sin que nadie viera, riesgo laboral latente. Construimos un GED multiunidad con firma legal, PWA para gerentes y dashboard de plazos.</p>
+              <div class="case__quote">“Trajeron algo que no imaginaba que era posible.”</div>
+              <div class="case__metrics">
+                
+                <div class="case__metric">
+                  <strong>PWA</strong>
+                  <span>iPhone, Android, iPad</span>
+                </div>
+                <div class="case__metric">
+                  <strong>LGPD</strong>
+                  <span>Cumplimiento total</span>
+                </div>
+                <div class="case__metric">
+                  <strong>90d</strong>
+                  <span>De la firma al go-live</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="case case--reverse">
+            <div class="case__media reveal">
+              <div class="case__media__inner" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80')"></div>
+            </div>
+            <div class="case__body reveal">
+              <div class="case__tag">ERP Vertical · Construcción</div>
+              <h3 class="case__title">ObraSimples</h3>
+              <p class="case__desc">Cliente llegó pidiendo solución fintech. Identificamos una oportunidad mayor: un ERP/Micro SaaS a medida para pequeños emprendedores de la construcción. Facturación, PIX, gestión financiera, control de stock, presupuestos.</p>
+              <div class="case__quote">“Nos mostraron una nueva oportunidad de nuevo negocio.”</div>
+              <div class="case__metrics">
+                
+                <div class="case__metric">
+                  <strong>A medida</strong>
+                  <span>Cliente dueño del código</span>
+                </div>
+                <div class="case__metric">
+                  <strong>Fintech</strong>
+                  <span>PIX + facturas integrados</span>
+                </div>
+                <div class="case__metric">
+                  <strong>MRR</strong>
+                  <span>Soporte continuo</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="case ">
+            <div class="case__media reveal">
+              <div class="case__media__inner" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80')"></div>
+            </div>
+            <div class="case__body reveal">
+              <div class="case__tag">Plataforma de salud · desde cero</div>
+              <h3 class="case__title">Cuidar Bem Card</h3>
+              <p class="case__desc">Empresa de salud creada desde cero, del modelo de negocio a la plataforma completa. Concepto, desarrollo, branding, go-to-market — Ingeniería Creativa de punta a punta.</p>
+              <div class="case__quote">“Se convirtió en un negocio completo que está cambiando cómo las personas acceden a servicios de salud.”</div>
+              <div class="case__metrics">
+                
+                <div class="case__metric">
+                  <strong>300%</strong>
+                  <span>Crecimiento en 12 meses</span>
+                </div>
+                <div class="case__metric">
+                  <strong>3</strong>
+                  <span>Estados brasileños</span>
+                </div>
+                <div class="case__metric">
+                  <strong>0→1</strong>
+                  <span>Concepto a operación</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGOS -->
+    <section class="section section--sm">
+      <div class="container">
+        <div class="section-head section-head--centered reveal">
+          <span class="section-eyebrow">Confían</span>
+          <h2 class="section-title">Equipos que eligieron <em>construir juntos</em>.</h2>
+          <p class="section-lead" style="margin-left:auto;margin-right:auto;">De redes regionales a sistemas cooperativos. Diferentes sectores, el mismo método.</p>
+        </div>
+      </div>
+      <div class="logos-marquee reveal" aria-label="Empresas que confían en Naveo">
+        <div class="logos-marquee__track">
+          <div class="logo-chip">Facilita</div>
+          <div class="logo-chip">ObraSimples</div>
+          <div class="logo-chip logo-chip--img" title="Cuidar Bem"><img src="/assets/clients/cuidarbem.png" alt="Cuidar Bem" loading="lazy" /></div>
+          <div class="logo-chip logo-chip--img" title="Sicredi"><img src="/assets/clients/sicredi.png" alt="Sicredi" loading="lazy" /></div>
+          <div class="logo-chip logo-chip--img" title="Green Future Hub"><img src="/assets/clients/greenfuturehub.png" alt="Green Future Hub" loading="lazy" /></div>
+          <div class="logo-chip">O'Gourmet</div>
+          <div class="logo-chip logo-chip--img" title="Festi Pizza"><img src="/assets/clients/festipizza.webp" alt="Festi Pizza" loading="lazy" /></div>
+          <div class="logo-chip logo-chip--img" title="Bassani Móveis"><img src="/assets/clients/bassanimoveis.webp" alt="Bassani Móveis" loading="lazy" /></div>
+          <div class="logo-chip">Serra Summit</div>
+          <div class="logo-chip">CD Marau</div>
+          <div class="logo-chip">Gestão BPO</div>
+          <div class="logo-chip logo-chip--img" title="Alternativa"><img src="/assets/clients/alternativa.png" alt="Alternativa" loading="lazy" /></div>
+          <div class="logo-chip">Facilita</div>
+          <div class="logo-chip">ObraSimples</div>
+          <div class="logo-chip logo-chip--img" title="Cuidar Bem"><img src="/assets/clients/cuidarbem.png" alt="Cuidar Bem" loading="lazy" /></div>
+          <div class="logo-chip logo-chip--img" title="Sicredi"><img src="/assets/clients/sicredi.png" alt="Sicredi" loading="lazy" /></div>
+          <div class="logo-chip logo-chip--img" title="Green Future Hub"><img src="/assets/clients/greenfuturehub.png" alt="Green Future Hub" loading="lazy" /></div>
+          <div class="logo-chip">O'Gourmet</div>
+          <div class="logo-chip logo-chip--img" title="Festi Pizza"><img src="/assets/clients/festipizza.webp" alt="Festi Pizza" loading="lazy" /></div>
+          <div class="logo-chip logo-chip--img" title="Bassani Móveis"><img src="/assets/clients/bassanimoveis.webp" alt="Bassani Móveis" loading="lazy" /></div>
+          <div class="logo-chip">Serra Summit</div>
+          <div class="logo-chip">CD Marau</div>
+          <div class="logo-chip">Gestão BPO</div>
+          <div class="logo-chip logo-chip--img" title="Alternativa"><img src="/assets/clients/alternativa.png" alt="Alternativa" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Voces</span>
+          <h2 class="section-title"><em>Visión de dueño</em>, en la práctica.</h2>
+          <p class="section-lead">Lo que dicen los clientes después de subir a nuestro barco.</p>
+        </div>
+        <div class="testimonials">
+          
+          <div class="testimonial reveal">
+            <p class="testimonial__quote">Trajeron algo que yo no imaginaba que era posible. Salí con un sistema que cambió toda nuestra operación.</p>
+            <div class="testimonial__author">
+              <div class="testimonial__name">Cliente Facilita Higienização</div>
+              <div class="testimonial__role">Director · Red industrial · BR</div>
+            </div>
+          </div>
+          <div class="testimonial reveal">
+            <p class="testimonial__quote">No solo necesitábamos un sistema — nos mostraron una nueva oportunidad de negocio. Skin in the game real.</p>
+            <div class="testimonial__author">
+              <div class="testimonial__name">Thiago Piccini</div>
+              <div class="testimonial__role">Fundador · ObraSimples</div>
+            </div>
+          </div>
+          <div class="testimonial reveal">
+            <p class="testimonial__quote">Transformaron nuestra visión en un negocio completo que está cambiando cómo las personas acceden a salud.</p>
+            <div class="testimonial__author">
+              <div class="testimonial__name">Renata Jacomeli</div>
+              <div class="testimonial__role">CEO · Cuidar Bem Card</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Stack</span>
+          <h2 class="section-title">Tecnología <em>moderna y probada</em>.</h2>
+          <p class="section-lead">Las herramientas que usamos para construir productos que escalan — probadas en 12 negocios propios.</p>
+        </div>
+        <div class="stack-grid reveal">
+          
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/nextdotjs.svg" alt="Next.js logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Next.js</div>
+            <div class="stack-cell__type">Frontend</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/supabase.svg" alt="Supabase logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Supabase</div>
+            <div class="stack-cell__type">Backend</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/postgresql.svg" alt="Postgres logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Postgres</div>
+            <div class="stack-cell__type">Database</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/n8n.svg" alt="n8n logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">n8n</div>
+            <div class="stack-cell__type">Automation</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/claude.svg" alt="Claude logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Claude</div>
+            <div class="stack-cell__type">AI</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/whatsapp.svg" alt="Evolution logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Evolution</div>
+            <div class="stack-cell__type">WhatsApp</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/resend.svg" alt="Resend logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Resend</div>
+            <div class="stack-cell__type">Email</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/tailwindcss.svg" alt="Tailwind logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Tailwind</div>
+            <div class="stack-cell__type">Styling</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/figma.svg" alt="Figma logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Figma</div>
+            <div class="stack-cell__type">Design</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/github.svg" alt="GitHub logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">GitHub</div>
+            <div class="stack-cell__type">Code</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/vercel.svg" alt="Vercel logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Vercel</div>
+            <div class="stack-cell__type">Deploy</div>
+          </div>
+          <div class="stack-cell">
+            <img class="stack-cell__icon" src="/assets/stack/cloudflare.svg" alt="Cloudflare logo" loading="lazy" width="40" height="40" />
+            <div class="stack-cell__name">Cloudflare</div>
+            <div class="stack-cell__type">Edge</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section id="sobre" class="manifesto">
+      <div class="container--narrow">
+        <p class="manifesto__quote reveal">No vendemos horas. <em>Construimos la operación.</em></p>
+        <div class="manifesto__attribution reveal">Naveo · Lucas do Rio Verde, MT · Brasil</div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+      <div class="container--narrow">
+        <div class="cta-final__inner">
+          <h2 class="cta-final__title reveal">¿<em>Construimos</em> juntos?</h2>
+          <p class="cta-final__sub reveal">Diagnóstico de 1h, gratuito y sin compromiso. Entendemos tu operación, mapeamos cuellos de botella y devolvemos un diagnóstico estructurado en hasta 5 días hábiles.</p>
+          <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="btn btn--primary magnetic reveal" data-magnetic="0.3">
+            <span class="magnetic__inner">Hablar por WhatsApp <span class="arrow">↗</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__big-mark">naveo</div>
+      <div class="site-footer__grid">
+        <div class="footer-brand">
+          <img src="/assets/logo-verde.webp" alt="Naveo" />
+          <p>Builder de Ingeniería Creativa. Desarrollamos productos digitales y plataformas a medida — sistemas, marketplaces, automatizaciones e IA aplicada.</p>
+          <p style="margin-top:14px;font-size:13px;color:var(--text-faint);">Lucas do Rio Verde, MT · Brasil</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            
+            <li><a href="#sobre" >Sobre</a></li>
+            <li><a href="#portfolio" >Portafolio Naveo</a></li>
+            <li><a href="#cases" >Casos de cliente</a></li>
+            <li><a href="#metodo" >Método</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Productos propios</h4>
+          <ul>
+            
+            <li><a href="https://agrodesapego.com.br" target="_blank" rel="noopener">Agrodesapego ↗</a></li>
+            <li><a href="https://cruzetaclub.com.br" target="_blank" rel="noopener">Cruzeta Club ↗</a></li>
+            <li><a href="https://navbarber.com.br" target="_blank" rel="noopener">Navbarber ↗</a></li>
+            <li><a href="#" >Pharma Genius (próximamente)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            
+            <li><a href="mailto:contato@naveo.com.br" >contato@naveo.com.br</a></li>
+            <li><a href="https://wa.me/5565996865004" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="https://www.instagram.com/naveoce" target="_blank" rel="noopener">Instagram ↗</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Idioma</h4>
+          <ul>
+            
+            <li><a href="/" >Português</a></li>
+            <li><a href="/en" >English</a></li>
+            <li><a href="/es" >Español</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <div>© 2026 Naveo Engenharia Criativa.</div>
+        <div>Construido con Ingeniería Creativa.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/three-scene.js"></script>
+  <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

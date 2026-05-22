@@ -1,6 +1,6 @@
 export interface Content {
   locale: string;
-  nav: { portfolio: string; method: string; cases: string; about: string; contact: string };
+  nav: { home: string; portfolio: string; method: string; cases: string; about: string; contact: string };
   hero: {
     eyebrow: string;
     headline: { text: string; italic?: boolean }[];
@@ -85,16 +85,16 @@ export const CLIENT_LOGOS = [
 ];
 
 export const STACK_BLOCKS = [
-  { icon: "N", name: "Next.js", type: "Frontend" },
-  { icon: "S", name: "Supabase", type: "Backend" },
-  { icon: "P", name: "Postgres", type: "Database" },
-  { icon: "n8", name: "n8n", type: "Automation" },
-  { icon: "AI", name: "OpenAI", type: "AI" },
-  { icon: "W", name: "Evolution", type: "WhatsApp" },
-  { icon: "R", name: "Resend", type: "Email" },
-  { icon: "T", name: "Tailwind", type: "Styling" },
-  { icon: "F", name: "Figma", type: "Design" },
-  { icon: "G", name: "GitHub", type: "Code" },
-  { icon: "V", name: "Vercel", type: "Deploy" },
-  { icon: "CF", name: "Cloudflare", type: "Edge" },
+  { slug: "nextdotjs", color: "000000", name: "Next.js", type: "Frontend" },
+  { slug: "supabase", color: "3FCF8E", name: "Supabase", type: "Backend" },
+  { slug: "postgresql", color: "4169E1", name: "Postgres", type: "Database" },
+  { slug: "n8n", color: "EA4B71", name: "n8n", type: "Automation" },
+  { slug: "claude", color: "D97757", name: "Claude", type: "AI" },
+  { slug: "whatsapp", color: "25D366", name: "Evolution", type: "WhatsApp" },
+  { slug: "resend", color: "000000", name: "Resend", type: "Email" },
+  { slug: "tailwindcss", color: "06B6D4", name: "Tailwind", type: "Styling" },
+  { slug: "figma", color: "F24E1E", name: "Figma", type: "Design" },
+  { slug: "github", color: "181717", name: "GitHub", type: "Code" },
+  { slug: "vercel", color: "000000", name: "Vercel", type: "Deploy" },
+  { slug: "cloudflare", color: "F38020", name: "Cloudflare", type: "Edge" },
 ];

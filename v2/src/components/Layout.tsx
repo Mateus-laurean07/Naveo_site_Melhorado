@@ -23,7 +23,7 @@ export function Layout({ t, lang, children }: { t: Content; lang: string; childr
         aria-hidden="true"
       />
       <Header t={t} lang={lang} />
-      <main className="pt-[68px]">{children}</main>
+      <main className="pt-[96px]">{children}</main>
       <Footer t={t} />
     </>
   );

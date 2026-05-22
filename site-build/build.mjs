@@ -38,24 +38,44 @@ const IMG = {
 // =================================================================
 // Shared lists (across i18n)
 const CLIENT_LOGOS = [
-  "Facilita", "ObraSimples", "Cuidar Bem", "Sicredi",
-  "Green Future Hub", "O'Gourmet", "Festi Pizza", "Bassani Móveis",
-  "Serra Summit", "CD Marau", "Gestão BPO", "Alternativa",
+  { name: "Facilita",         slug: "facilita" },
+  { name: "ObraSimples",      slug: "obrasimples" },
+  { name: "Cuidar Bem",       slug: "cuidarbem" },
+  { name: "Sicredi",          slug: "sicredi" },
+  { name: "Green Future Hub", slug: "greenfuturehub" },
+  { name: "O'Gourmet",        slug: "ogourmet" },
+  { name: "Festi Pizza",      slug: "festipizza" },
+  { name: "Bassani Móveis",   slug: "bassanimoveis" },
+  { name: "Serra Summit",     slug: "serrasummit" },
+  { name: "CD Marau",         slug: "cdmarau" },
+  { name: "Gestão BPO",       slug: "gestaobpo" },
+  { name: "Alternativa",      slug: "alternativa" },
 ];
 
+// Detecta automaticamente se existe arquivo de logo em dist/assets/clients/
+// Aceita .svg, .png, .webp, .jpg (nessa ordem de prioridade)
+const CLIENTS_DIR = resolve(ROOT, "dist", "assets", "clients");
+function resolveClientLogo(slug) {
+  for (const ext of ["svg", "png", "webp", "jpg", "jpeg"]) {
+    const path = resolve(CLIENTS_DIR, `${slug}.${ext}`);
+    if (existsSync(path)) return `/assets/clients/${slug}.${ext}`;
+  }
+  return null;
+}
+
 const STACK_BLOCKS = [
-  { icon: "N", name: "Next.js", type: "Frontend" },
-  { icon: "S", name: "Supabase", type: "Backend" },
-  { icon: "P", name: "Postgres", type: "Database" },
-  { icon: "n8", name: "n8n", type: "Automation" },
-  { icon: "AI", name: "OpenAI", type: "AI" },
-  { icon: "W", name: "Evolution", type: "WhatsApp" },
-  { icon: "R", name: "Resend", type: "Email" },
-  { icon: "T", name: "Tailwind", type: "Styling" },
-  { icon: "F", name: "Figma", type: "Design" },
-  { icon: "G", name: "GitHub", type: "Code" },
-  { icon: "V", name: "Vercel", type: "Deploy" },
-  { icon: "CF", name: "Cloudflare", type: "Edge" },
+  { slug: "nextdotjs",   name: "Next.js",    type: "Frontend" },
+  { slug: "supabase",    name: "Supabase",   type: "Backend" },
+  { slug: "postgresql",  name: "Postgres",   type: "Database" },
+  { slug: "n8n",         name: "n8n",        type: "Automation" },
+  { slug: "claude",      name: "Claude",     type: "AI" },
+  { slug: "whatsapp",    name: "Evolution",  type: "WhatsApp" },
+  { slug: "resend",      name: "Resend",     type: "Email" },
+  { slug: "tailwindcss", name: "Tailwind",   type: "Styling" },
+  { slug: "figma",       name: "Figma",      type: "Design" },
+  { slug: "github",      name: "GitHub",     type: "Code" },
+  { slug: "vercel",      name: "Vercel",     type: "Deploy" },
+  { slug: "cloudflare",  name: "Cloudflare", type: "Edge" },
 ];
 
 const i18n = {
@@ -95,6 +115,8 @@ const i18n = {
       eyebrow: "Engenharia Criativa",
       title: "O método em 6 passos.",
       lead: "Da primeira conversa ao sistema rodando. Investigação profunda, MVP em dias, construção faseada e sustentação contínua.",
+      aria: "Etapas do método",
+      hint: "← arraste ou role pro lado →",
       steps: [
         { num: "01", title: "Conexão & Diagnóstico", desc: "Entendemos seu contexto, ERP, fluxos e gargalos.", list: ["Diagnóstico de 1h gratuito", "Investigação do contexto", "Mapeamento de stakeholders", "Briefing estratégico"] },
         { num: "02", title: "Direcionamento Estratégico", desc: "Roadmap, visão macro e matriz de prioridades.", list: ["Roadmap personalizado", "Posicionamento + proposta de valor", "Matriz de priorização", "Documento de visão"] },
@@ -185,6 +207,7 @@ const i18n = {
       eyebrow: "Quem confia",
       title: "Empresas que escolheram <em>construir junto</em>.",
       lead: "De redes regionais a sistemas cooperativos. Diferentes setores, mesmo método.",
+      aria: "Empresas que confiam na Naveo",
     },
     stack: {
       eyebrow: "Stack",
@@ -283,6 +306,8 @@ const i18n = {
       eyebrow: "Creative Engineering",
       title: "The 6-step method.",
       lead: "From first conversation to system in production. Deep investigation, MVP in days, phased build and ongoing sustainment.",
+      aria: "Method steps",
+      hint: "← drag or scroll sideways →",
       steps: [
         { num: "01", title: "Connect & Diagnose", desc: "We understand your context, ERP, flows and bottlenecks.", list: ["Free 1h diagnosis", "Context investigation", "Stakeholder mapping", "Strategic briefing"] },
         { num: "02", title: "Strategic Direction", desc: "Roadmap, macro vision and priority matrix.", list: ["Custom roadmap", "Positioning + value prop", "Priority matrix", "Vision document"] },
@@ -373,6 +398,7 @@ const i18n = {
       eyebrow: "Trusted by",
       title: "Teams that chose to <em>build together</em>.",
       lead: "From regional networks to cooperative systems. Different industries, same method.",
+      aria: "Companies that trust Naveo",
     },
     stack: {
       eyebrow: "Stack",
@@ -471,6 +497,8 @@ const i18n = {
       eyebrow: "Ingeniería Creativa",
       title: "El método en 6 pasos.",
       lead: "De la primera conversación al sistema funcionando. Investigación profunda, MVP en días, construcción por fases y soporte continuo.",
+      aria: "Pasos del método",
+      hint: "← arrastra o desliza al lado →",
       steps: [
         { num: "01", title: "Conexión & Diagnóstico", desc: "Entendemos tu contexto, ERP, flujos y cuellos de botella.", list: ["Diagnóstico gratuito de 1h", "Investigación del contexto", "Mapeo de stakeholders", "Briefing estratégico"] },
         { num: "02", title: "Dirección Estratégica", desc: "Roadmap, visión macro y matriz de prioridades.", list: ["Roadmap personalizado", "Posicionamiento + propuesta de valor", "Matriz de priorización", "Documento de visión"] },
@@ -561,6 +589,7 @@ const i18n = {
       eyebrow: "Confían",
       title: "Equipos que eligieron <em>construir juntos</em>.",
       lead: "De redes regionales a sistemas cooperativos. Diferentes sectores, el mismo método.",
+      aria: "Empresas que confían en Naveo",
     },
     stack: {
       eyebrow: "Stack",
@@ -747,9 +776,7 @@ ${JSON.stringify(orgJsonLd, null, 2)}
 
   <!-- Header -->
   <header class="site-header">
-    <a href="${path}" class="site-header__logo" aria-label="${SITE_NAME}">
-      <img src="/assets/logo-verde.webp" alt="Naveo Creative Engineering" />
-    </a>
+    <a href="${path}" class="site-header__home" aria-label="Início"></a>
 
     <nav class="site-nav" aria-label="Main">
       <a href="#portfolio">${escapeHtml(t.nav.portfolio)}</a>
@@ -827,10 +854,10 @@ ${JSON.stringify(orgJsonLd, null, 2)}
           <p class="section-lead">${escapeHtml(t.method.lead)}</p>
         </div>
       </div>
-      <div class="method__horizontal-wrap">
+      <div class="method__horizontal-wrap" role="region" aria-label="${escapeHtml(t.method.aria)}" tabindex="0">
         <div class="method__horizontal">
           ${t.method.steps.map(s => `
-          <article class="method-card">
+          <article class="method-card" data-num="${escapeHtml(s.num)}">
             <div>
               <div class="method-card__num">${escapeHtml(s.num)}</div>
               <h3 class="method-card__title">${escapeHtml(s.title)}</h3>
@@ -841,6 +868,7 @@ ${JSON.stringify(orgJsonLd, null, 2)}
             </ul>
           </article>`).join("")}
         </div>
+        <div class="method__hint" aria-hidden="true">${escapeHtml(t.method.hint)}</div>
       </div>
     </section>
 
@@ -855,7 +883,7 @@ ${JSON.stringify(orgJsonLd, null, 2)}
         <div class="capabilities">
           ${t.capabilities.items.map(c => `
           <div class="capability reveal">
-            <div class="capability__icon">${c.icon}</div>
+            <div class="capability__icon">${escapeHtml(c.icon)}</div>
             <div>
               <h3 class="capability__title">${escapeHtml(c.title)}</h3>
               <p class="capability__desc">${escapeHtml(c.desc)}</p>
@@ -887,10 +915,11 @@ ${JSON.stringify(orgJsonLd, null, 2)}
           </a>`).join("")}
         </div>
         <div class="portfolio-mini-grid">
-          ${t.portfolio.mini.map(p => `
-          <div class="portfolio-mini reveal">
+          ${t.portfolio.mini.map((p, i) => `
+          <div class="portfolio-mini reveal" style="transition-delay: ${(i * 0.06).toFixed(2)}s">
             <div class="portfolio-mini__name">${escapeHtml(p.name)}</div>
             <div class="portfolio-mini__tag">${escapeHtml(p.tag)}</div>
+            <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
           </div>`).join("")}
         </div>
       </div>
@@ -936,8 +965,15 @@ ${JSON.stringify(orgJsonLd, null, 2)}
           <h2 class="section-title">${t.logos.title}</h2>
           <p class="section-lead" style="margin-left:auto;margin-right:auto;">${escapeHtml(t.logos.lead)}</p>
         </div>
-        <div class="logos reveal">
-          ${CLIENT_LOGOS.map(l => `<div class="logo-cell">${escapeHtml(l)}</div>`).join("\n          ")}
+      </div>
+      <div class="logos-marquee reveal" aria-label="${escapeHtml(t.logos.aria)}">
+        <div class="logos-marquee__track">
+          ${[...CLIENT_LOGOS, ...CLIENT_LOGOS].map(c => {
+            const src = resolveClientLogo(c.slug);
+            return src
+              ? `<div class="logo-chip logo-chip--img" title="${escapeHtml(c.name)}"><img src="${src}" alt="${escapeHtml(c.name)}" loading="lazy" /></div>`
+              : `<div class="logo-chip">${escapeHtml(c.name)}</div>`;
+          }).join("\n          ")}
         </div>
       </div>
     </section>
@@ -974,7 +1010,7 @@ ${JSON.stringify(orgJsonLd, null, 2)}
         <div class="stack-grid reveal">
           ${STACK_BLOCKS.map(b => `
           <div class="stack-cell">
-            <div class="stack-cell__icon">${escapeHtml(b.icon)}</div>
+            <img class="stack-cell__icon" src="/assets/stack/${b.slug}.svg" alt="${escapeHtml(b.name)} logo" loading="lazy" width="40" height="40" />
             <div class="stack-cell__name">${escapeHtml(b.name)}</div>
             <div class="stack-cell__type">${escapeHtml(b.type)}</div>
           </div>`).join("")}

@@ -1,0 +1,7 @@
+# Naveo
+User-agent: *
+Allow: /
+Disallow: /brand/
+Disallow: /brand
+
+Sitemap: https://naveo-docs.pages.dev/sitemap.xml

@@ -14,9 +14,14 @@ export function Stack({ t }: { t: Content }) {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.4, delay: i * 0.03 }}
-            className="aspect-[1.4/1] bg-white hover:bg-bg-soft flex flex-col items-center justify-center gap-1.5 p-4 transition-colors"
+            className="aspect-[1.4/1] bg-white hover:bg-bg-soft flex flex-col items-center justify-center gap-2 p-4 transition-colors"
           >
-            <div className="font-display text-[22px] font-semibold text-ink tracking-[-0.02em]">{b.icon}</div>
+            <img
+              src={`https://cdn.simpleicons.org/${b.slug}/${b.color}`}
+              alt={`${b.name} logo`}
+              className="h-8 w-8 object-contain"
+              loading="lazy"
+            />
             <div className="text-[12px] font-medium text-ink-dim">{b.name}</div>
             <div className="font-mono text-[9.5px] uppercase tracking-[0.1em] text-ink-mute">{b.type}</div>
           </motion.div>
