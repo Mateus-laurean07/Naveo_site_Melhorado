@@ -1807,7 +1807,7 @@ a.case__media:hover .case__media__inner { transform: scale(1.04); }
   font-family: var(--font-display);
   font-size: clamp(40px, 6.5vw, 88px);
   font-weight: 700;
-  line-height: 1.02;
+  line-height: 1.18;
   letter-spacing: -.035em;
   margin: 16px 0 24px;
   color: var(--text);
