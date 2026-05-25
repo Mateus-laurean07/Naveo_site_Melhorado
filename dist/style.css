@@ -837,10 +837,8 @@ section { position: relative; }
 .partner-cell:has(img[src*="saolucas"]) img,
 .partner-cell:has(img[src*="matrezan"]) img,
 .partner-cell:has(img[src*="bellomo"]) img,
-.partner-cell:has(img[src*="frigovino"]) img,
 .partner-cell:has(img[src*="gestaobpo"]) img,
 .partner-cell:has(img[src*="camicias"]) img,
-.partner-cell:has(img[src*="gourmet"]) img,
 .partner-cell:has(img[src*="serrasummit"]) img {
   filter: grayscale(100%) invert(1) brightness(0.4);
 }
