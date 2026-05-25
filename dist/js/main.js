@@ -240,6 +240,7 @@ if (contatoForm) {
     const empresa = (data.get("empresa") || "").toString().trim();
     const email = (data.get("email") || "").toString().trim();
     const telefone = (data.get("telefone") || "").toString().trim();
+    const interesse = (data.get("interesse") || "").toString().trim();
     const mensagem = (data.get("mensagem") || "").toString().trim();
 
     const lines = [
@@ -247,8 +248,9 @@ if (contatoForm) {
       empresa ? `Empresa: ${empresa}` : null,
       `E-mail: ${email}`,
       telefone ? `WhatsApp: ${telefone}` : null,
+      interesse ? `Interesse: ${interesse}` : null,
       "",
-      "Minha dor / contexto:",
+      "Contexto:",
       mensagem,
     ].filter(Boolean);
 

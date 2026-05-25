@@ -4,19 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contato · Naveo</title>
-  <meta name="description" content="Fale com a Naveo. Diagnóstico de 1h gratuito e sem compromisso. Lucas do Rio Verde, MT — atendimento Brasil + LATAM." />
+  <meta name="description" content="Transforme sua visão em realidade. Estamos prontos para criar ou transformar seu negócio através da Engenharia Criativa. O primeiro passo começa com uma conversa." />
   <link rel="canonical" href="https://naveo-docs.pages.dev/contato" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt-BR" />
   <meta property="og:site_name" content="Naveo" />
   <meta property="og:title" content="Contato · Naveo" />
-  <meta property="og:description" content="Diagnóstico de 1h gratuito e sem compromisso. Mande sua dor que devolvemos um diagnóstico estruturado em até 5 dias úteis." />
+  <meta property="og:description" content="Transforme sua visão em realidade. O primeiro passo começa com uma conversa." />
   <meta property="og:image" content="https://naveo-docs.pages.dev/assets/logo-verde.webp" />
 
   <meta name="theme-color" content="#ffffff" />
   <meta name="google" content="notranslate" />
-  <meta name="robots" content="notranslate" />
 
   <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
   <link rel="apple-touch-icon" href="/assets/isotipo-verde.webp" />
@@ -47,6 +46,7 @@
         <a href="/">Início</a>
         <a href="/#portfolio">Portfólio</a>
         <a href="/cases">Cases</a>
+        <a href="/blog">Blog</a>
         <a href="/quem-somos">Quem somos</a>
       </div>
       <div class="site-nav__actions">
@@ -64,12 +64,43 @@
 
   <main>
 
-    <section class="contato">
+    <!-- HERO -->
+    <section class="qs-hero qs-hero--dark">
+      <div class="qs-hero__media" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=2000&q=80" alt="" loading="eager" />
+        <div class="qs-hero__overlay"></div>
+        <div class="qs-hero__grid"></div>
+        <div class="qs-hero__scan"></div>
+        <div class="qs-hero__particles">
+          <span style="left:8%;animation-delay:0s;animation-duration:14s"></span>
+          <span style="left:18%;animation-delay:2s;animation-duration:18s"></span>
+          <span style="left:27%;animation-delay:5s;animation-duration:12s"></span>
+          <span style="left:36%;animation-delay:1s;animation-duration:16s"></span>
+          <span style="left:46%;animation-delay:6s;animation-duration:13s"></span>
+          <span style="left:55%;animation-delay:3s;animation-duration:17s"></span>
+          <span style="left:64%;animation-delay:8s;animation-duration:15s"></span>
+          <span style="left:74%;animation-delay:4s;animation-duration:19s"></span>
+          <span style="left:83%;animation-delay:7s;animation-duration:14s"></span>
+          <span style="left:92%;animation-delay:9s;animation-duration:16s"></span>
+        </div>
+      </div>
       <div class="container">
-        <div class="contato__head">
+        <div class="qs-hero__inner qs-hero__inner--centered">
           <span class="section-eyebrow">Fale com a gente</span>
-          <h1 class="contato__title">Bora <em>construir</em> junto?</h1>
-          <p class="contato__sub">Diagnóstico de 1h, gratuito e sem compromisso. Mande sua dor que devolvemos um diagnóstico estruturado em até 5 dias úteis.</p>
+          <h1 class="qs-hero__title">Transforme sua visão em <em>realidade</em>.</h1>
+          <p class="qs-hero__sub">Estamos prontos para ajudar você a criar ou transformar seu negócio através da Engenharia Criativa. O primeiro passo começa com uma conversa.</p>
+          <a href="#form" class="btn btn--on-image qs-hero__cta">Entre em contato <span class="arrow">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM + INFO -->
+    <section id="form" class="section section--lg">
+      <div class="container">
+        <div class="contato-section-head">
+          <span class="section-eyebrow">Vamos conversar</span>
+          <h2 class="section-title">Diagnóstico de <em>1h</em>, gratuito.</h2>
+          <p class="section-lead">Preencha o formulário abaixo pra agendar uma consulta estratégica gratuita. Nossa equipe entra em contato em até 24h pra marcar o melhor horário pra conversarmos sobre o seu projeto.</p>
         </div>
 
         <div class="contato__grid">
@@ -77,40 +108,58 @@
           <form class="contato-form" id="contato-form" aria-label="Formulário de contato">
             <div class="contato-form__row">
               <label class="contato-form__field">
-                <span class="contato-form__label">Nome <em>*</em></span>
-                <input type="text" name="nome" required placeholder="Seu nome completo" />
+                <span class="contato-form__label">Nome completo <em>*</em></span>
+                <input type="text" name="nome" required placeholder="Seu nome" />
               </label>
-              <label class="contato-form__field">
-                <span class="contato-form__label">Empresa</span>
-                <input type="text" name="empresa" placeholder="Nome da empresa" />
-              </label>
-            </div>
-            <div class="contato-form__row">
               <label class="contato-form__field">
                 <span class="contato-form__label">E-mail <em>*</em></span>
                 <input type="email" name="email" required placeholder="voce@empresa.com" />
               </label>
+            </div>
+            <div class="contato-form__row">
               <label class="contato-form__field">
-                <span class="contato-form__label">WhatsApp</span>
-                <input type="tel" name="telefone" placeholder="(65) 99999-9999" />
+                <span class="contato-form__label">Telefone com WhatsApp <em>*</em></span>
+                <input type="tel" name="telefone" required placeholder="(65) 99999-9999" />
+              </label>
+              <label class="contato-form__field">
+                <span class="contato-form__label">Nome da empresa <em>*</em></span>
+                <input type="text" name="empresa" required placeholder="Nome da empresa" />
               </label>
             </div>
             <label class="contato-form__field contato-form__field--full">
-              <span class="contato-form__label">Qual sua dor? <em>*</em></span>
-              <textarea name="mensagem" required rows="5" placeholder="Conta o que tá acontecendo na operação. Ex: nosso ERP não conversa com WhatsApp, queremos um marketplace pra agro, precisamos digitalizar 4 lojas físicas..."></textarea>
+              <span class="contato-form__label">Interesse principal <em>*</em></span>
+              <select name="interesse" required>
+                <option value="">Selecione o que mais se aproxima</option>
+                <option value="Transformação de Negócios">Transformação de negócios</option>
+                <option value="Tecnologia">Sistemas sob medida</option>
+                <option value="Inteligência Artificial">IA aplicada / Agentes</option>
+                <option value="Marketplace">Marketplace</option>
+                <option value="Fintech">Fintech / Pagamentos</option>
+                <option value="Performance">Performance / Vendas</option>
+                <option value="Marketing Digital">Site de alta conversão</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </label>
+            <label class="contato-form__field contato-form__field--full">
+              <span class="contato-form__label">Mensagem <em>*</em></span>
+              <textarea name="mensagem" required rows="5" placeholder="Conta o que tá acontecendo na operação. Quanto mais contexto, melhor o diagnóstico."></textarea>
+            </label>
+            <label class="contato-form__check">
+              <input type="checkbox" name="privacidade" required />
+              <span>Concordo com a política de privacidade e autorizo o tratamento dos meus dados pra fins de contato comercial. <em>*</em></span>
             </label>
             <div class="contato-form__bottom">
-              <p class="contato-form__hint">Ao enviar, abriremos seu WhatsApp com a mensagem pré-preenchida.</p>
+              <p class="contato-form__hint">Ao enviar, abrimos seu WhatsApp com a mensagem pré-preenchida pra fechar o agendamento.</p>
               <button type="submit" class="btn btn--primary">
-                Enviar diagnóstico <span class="arrow">↗</span>
+                Enviar <span class="arrow">↗</span>
               </button>
             </div>
           </form>
 
           <aside class="contato-info">
             <div class="contato-info__block">
-              <div class="contato-info__label">Sede</div>
-              <div class="contato-info__value">Lucas do Rio Verde<br/>Mato Grosso · Brasil</div>
+              <div class="contato-info__label">Escritórios</div>
+              <div class="contato-info__value">Lucas do Rio Verde · MT<br/>Marau · RS</div>
               <div class="contato-info__sub">Atendimento Brasil + LATAM</div>
             </div>
             <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="contato-info__block contato-info__block--link">
@@ -121,17 +170,29 @@
             <a href="mailto:contato@naveo.com.br" class="contato-info__block contato-info__block--link">
               <div class="contato-info__label">E-mail</div>
               <div class="contato-info__value">contato@naveo.com.br</div>
-              <div class="contato-info__sub">Pra propostas, parcerias e imprensa</div>
+              <div class="contato-info__sub">Propostas, parcerias e imprensa</div>
             </a>
             <div class="contato-info__block">
               <div class="contato-info__label">Redes</div>
               <div class="contato-info__socials">
                 <a href="https://www.instagram.com/naveoce" target="_blank" rel="noopener">Instagram ↗</a>
                 <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube ↗</a>
               </div>
             </div>
           </aside>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+      <div class="container--narrow">
+        <div class="cta-final__inner">
+          <h2 class="cta-final__title">Bora <em>construir</em> junto?</h2>
+          <p class="cta-final__sub">Estamos prontos para transformar sua visão em um negócio real e lucrativo. O primeiro passo pra redefinir seu negócio começa com uma conversa.</p>
+          <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="btn btn--primary">Chamar no WhatsApp <span class="arrow">↗</span></a>
         </div>
       </div>
     </section>
@@ -155,16 +216,17 @@
             <li><a href="/quem-somos">Quem somos</a></li>
             <li><a href="/#portfolio">Portfólio Naveo</a></li>
             <li><a href="/cases">Cases de cliente</a></li>
+            <li><a href="/blog">Blog</a></li>
             <li><a href="/contato">Contato</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Produtos próprios</h4>
           <ul>
-            <li><a href="https://agrodesapego.com.br" target="_blank" rel="noopener">Agrodesapego ↗</a></li>
-            <li><a href="https://cruzetaclub.com.br" target="_blank" rel="noopener">Cruzeta Club ↗</a></li>
-            <li><a href="https://navbarber.com.br" target="_blank" rel="noopener">Navbarber ↗</a></li>
-            <li><a href="#">Pharma Genius (em breve)</a></li>
+            <li><a href="/cases/agrodesapego">Agrodesapego</a></li>
+            <li><a href="/cases/cruzetaclub">Cruzeta Club</a></li>
+            <li><a href="/cases/navbarber">Navbarber</a></li>
+            <li><a href="/cases/pharmagenius">Pharma Genius</a></li>
           </ul>
         </div>
         <div class="footer-col">
