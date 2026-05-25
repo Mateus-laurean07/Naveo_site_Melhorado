@@ -1816,11 +1816,11 @@ a.case__media:hover .case__media__inner { transform: scale(1.04); }
   font-style: normal;
   display: inline-block;
   background: var(--accent);
-  padding: .06em .14em .18em;
+  padding: .12em .14em .28em;
   color: var(--accent-ink);
   border-radius: 6px;
-  line-height: 1.22;
-  margin-bottom: -.18em;
+  line-height: 1.32;
+  margin-bottom: -.30em;
 }
 .qs-hero__sub {
   font-size: clamp(16px, 1.3vw, 20px);
