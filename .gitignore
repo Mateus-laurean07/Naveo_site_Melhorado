@@ -81,3 +81,7 @@ venv/
 .history/
 tmp/
 temp/
+
+.dev.vars*
+!.dev.vars.example
+!.env.example

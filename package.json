@@ -1,5 +1,12 @@
 {
   "dependencies": {
     "framer-motion": "^12.38.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.94.0"
+  },
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   }
 }
