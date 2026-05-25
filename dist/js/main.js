@@ -231,6 +231,24 @@ document.querySelectorAll("[data-counter]").forEach((el) => {
 // ============================================================
 // CONTATO FORM — envia pro WhatsApp pré-preenchido
 // ============================================================
+
+// Auto-format telefone: (XX) XXXXX-XXXX
+const telefoneInput = document.getElementById("contato-telefone");
+if (telefoneInput) {
+  telefoneInput.addEventListener("input", (e) => {
+    let v = e.target.value.replace(/\D/g, "").slice(0, 11); // só dígitos, max 11
+    if (v.length === 0) { e.target.value = ""; return; }
+    let out = "(" + v.slice(0, 2);
+    if (v.length >= 2) out += ") ";
+    if (v.length >= 7) {
+      out += v.slice(2, 7) + "-" + v.slice(7);
+    } else if (v.length > 2) {
+      out += v.slice(2);
+    }
+    e.target.value = out;
+  });
+}
+
 const contatoForm = document.getElementById("contato-form");
 if (contatoForm) {
   contatoForm.addEventListener("submit", (e) => {
