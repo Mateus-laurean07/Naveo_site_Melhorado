@@ -103,7 +103,11 @@
   <header class="site-header">
     <a href="/en" class="site-header__home" aria-label="Início"></a>
 
-    <nav class="site-nav" aria-label="Main">
+    <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
       <a href="#portfolio">Portfolio</a>
       <a href="#metodo">Method</a>
       <a href="#cases">Cases</a>
@@ -687,11 +691,24 @@
       </div>
     </section>
 
-    <!-- MANIFESTO -->
-    <section id="sobre" class="manifesto">
+    <!-- LOCATION MAP -->
+    <section id="sobre" class="brasil-map">
       <div class="container--narrow">
-        <p class="manifesto__quote reveal">We don't sell hours. <em>We build the operation.</em></p>
-        <div class="manifesto__attribution reveal">Naveo · Lucas do Rio Verde, MT · Brazil</div>
+        <div class="brasil-map__head">
+          <span class="section-eyebrow">Where we are</span>
+          <h2 class="brasil-map__title">From the <em>heart of Brazil</em><br/>to anywhere.</h2>
+        </div>
+
+        <div class="brasil-map__stage">
+          <div class="brasil-map__svg" data-src="/assets/brazil-states.svg" role="img" aria-label="Map of Brazil showing Naveo's HQ in Lucas do Rio Verde, Mato Grosso"></div>
+
+          <aside class="brasil-map__info">
+            <div class="brasil-map__row"><span>HQ</span><strong>Lucas do Rio Verde</strong></div>
+            <div class="brasil-map__row"><span>State</span><strong>Mato Grosso</strong></div>
+            <div class="brasil-map__row"><span>Country</span><strong>Brazil</strong></div>
+            <p class="brasil-map__note">We operate from the center of Brazilian agribusiness — where operations are massive, time is short, and the system has to run.</p>
+          </aside>
+        </div>
       </div>
     </section>
 

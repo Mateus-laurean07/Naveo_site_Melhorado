@@ -229,6 +229,248 @@ document.querySelectorAll("[data-counter]").forEach((el) => {
 });
 
 // ============================================================
+// CONTATO FORM — envia pro WhatsApp pré-preenchido
+// ============================================================
+const contatoForm = document.getElementById("contato-form");
+if (contatoForm) {
+  contatoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(contatoForm);
+    const nome = (data.get("nome") || "").toString().trim();
+    const empresa = (data.get("empresa") || "").toString().trim();
+    const email = (data.get("email") || "").toString().trim();
+    const telefone = (data.get("telefone") || "").toString().trim();
+    const mensagem = (data.get("mensagem") || "").toString().trim();
+
+    const lines = [
+      `Olá, Naveo! Sou ${nome}.`,
+      empresa ? `Empresa: ${empresa}` : null,
+      `E-mail: ${email}`,
+      telefone ? `WhatsApp: ${telefone}` : null,
+      "",
+      "Minha dor / contexto:",
+      mensagem,
+    ].filter(Boolean);
+
+    const text = encodeURIComponent(lines.join("\n"));
+    const wa = `https://wa.me/5565996865004?text=${text}`;
+    window.open(wa, "_blank", "noopener");
+  });
+}
+
+// ============================================================
+// HERO LAPTOP — parallax tilt following cursor
+// ============================================================
+const heroLaptopWrap = document.querySelector(".hero__laptop");
+const heroLaptopEl = heroLaptopWrap && heroLaptopWrap.querySelector(".laptop");
+if (heroLaptopWrap && heroLaptopEl && window.matchMedia("(hover: hover)").matches) {
+  const BASE_RX = 4;
+  const BASE_RY = -8;
+  const MAX_DX = 14;   // extra rotateY range
+  const MAX_DY = 10;   // extra rotateX range
+  let pending = null;
+
+  const apply = (rx, ry) => {
+    heroLaptopEl.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  };
+
+  heroLaptopWrap.addEventListener("mouseenter", () => {
+    heroLaptopEl.style.transition = "transform .25s var(--ease)";
+  });
+  heroLaptopWrap.addEventListener("mousemove", (e) => {
+    const rect = heroLaptopWrap.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;  // -1..1
+    const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    const rx = BASE_RX - ny * MAX_DY;
+    const ry = BASE_RY + nx * MAX_DX;
+    if (pending) cancelAnimationFrame(pending);
+    pending = requestAnimationFrame(() => apply(rx, ry));
+  });
+  heroLaptopWrap.addEventListener("mouseleave", () => {
+    heroLaptopEl.style.transition = "transform .9s var(--ease)";
+    heroLaptopEl.style.transform = "";
+  });
+}
+
+// ============================================================
+// BRASIL MAP — load real SVG + construction animation
+// ============================================================
+const brasilMap = document.querySelector(".brasil-map");
+if (brasilMap) {
+  const wrap = brasilMap.querySelector(".brasil-map__svg");
+  const src = wrap && wrap.dataset.src;
+
+  // Build-order: NW → NE → SW → SE-ish, by region
+  const REGION_ORDER = ["RegiaoNorte", "RegiaoNordeste", "RegiaoCentroOeste", "RegiaoSudeste", "RegiaoSul"];
+
+  const buildMap = (svg) => {
+    if (!svg) return;
+    svg.removeAttribute("width");
+    svg.removeAttribute("height");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+    // Stagger initial transition-delay per state, by region order
+    const states = [...svg.querySelectorAll(".bm-state")];
+    states.sort((a, b) => {
+      const ra = REGION_ORDER.findIndex((r) => a.classList.contains(r));
+      const rb = REGION_ORDER.findIndex((r) => b.classList.contains(r));
+      return (ra < 0 ? 99 : ra) - (rb < 0 ? 99 : rb);
+    });
+    states.forEach((p, i) => {
+      p.style.transitionDelay = (i * 35) + "ms";
+    });
+
+    // Compute Lucas do Rio Verde position inside Mato Grosso bbox
+    const mt = svg.querySelector("#Mato_Grosso") || svg.querySelector(".BR-MT");
+    if (!mt) return;
+
+    // Move MT to end so it renders on top
+    mt.parentNode.appendChild(mt);
+
+    const bbox = mt.getBBox();
+    // Lucas do Rio Verde sits ~49% across, ~53% down inside MT's bbox
+    const px = bbox.x + bbox.width * 0.49;
+    const py = bbox.y + bbox.height * 0.53;
+
+    const vb = svg.viewBox.baseVal;
+    const span = Math.min(vb.width, vb.height);
+    const dotR = span * 0.022;     // pin scale
+    const labelDx = span * 0.42;   // leader line X
+    const labelDy = -span * 0.30;  // leader line Y (up)
+    const labelGap = span * 0.012;
+
+    const SVGNS = "http://www.w3.org/2000/svg";
+
+    // Pin group
+    const pin = document.createElementNS(SVGNS, "g");
+    pin.setAttribute("class", "brasil-map__pin");
+    pin.setAttribute("transform", `translate(${px} ${py})`);
+
+    const pulse1 = document.createElementNS(SVGNS, "circle");
+    pulse1.setAttribute("class", "brasil-map__pulse");
+    pulse1.setAttribute("r", dotR);
+    pulse1.setAttribute("fill", "none");
+    pulse1.setAttribute("stroke", "#ffffff");
+    pulse1.setAttribute("stroke-width", dotR * 0.32);
+    pin.appendChild(pulse1);
+
+    const pulse2 = pulse1.cloneNode();
+    pulse2.setAttribute("class", "brasil-map__pulse brasil-map__pulse--2");
+    pin.appendChild(pulse2);
+
+    const ring = document.createElementNS(SVGNS, "circle");
+    ring.setAttribute("r", dotR * 1.4);
+    ring.setAttribute("fill", "#050810");
+    pin.appendChild(ring);
+
+    const dot = document.createElementNS(SVGNS, "circle");
+    dot.setAttribute("r", dotR);
+    dot.setAttribute("fill", "var(--accent)");
+    pin.appendChild(dot);
+
+    const core = document.createElementNS(SVGNS, "circle");
+    core.setAttribute("r", dotR * 0.32);
+    core.setAttribute("fill", "#050810");
+    pin.appendChild(core);
+
+    svg.appendChild(pin);
+
+    // Callout — leader from pin out + labels off the side
+    const callout = document.createElementNS(SVGNS, "g");
+    callout.setAttribute("class", "brasil-map__callout");
+    callout.setAttribute("transform", `translate(${px} ${py})`);
+
+    const line = document.createElementNS(SVGNS, "line");
+    line.setAttribute("x1", "0");
+    line.setAttribute("y1", "0");
+    line.setAttribute("x2", labelDx);
+    line.setAttribute("y2", labelDy);
+    line.setAttribute("class", "brasil-map__callout-line");
+    line.setAttribute("stroke-width", dotR * 0.20);
+    callout.appendChild(line);
+
+    const endDot = document.createElementNS(SVGNS, "circle");
+    endDot.setAttribute("cx", labelDx);
+    endDot.setAttribute("cy", labelDy);
+    endDot.setAttribute("r", dotR * 0.32);
+    endDot.setAttribute("fill", "var(--accent)");
+    callout.appendChild(endDot);
+
+    const tg = document.createElementNS(SVGNS, "g");
+    tg.setAttribute("transform", `translate(${labelDx + labelGap} ${labelDy})`);
+
+    const t1 = document.createElementNS(SVGNS, "text");
+    t1.setAttribute("class", "brasil-map__city-label");
+    t1.setAttribute("x", "0");
+    t1.setAttribute("y", "0");
+    t1.setAttribute("dominant-baseline", "central");
+    t1.textContent = "Lucas do Rio Verde";
+    tg.appendChild(t1);
+
+    const t2 = document.createElementNS(SVGNS, "text");
+    t2.setAttribute("class", "brasil-map__coord-label");
+    t2.setAttribute("x", "0");
+    t2.setAttribute("y", span * 0.048);
+    t2.setAttribute("dominant-baseline", "central");
+    t2.textContent = "13°02′S · 55°54′W";
+    tg.appendChild(t2);
+
+    callout.appendChild(tg);
+    svg.appendChild(callout);
+  };
+
+  const triggerBuild = () => {
+    ScrollTrigger.create({
+      trigger: brasilMap,
+      start: "top 75%",
+      once: true,
+      onEnter: () => brasilMap.classList.add("is-built"),
+    });
+    ScrollTrigger.refresh();
+  };
+
+  if (src) {
+    fetch(src)
+      .then((r) => r.text())
+      .then((txt) => {
+        wrap.innerHTML = txt;
+        const svg = wrap.querySelector("svg");
+        buildMap(svg);
+        triggerBuild();
+      })
+      .catch(() => {});
+  }
+}
+
+// ============================================================
+// MOBILE NAV TOGGLE
+// ============================================================
+const navToggle = document.querySelector(".site-nav__toggle");
+const siteNav = document.getElementById("site-nav");
+if (navToggle && siteNav) {
+  const closeNav = () => {
+    siteNav.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  };
+  const openNav = () => {
+    siteNav.classList.add("open");
+    navToggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  };
+  navToggle.addEventListener("click", () => {
+    if (siteNav.classList.contains("open")) closeNav();
+    else openNav();
+  });
+  siteNav.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => closeNav());
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && siteNav.classList.contains("open")) closeNav();
+  });
+}
+
+// ============================================================
 // LOADER
 // ============================================================
 window.addEventListener("load", () => {

@@ -225,8 +225,12 @@ const i18n = {
       ],
     },
     manifesto: {
-      quote: "Não vendemos hora. <em>Construímos a operação.</em>",
-      attr: "Naveo · Lucas do Rio Verde, MT · Brasil",
+      eyebrow: "Onde estamos",
+      title: "Do <em>centro do Brasil</em><br/>pra qualquer lugar.",
+      rowHq: "HQ", rowState: "Estado", rowCountry: "País",
+      stateName: "Mato Grosso", countryName: "Brasil",
+      note: "Operamos do centro do agro brasileiro — onde a operação é grande, o tempo é curto, e o sistema precisa rodar.",
+      svgAria: "Mapa do Brasil com a localização da Naveo em Lucas do Rio Verde, Mato Grosso",
     },
     ctaFinal: {
       title: "Bora <em>construir</em> junto?",
@@ -416,8 +420,12 @@ const i18n = {
       ],
     },
     manifesto: {
-      quote: "We don't sell hours. <em>We build the operation.</em>",
-      attr: "Naveo · Lucas do Rio Verde, MT · Brazil",
+      eyebrow: "Where we are",
+      title: "From the <em>heart of Brazil</em><br/>to anywhere.",
+      rowHq: "HQ", rowState: "State", rowCountry: "Country",
+      stateName: "Mato Grosso", countryName: "Brazil",
+      note: "We operate from the center of Brazilian agribusiness — where operations are massive, time is short, and the system has to run.",
+      svgAria: "Map of Brazil showing Naveo's HQ in Lucas do Rio Verde, Mato Grosso",
     },
     ctaFinal: {
       title: "Let's <em>build</em> together?",
@@ -607,8 +615,12 @@ const i18n = {
       ],
     },
     manifesto: {
-      quote: "No vendemos horas. <em>Construimos la operación.</em>",
-      attr: "Naveo · Lucas do Rio Verde, MT · Brasil",
+      eyebrow: "Dónde estamos",
+      title: "Desde el <em>corazón de Brasil</em><br/>a cualquier lugar.",
+      rowHq: "HQ", rowState: "Estado", rowCountry: "País",
+      stateName: "Mato Grosso", countryName: "Brasil",
+      note: "Operamos desde el centro del agro brasileño — donde las operaciones son enormes, el tiempo es corto y el sistema tiene que funcionar.",
+      svgAria: "Mapa de Brasil con la ubicación de Naveo en Lucas do Rio Verde, Mato Grosso",
     },
     ctaFinal: {
       title: "¿<em>Construimos</em> juntos?",
@@ -780,7 +792,11 @@ ${JSON.stringify(orgJsonLd, null, 2)}
   <header class="site-header">
     <a href="${path}" class="site-header__home" aria-label="Início"></a>
 
-    <nav class="site-nav" aria-label="Main">
+    <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
       <a href="#portfolio">${escapeHtml(t.nav.portfolio)}</a>
       <a href="#metodo">${escapeHtml(t.nav.method)}</a>
       <a href="#cases">${escapeHtml(t.nav.cases)}</a>
@@ -1020,11 +1036,24 @@ ${JSON.stringify(orgJsonLd, null, 2)}
       </div>
     </section>
 
-    <!-- MANIFESTO -->
-    <section id="sobre" class="manifesto">
+    <!-- LOCATION MAP -->
+    <section id="sobre" class="brasil-map">
       <div class="container--narrow">
-        <p class="manifesto__quote reveal">${t.manifesto.quote}</p>
-        <div class="manifesto__attribution reveal">${escapeHtml(t.manifesto.attr)}</div>
+        <div class="brasil-map__head">
+          <span class="section-eyebrow">${escapeHtml(t.manifesto.eyebrow)}</span>
+          <h2 class="brasil-map__title">${t.manifesto.title}</h2>
+        </div>
+
+        <div class="brasil-map__stage">
+          <div class="brasil-map__svg" data-src="/assets/brazil-states.svg" role="img" aria-label="${escapeHtml(t.manifesto.svgAria)}"></div>
+
+          <aside class="brasil-map__info">
+            <div class="brasil-map__row"><span>${escapeHtml(t.manifesto.rowHq)}</span><strong>Lucas do Rio Verde</strong></div>
+            <div class="brasil-map__row"><span>${escapeHtml(t.manifesto.rowState)}</span><strong>${escapeHtml(t.manifesto.stateName)}</strong></div>
+            <div class="brasil-map__row"><span>${escapeHtml(t.manifesto.rowCountry)}</span><strong>${escapeHtml(t.manifesto.countryName)}</strong></div>
+            <p class="brasil-map__note">${escapeHtml(t.manifesto.note)}</p>
+          </aside>
+        </div>
       </div>
     </section>
 

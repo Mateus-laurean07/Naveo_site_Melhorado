@@ -103,196 +103,90 @@
   <header class="site-header">
     <a href="/" class="site-header__home" aria-label="Início"></a>
 
-    <nav class="site-nav" aria-label="Main">
-      <a href="#portfolio">Portfólio</a>
-      <a href="#metodo">Método</a>
-      <a href="#cases">Cases</a>
-      <span class="site-nav__lang">
-        <a href="/" class="active">PT</a>
-        <span>·</span>
-        <a href="/en" class="">EN</a>
-        <span>·</span>
-        <a href="/es" class="">ES</a>
-      </span>
-      <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="site-nav__cta">Agendar diagnóstico →</a>
+    <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <div class="site-nav__links">
+        <a href="/">Início</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="/cases">Cases</a>
+        <a href="/quem-somos">Quem somos</a>
+      </div>
+      <div class="site-nav__actions">
+        <span class="site-nav__lang">
+          <a href="/" class="active">PT</a>
+          <span>·</span>
+          <a href="/en" class="">EN</a>
+          <span>·</span>
+          <a href="/es" class="">ES</a>
+        </span>
+        <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="site-nav__cta">Agendar diagnóstico →</a>
+      </div>
     </nav>
   </header>
 
   <main>
 
     <!-- HERO -->
-    <section class="hero">
-      <canvas id="hero-canvas" class="hero__canvas" aria-hidden="true"></canvas>
-      <div class="hero__overlay" aria-hidden="true"></div>
-      <div class="hero__content">
-        <span class="hero__eyebrow">Builder de Engenharia Criativa</span>
-        <h1 class="hero__headline">
-          <span class="word"><span>Desenvolvemos</span></span> <span class="word"><span>produtos digitais</span></span> <span class="word"><span>e plataformas</span></span> <span class="word"><span><em>customizadas</em></span></span> <span class="word"><span>ao seu negócio.</span></span>
-        </h1>
-        <p class="hero__sub">Sistemas, marketplaces, automações, IA aplicada. Construímos, integramos e sustentamos a tecnologia que sua operação precisa.</p>
-        <div class="hero__ctas">
-          <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="btn btn--primary magnetic" data-magnetic="0.3">
-            <span class="magnetic__inner">Agendar diagnóstico <span class="arrow">↗</span></span>
-          </a>
-          <a href="#portfolio" class="btn btn--ghost magnetic" data-magnetic="0.2">
-            <span class="magnetic__inner">Ver portfólio <span class="arrow">→</span></span>
-          </a>
-        </div>
+    <section class="hero hero--code">
+      <div class="hero__mesh" aria-hidden="true">
+        <span class="hero__mesh__blob hero__mesh__blob--1"></span>
+        <span class="hero__mesh__blob hero__mesh__blob--2"></span>
+        <span class="hero__mesh__blob hero__mesh__blob--3"></span>
       </div>
-      <div class="hero__scroll">
-        Role para descobrir
-        <span class="hero__scroll__line"></span>
-      </div>
-    </section>
+      <div class="hero__grid" aria-hidden="true"></div>
 
-    <!-- Marquee -->
-    <div class="marquee-wrap" aria-hidden="true">
-      <div class="marquee">
-        <span class="marquee__item">Engenharia Criativa</span>
-        <span class="marquee__item dim">Sistemas</span>
-        <span class="marquee__item">Marketplaces</span>
-        <span class="marquee__item dim">Automações</span>
-        <span class="marquee__item">IA Aplicada</span>
-        <span class="marquee__item dim">Fintech</span>
-        <span class="marquee__item">Sites de Conversão</span>
-        <span class="marquee__item dim">PWA</span>
-        <span class="marquee__item">Visão de Dono</span>
-        <span class="marquee__item dim">Engenharia Criativa</span>
-        <span class="marquee__item">Sistemas</span>
-        <span class="marquee__item dim">Marketplaces</span>
-        <span class="marquee__item">Automações</span>
-        <span class="marquee__item dim">IA Aplicada</span>
-        <span class="marquee__item">Fintech</span>
-        <span class="marquee__item dim">Sites de Conversão</span>
-        <span class="marquee__item">PWA</span>
-        <span class="marquee__item dim">Visão de Dono</span>
-      </div>
-    </div>
-
-    <!-- STATS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-eyebrow">Skin in the game</span>
-          <h2 class="section-title">Os números que importam.</h2>
-          <p class="section-lead">Aplicamos o método primeiro nos nossos negócios. Antes de oferecer pra você, provamos com a gente.</p>
+      <div class="hero__inner">
+        <div class="hero__content">
+          <span class="hero__eyebrow">Builder de Engenharia Criativa</span>
+          <h1 class="hero__headline">
+            Engenharia Criativa que <em>transforma</em> negócios.
+          </h1>
+          <p class="hero__sub">Sistemas, marketplaces, automações e IA aplicada. Construímos, integramos e sustentamos a operação digital que seu negócio precisa pra escalar.</p>
+          <div class="hero__ctas">
+            <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="btn btn--primary">
+              Agendar diagnóstico <span class="arrow">↗</span>
+            </a>
+            <a href="/cases" class="btn btn--ghost btn--on-image">
+              Ver cases <span class="arrow">→</span>
+            </a>
+          </div>
         </div>
-        <div class="stats-row">
-          
-          <div class="stat reveal">
-            <div class="stat__value" data-counter="12" data-suffix="">0</div>
-            <div class="stat__label">Empresas próprias criadas</div>
-          </div>
-          <div class="stat reveal">
-            <div class="stat__value" data-counter="4" data-suffix="">0</div>
-            <div class="stat__label">Bancos digitais construídos</div>
-          </div>
-          <div class="stat reveal">
-            <div class="stat__value" data-counter="8" data-suffix="+">0</div>
-            <div class="stat__label">Setores atendidos</div>
-          </div>
-          <div class="stat reveal">
-            <div class="stat__value" data-counter="100" data-suffix="%">0</div>
-            <div class="stat__label">Equipe interna · sem terceirização</div>
+
+        <div class="hero__laptop" aria-hidden="true">
+          <div class="laptop">
+            <div class="laptop__lid">
+              <div class="laptop__bezel">
+                <div class="laptop__camera"><span class="laptop__camera__lens"></span></div>
+                <div class="laptop__screen">
+                  <div class="laptop__chrome">
+                    <span class="laptop__dot laptop__dot--red"></span>
+                    <span class="laptop__dot laptop__dot--yellow"></span>
+                    <span class="laptop__dot laptop__dot--green"></span>
+                    <span class="laptop__title">naveo.tsx</span>
+                  </div>
+                  <div class="laptop__code">
+                    <div class="code-line"><span class="ln">01</span><span class="c-com">// builder de engenharia criativa</span></div>
+                    <div class="code-line"><span class="ln">02</span><span class="c-kw">export const</span> <span class="c-var">brand</span> = <span class="c-op">{</span></div>
+                    <div class="code-line"><span class="ln">03</span>&nbsp;&nbsp;<span class="c-prop">name</span>: <span class="c-str">"naveo"</span>,</div>
+                    <div class="code-line"><span class="ln">04</span>&nbsp;&nbsp;<span class="c-prop">stack</span>: <span class="c-op">[</span><span class="c-str">"next"</span>, <span class="c-str">"supabase"</span><span class="c-op">]</span>,</div>
+                    <div class="code-line"><span class="ln">05</span><span class="c-op">}</span></div>
+                    <div class="code-line"><span class="ln">06</span></div>
+                    <div class="laptop__naveo" data-text="NAVEO">NAVEO</div>
+                    <div class="code-line code-line--blink"><span class="ln">07</span><span class="c-com">// running...</span><span class="caret">▋</span></div>
+                  </div>
+                </div>
+                <div class="laptop__brand">naveo</div>
+              </div>
+            </div>
+            <div class="laptop__home"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- METHOD horizontal scroll -->
-    <section id="metodo" class="method section">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-eyebrow">Engenharia Criativa</span>
-          <h2 class="section-title">O método em 6 passos.</h2>
-          <p class="section-lead">Da primeira conversa ao sistema rodando. Investigação profunda, MVP em dias, construção faseada e sustentação contínua.</p>
-        </div>
-      </div>
-      <div class="method__horizontal-wrap" role="region" aria-label="Etapas do método" tabindex="0">
-        <div class="method__horizontal">
-          
-          <article class="method-card" data-num="01">
-            <div>
-              <div class="method-card__num">01</div>
-              <h3 class="method-card__title">Conexão &amp; Diagnóstico</h3>
-              <p class="method-card__desc">Entendemos seu contexto, ERP, fluxos e gargalos.</p>
-            </div>
-            <ul class="method-card__list">
-              <li>Diagnóstico de 1h gratuito</li>
-              <li>Investigação do contexto</li>
-              <li>Mapeamento de stakeholders</li>
-              <li>Briefing estratégico</li>
-            </ul>
-          </article>
-          <article class="method-card" data-num="02">
-            <div>
-              <div class="method-card__num">02</div>
-              <h3 class="method-card__title">Direcionamento Estratégico</h3>
-              <p class="method-card__desc">Roadmap, visão macro e matriz de prioridades.</p>
-            </div>
-            <ul class="method-card__list">
-              <li>Roadmap personalizado</li>
-              <li>Posicionamento + proposta de valor</li>
-              <li>Matriz de priorização</li>
-              <li>Documento de visão</li>
-            </ul>
-          </article>
-          <article class="method-card" data-num="03">
-            <div>
-              <div class="method-card__num">03</div>
-              <h3 class="method-card__title">MVP em Dias</h3>
-              <p class="method-card__desc">Protótipo funcional antes do contrato, validação ao vivo.</p>
-            </div>
-            <ul class="method-card__list">
-              <li>Protótipo em 3 a 7 dias</li>
-              <li>Demonstração ao vivo</li>
-              <li>Visão expandida</li>
-              <li>Skin in the game</li>
-            </ul>
-          </article>
-          <article class="method-card" data-num="04">
-            <div>
-              <div class="method-card__num">04</div>
-              <h3 class="method-card__title">Construção Faseada</h3>
-              <p class="method-card__desc">Sprints curtos, entrega incremental, validação por etapa.</p>
-            </div>
-            <ul class="method-card__list">
-              <li>Sprints curtos com metas claras</li>
-              <li>Entrega contínua</li>
-              <li>Painel Notion compartilhado</li>
-              <li>Reuniões quinzenais</li>
-            </ul>
-          </article>
-          <article class="method-card" data-num="05">
-            <div>
-              <div class="method-card__num">05</div>
-              <h3 class="method-card__title">Integração &amp; Go-Live</h3>
-              <p class="method-card__desc">Conexão com seu ERP atual, treinamento, go-live faseado.</p>
-            </div>
-            <ul class="method-card__list">
-              <li>Integração via API</li>
-              <li>Treinamento da equipe</li>
-              <li>Go-live faseado</li>
-              <li>Conformidade LGPD</li>
-            </ul>
-          </article>
-          <article class="method-card" data-num="06">
-            <div>
-              <div class="method-card__num">06</div>
-              <h3 class="method-card__title">Sustentação Contínua</h3>
-              <p class="method-card__desc">10h técnicas mensais, suporte WhatsApp, garantia 90 dias.</p>
-            </div>
-            <ul class="method-card__list">
-              <li>10h técnicas/mês</li>
-              <li>Suporte WhatsApp em 4h</li>
-              <li>Garantia de 90 dias</li>
-              <li>Roadmap evolutivo</li>
-            </ul>
-          </article>
-        </div>
-        <div class="method__hint" aria-hidden="true">← arraste ou role pro lado →</div>
-      </div>
-    </section>
 
     <!-- CAPABILITIES -->
     <section class="section">
@@ -303,12 +197,13 @@
           <p class="section-lead">Cliente não compra capacidade — compra resolução de dor. Mas o conjunto técnico precisa estar pronto.</p>
         </div>
         <div class="capabilities">
-          
+
           <div class="capability reveal">
             <div class="capability__icon">&lt;/&gt;</div>
             <div>
               <h3 class="capability__title">Sistemas sob medida</h3>
               <p class="capability__desc">Plataformas web, PWAs, ERPs internos, GEDs e sistemas multi-unidade desenhados pra sua operação.</p>
+              <div class="capability__tag">Facilita Higienização · ObraSimples</div>
             </div>
           </div>
           <div class="capability reveal">
@@ -316,6 +211,7 @@
             <div>
               <h3 class="capability__title">Marketplaces com IA</h3>
               <p class="capability__desc">Compra e venda com agentes inteligentes negociando via WhatsApp, automação de leads e gestão integrada.</p>
+              <div class="capability__tag">Agrodesapego</div>
             </div>
           </div>
           <div class="capability reveal">
@@ -323,6 +219,7 @@
             <div>
               <h3 class="capability__title">Automações inteligentes</h3>
               <p class="capability__desc">Fluxos automatizados com n8n, integrações por API, agentes que substituem trabalho manual repetitivo.</p>
+              <div class="capability__tag">automapost · n8n · API</div>
             </div>
           </div>
           <div class="capability reveal">
@@ -330,6 +227,7 @@
             <div>
               <h3 class="capability__title">IA aplicada</h3>
               <p class="capability__desc">Agentes negociadores, OCR, classificação automática, análise preditiva. IA com propósito e resultado.</p>
+              <div class="capability__tag">Centro Diagnóstico · Agrodesapego</div>
             </div>
           </div>
           <div class="capability reveal">
@@ -337,6 +235,7 @@
             <div>
               <h3 class="capability__title">Fintech &amp; pagamentos</h3>
               <p class="capability__desc">Conta whitelabel, sub-acquiring, pagamentos integrados, banco digital. Construímos 4 até hoje.</p>
+              <div class="capability__tag">ObraSimples · uRocket · VaiPedindo</div>
             </div>
           </div>
           <div class="capability reveal">
@@ -344,9 +243,63 @@
             <div>
               <h3 class="capability__title">Sites de alta conversão</h3>
               <p class="capability__desc">Sites institucionais e landing pages que convertem — não decorativos, orientados a métrica.</p>
+              <div class="capability__tag">Cuidar Bem · Green Future Hub</div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section id="processo" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-eyebrow">Como trabalhamos</span>
+          <h2 class="section-title">Do diagnóstico ao go-live, com <em>engenharia em cada passo</em>.</h2>
+          <p class="section-lead">Método aplicado em 12 negócios próprios e dezenas de cases de cliente. Investigação profunda, MVP em dias, construção faseada e sustentação contínua.</p>
+        </div>
+        <ol class="process-timeline">
+          <li class="process-step reveal">
+            <div class="process-step__head">
+              <span class="process-step__num">01</span>
+              <span class="process-step__time">1h gratuito</span>
+            </div>
+            <h3 class="process-step__title">Diagnóstico</h3>
+            <p class="process-step__desc">Entendemos seu contexto, ERP atual, fluxos e gargalos. Saímos com briefing estratégico mapeado.</p>
+          </li>
+          <li class="process-step reveal">
+            <div class="process-step__head">
+              <span class="process-step__num">02</span>
+              <span class="process-step__time">3–7 dias</span>
+            </div>
+            <h3 class="process-step__title">Visão &amp; Roadmap</h3>
+            <p class="process-step__desc">Proposta com escopo, prazos e investimento. Priorização clara, visão de produto e matriz de riscos.</p>
+          </li>
+          <li class="process-step reveal">
+            <div class="process-step__head">
+              <span class="process-step__num">03</span>
+              <span class="process-step__time">sprints quinzenais</span>
+            </div>
+            <h3 class="process-step__title">Construção faseada</h3>
+            <p class="process-step__desc">Entregas a cada 15 dias, painel Notion compartilhado, validação contínua. Você vê o produto crescendo.</p>
+          </li>
+          <li class="process-step reveal">
+            <div class="process-step__head">
+              <span class="process-step__num">04</span>
+              <span class="process-step__time">~60–90 dias</span>
+            </div>
+            <h3 class="process-step__title">Integração &amp; Go-Live</h3>
+            <p class="process-step__desc">Conexão com ERP atual via API, treinamento da equipe, conformidade LGPD, go-live faseado e seguro.</p>
+          </li>
+          <li class="process-step reveal">
+            <div class="process-step__head">
+              <span class="process-step__num">05</span>
+              <span class="process-step__time">mensal</span>
+            </div>
+            <h3 class="process-step__title">Sustentação contínua</h3>
+            <p class="process-step__desc">10h técnicas/mês, suporte WhatsApp em 4h, garantia de 90 dias pós go-live, roadmap evolutivo trimestral.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -356,7 +309,7 @@
         <div class="section-head reveal">
           <span class="section-eyebrow">Portfólio Naveo</span>
           <h2 class="section-title">12 empresas próprias. <em>Skin in the game</em> de verdade.</h2>
-          <p class="section-lead">Antes de oferecer pra você, construímos pros nossos. Cada negócio próprio é um laboratório vivo do método.</p>
+          <p class="section-lead">Antes de oferecer pra você, construímos pros nossos. Cada negócio próprio é um laboratório vivo do método — fintech, agro, saúde, comunidade, automação.</p>
         </div>
         <div class="portfolio-heroes">
           
@@ -444,6 +397,13 @@
             <div class="portfolio-mini__arrow" aria-hidden="true">↗</div>
           </div>
         </div>
+
+        <div class="portfolio-cta reveal">
+          <p class="portfolio-cta__note">12 negócios próprios em diferentes setores — e contando.</p>
+          <a href="https://wa.me/5565996865004" target="_blank" rel="noopener" class="btn btn--ghost">
+            Quero construir o meu também <span class="arrow">→</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -456,44 +416,17 @@
           <p class="section-lead">Empresas que chegaram com uma demanda pontual e saíram com uma operação digital completa.</p>
         </div>
         <div class="cases">
-          
+
           <article class="case ">
-            <div class="case__media reveal">
-              <div class="case__media__inner" style="background-image:url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1400&q=80')"></div>
-            </div>
-            <div class="case__body reveal">
-              <div class="case__tag">Plataforma operacional · GED</div>
-              <h3 class="case__title">Facilita Higienização</h3>
-              <p class="case__desc">Rede de higienização industrial com múltiplas unidades. Empurrava papel, ASOs vencendo sem ninguém ver, risco trabalhista latente. Construímos um GED multi-unidade com assinatura jurídica, PWA pros gerentes e dashboard de prazos.</p>
-              <div class="case__quote">“Vocês trouxeram algo que eu não imaginava.”</div>
-              <div class="case__metrics">
-                
-                <div class="case__metric">
-                  <strong>PWA</strong>
-                  <span>iPhone, Android, iPad</span>
-                </div>
-                <div class="case__metric">
-                  <strong>LGPD</strong>
-                  <span>Conformidade total</span>
-                </div>
-                <div class="case__metric">
-                  <strong>90d</strong>
-                  <span>Da assinatura ao go-live</span>
-                </div>
-              </div>
-            </div>
-          </article>
-          <article class="case case--reverse">
-            <div class="case__media reveal">
+            <a href="https://obrasimples.com.br/" target="_blank" rel="noopener" class="case__media reveal" aria-label="Visitar ObraSimples">
               <div class="case__media__inner" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80')"></div>
-            </div>
+            </a>
             <div class="case__body reveal">
               <div class="case__tag">ERP Vertical · Construção civil</div>
-              <h3 class="case__title">ObraSimples</h3>
+              <h3 class="case__title"><a href="https://obrasimples.com.br/" target="_blank" rel="noopener">ObraSimples <span class="case__title-arrow">↗</span></a></h3>
               <p class="case__desc">Cliente chegou pedindo solução fintech. A gente identificou oportunidade maior: um ERP/Micro SaaS sob medida pra pequenos empreendedores da construção civil. Boletos, PIX, gestão financeira, controle de estoque, orçamentos e notas fiscais.</p>
               <div class="case__quote">“Nos mostraram uma nova oportunidade de novo negócio.”</div>
               <div class="case__metrics">
-                
                 <div class="case__metric">
                   <strong>Sob medida</strong>
                   <span>Cliente é dono do código</span>
@@ -509,17 +442,17 @@
               </div>
             </div>
           </article>
-          <article class="case ">
-            <div class="case__media reveal">
+
+          <article class="case case--reverse">
+            <a href="https://cuidarbemcard.com.br/" target="_blank" rel="noopener" class="case__media reveal" aria-label="Visitar Cuidar Bem Card">
               <div class="case__media__inner" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80')"></div>
-            </div>
+            </a>
             <div class="case__body reveal">
               <div class="case__tag">Plataforma de saúde · do zero</div>
-              <h3 class="case__title">Cuidar Bem Card</h3>
+              <h3 class="case__title"><a href="https://cuidarbemcard.com.br/" target="_blank" rel="noopener">Cuidar Bem Card <span class="case__title-arrow">↗</span></a></h3>
               <p class="case__desc">Empresa de saúde criada do zero, do modelo de negócio à plataforma completa. Conceito, desenvolvimento, branding, go-to-market — Engenharia Criativa de ponta a ponta.</p>
               <div class="case__quote">“Transformou em um negócio completo que está mudando a forma como as pessoas acessam serviços de saúde.”</div>
               <div class="case__metrics">
-                
                 <div class="case__metric">
                   <strong>300%</strong>
                   <span>Crescimento em 12 meses</span>
@@ -535,79 +468,68 @@
               </div>
             </div>
           </article>
+
+          <article class="case ">
+            <a href="https://greenfuturehub.com.br/" target="_blank" rel="noopener" class="case__media reveal" aria-label="Visitar Green Future Hub">
+              <div class="case__media__inner" style="background-image:url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1400&q=80')"></div>
+            </a>
+            <div class="case__body reveal">
+              <div class="case__tag">ESG · Hub de inovação sustentável</div>
+              <h3 class="case__title"><a href="https://greenfuturehub.com.br/" target="_blank" rel="noopener">Green Future Hub <span class="case__title-arrow">↗</span></a></h3>
+              <p class="case__desc">Ecossistema colaborativo sem fins lucrativos conectando empreendedores, startups e instituições em torno de inovação sustentável. Construímos a plataforma de conexão estratégica — eventos, programas, coworking e três pilares (negócio, sustentabilidade, educação) num só ambiente digital.</p>
+              <div class="case__quote">“Tecnologia que conecta gente que constrói o futuro.”</div>
+              <div class="case__metrics">
+                <div class="case__metric">
+                  <strong>3 pilares</strong>
+                  <span>Negócio · Inovação · Educação</span>
+                </div>
+                <div class="case__metric">
+                  <strong>ESG</strong>
+                  <span>Impacto regional</span>
+                </div>
+                <div class="case__metric">
+                  <strong>Multi-stakeholder</strong>
+                  <span>Hub colaborativo</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="cases-cta reveal">
+          <a href="/cases" class="btn btn--ghost">
+            Ver todos os cases <span class="arrow">→</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- LOGOS -->
-    <section class="section section--sm">
+    <!-- PARTNERS -->
+    <section class="section partners">
       <div class="container">
-        <div class="section-head section-head--centered reveal">
-          <span class="section-eyebrow">Quem confia</span>
-          <h2 class="section-title">Empresas que escolheram <em>construir junto</em>.</h2>
-          <p class="section-lead" style="margin-left:auto;margin-right:auto;">De redes regionais a sistemas cooperativos. Diferentes setores, mesmo método.</p>
-        </div>
-      </div>
-      <div class="logos-marquee reveal" aria-label="Empresas que confiam na Naveo">
-        <div class="logos-marquee__track">
-          <div class="logo-chip">Facilita</div>
-          <div class="logo-chip">ObraSimples</div>
-          <div class="logo-chip logo-chip--img" title="Cuidar Bem"><img src="/assets/clients/cuidarbem.png" alt="Cuidar Bem" loading="lazy" /></div>
-          <div class="logo-chip logo-chip--img" title="Sicredi"><img src="/assets/clients/sicredi.png" alt="Sicredi" loading="lazy" /></div>
-          <div class="logo-chip logo-chip--img" title="Green Future Hub"><img src="/assets/clients/greenfuturehub.png" alt="Green Future Hub" loading="lazy" /></div>
-          <div class="logo-chip">O'Gourmet</div>
-          <div class="logo-chip logo-chip--img" title="Festi Pizza"><img src="/assets/clients/festipizza.webp" alt="Festi Pizza" loading="lazy" /></div>
-          <div class="logo-chip logo-chip--img" title="Bassani Móveis"><img src="/assets/clients/bassanimoveis.webp" alt="Bassani Móveis" loading="lazy" /></div>
-          <div class="logo-chip">Serra Summit</div>
-          <div class="logo-chip">CD Marau</div>
-          <div class="logo-chip">Gestão BPO</div>
-          <div class="logo-chip logo-chip--img" title="Alternativa"><img src="/assets/clients/alternativa.png" alt="Alternativa" loading="lazy" /></div>
-          <div class="logo-chip">Facilita</div>
-          <div class="logo-chip">ObraSimples</div>
-          <div class="logo-chip logo-chip--img" title="Cuidar Bem"><img src="/assets/clients/cuidarbem.png" alt="Cuidar Bem" loading="lazy" /></div>
-          <div class="logo-chip logo-chip--img" title="Sicredi"><img src="/assets/clients/sicredi.png" alt="Sicredi" loading="lazy" /></div>
-          <div class="logo-chip logo-chip--img" title="Green Future Hub"><img src="/assets/clients/greenfuturehub.png" alt="Green Future Hub" loading="lazy" /></div>
-          <div class="logo-chip">O'Gourmet</div>
-          <div class="logo-chip logo-chip--img" title="Festi Pizza"><img src="/assets/clients/festipizza.webp" alt="Festi Pizza" loading="lazy" /></div>
-          <div class="logo-chip logo-chip--img" title="Bassani Móveis"><img src="/assets/clients/bassanimoveis.webp" alt="Bassani Móveis" loading="lazy" /></div>
-          <div class="logo-chip">Serra Summit</div>
-          <div class="logo-chip">CD Marau</div>
-          <div class="logo-chip">Gestão BPO</div>
-          <div class="logo-chip logo-chip--img" title="Alternativa"><img src="/assets/clients/alternativa.png" alt="Alternativa" loading="lazy" /></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-eyebrow">O que dizem</span>
-          <h2 class="section-title"><em>Visão de dono</em>, na prática.</h2>
-          <p class="section-lead">O que falam os clientes depois que entram no nosso barco.</p>
-        </div>
-        <div class="testimonials">
-          
-          <div class="testimonial reveal">
-            <p class="testimonial__quote">Vocês trouxeram algo que eu não imaginava era possível. Saí com um sistema que mudou nossa operação inteira.</p>
-            <div class="testimonial__author">
-              <div class="testimonial__name">Cliente Facilita Higienização</div>
-              <div class="testimonial__role">Diretor · Rede industrial · MT</div>
-            </div>
+        <div class="partners__grid">
+          <div class="partners__intro reveal">
+            <span class="section-eyebrow">Quem confia</span>
+            <h2 class="partners__title">Soluções únicas.<br/><em>Resultados concretos.</em></h2>
+            <p class="partners__lead">Construímos junto com empresas líderes em diferentes setores — agro, saúde, construção, fintech, varejo, ESG. De redes regionais a sistemas cooperativos: quem entra no nosso barco contrata parceria, não fornecedor.</p>
           </div>
-          <div class="testimonial reveal">
-            <p class="testimonial__quote">Não precisamos só fazer um sistema, vocês nos mostraram uma nova oportunidade de negócio. Skin in the game de verdade.</p>
-            <div class="testimonial__author">
-              <div class="testimonial__name">Thiago Piccini</div>
-              <div class="testimonial__role">Fundador · ObraSimples</div>
-            </div>
-          </div>
-          <div class="testimonial reveal">
-            <p class="testimonial__quote">Transformaram nossa visão em um negócio completo que está mudando a forma como as pessoas acessam saúde.</p>
-            <div class="testimonial__author">
-              <div class="testimonial__name">Renata Jacomeli</div>
-              <div class="testimonial__role">CEO · Cuidar Bem Card</div>
-            </div>
+          <div class="partners__logos reveal">
+            <div class="partner-cell"><img src="/assets/clients/centrodediagnostico.webp" alt="Centro de Diagnóstico" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/cuidarbem.png" alt="Cuidar Bem" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/sicredi.png" alt="Sicredi" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/greenfuturehub.png" alt="Green Future Hub" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/obrasimples.webp" alt="ObraSimples" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/festipizza.webp" alt="Festi Pizza" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/bassanimoveis.webp" alt="Bassani Móveis" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/saolucas.webp" alt="São Lucas" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/matrezan.webp" alt="Matrezan" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/bellomo.webp" alt="Bellomo" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/frigovino.webp" alt="Frigovino" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/gestaobpo.webp" alt="Gestão BPO" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/camicias.webp" alt="Camícias" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/serrasummit.webp" alt="Serra Summit" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/gourmet.webp" alt="Gourmet" loading="lazy" /></div>
+            <div class="partner-cell"><img src="/assets/clients/alternativa.png" alt="Alternativa" loading="lazy" /></div>
           </div>
         </div>
       </div>
@@ -687,11 +609,24 @@
       </div>
     </section>
 
-    <!-- MANIFESTO -->
-    <section id="sobre" class="manifesto">
+    <!-- LOCATION MAP -->
+    <section id="sobre" class="brasil-map">
       <div class="container--narrow">
-        <p class="manifesto__quote reveal">Não vendemos hora. <em>Construímos a operação.</em></p>
-        <div class="manifesto__attribution reveal">Naveo · Lucas do Rio Verde, MT · Brasil</div>
+        <div class="brasil-map__head">
+          <span class="section-eyebrow">Onde estamos</span>
+          <h2 class="brasil-map__title">Do <em>centro do Brasil</em><br/>pra qualquer lugar.</h2>
+        </div>
+
+        <div class="brasil-map__stage">
+          <div class="brasil-map__svg" data-src="/assets/brazil-states.svg" role="img" aria-label="Mapa do Brasil com a localização da Naveo em Lucas do Rio Verde, Mato Grosso"></div>
+
+          <aside class="brasil-map__info">
+            <div class="brasil-map__row"><span>HQ</span><strong>Lucas do Rio Verde</strong></div>
+            <div class="brasil-map__row"><span>Estado</span><strong>Mato Grosso</strong></div>
+            <div class="brasil-map__row"><span>País</span><strong>Brasil</strong></div>
+            <p class="brasil-map__note">Operamos do centro do agro brasileiro — onde a operação é grande, o tempo é curto, e o sistema precisa rodar.</p>
+          </aside>
+        </div>
       </div>
     </section>
 
@@ -724,11 +659,10 @@
         <div class="footer-col">
           <h4>Empresa</h4>
           <ul>
-            
-            <li><a href="#sobre" >Sobre</a></li>
+            <li><a href="/quem-somos">Quem somos</a></li>
             <li><a href="#portfolio" >Portfólio Naveo</a></li>
-            <li><a href="#cases" >Cases de cliente</a></li>
-            <li><a href="#metodo" >Método</a></li>
+            <li><a href="/cases" >Cases de cliente</a></li>
+            <li><a href="/contato" >Contato</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -768,7 +702,6 @@
     </div>
   </footer>
 
-  <script type="module" src="/js/three-scene.js"></script>
   <script type="module" src="/js/main.js"></script>
 
 </body>
