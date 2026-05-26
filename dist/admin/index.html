@@ -93,58 +93,77 @@
       document.getElementById("user-avatar").textContent = (Auth.email() || "N").charAt(0).toUpperCase();
       document.getElementById("logout-btn").onclick = () => Auth.logout();
 
-      try {
-        const [posts, cases, messages] = await Promise.all([
-          Storage.posts.all(),
-          Storage.cases.all(),
-          Storage.messages.all(),
-        ]);
-        const unread = messages.filter((m) => !m.read).length;
+      let previousMessageCount = 0;
 
-        document.getElementById("stat-posts").textContent = posts.length;
-        document.getElementById("stat-cases").textContent = cases.length;
-        document.getElementById("stat-messages").textContent = messages.length;
-        document.getElementById("stat-unread").textContent = unread;
+      const loadDashboard = async (silent = false) => {
+        try {
+          const [posts, cases, messages] = await Promise.all([
+            Storage.posts.all(),
+            Storage.cases.all(),
+            Storage.messages.all(),
+          ]);
+          const unread = messages.filter((m) => !m.read).length;
 
-        if (unread > 0) {
+          document.getElementById("stat-posts").textContent = posts.length;
+          document.getElementById("stat-cases").textContent = cases.length;
+          document.getElementById("stat-messages").textContent = messages.length;
+          document.getElementById("stat-unread").textContent = unread;
+
           const badge = document.getElementById("badge");
-          badge.textContent = unread;
-          badge.style.display = "inline-block";
-        }
+          if (unread > 0) {
+            badge.textContent = unread;
+            badge.style.display = "inline-block";
+          } else {
+            badge.style.display = "none";
+          }
 
-        // Recent posts
-        const tbody = document.querySelector("#recent-posts tbody");
-        posts.slice(0, 5).forEach((p) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="col-title">${p.title}</td>
-            <td><span class="col-tag">${p.tag}</span></td>
-            <td class="col-date">${UI.formatDate(p.date)}</td>
-          `;
-          tbody.appendChild(tr);
-        });
+          // Toast quando aparece mensagem nova (só em refresh silencioso)
+          if (silent && messages.length > previousMessageCount) {
+            const diff = messages.length - previousMessageCount;
+            UI.toast(`${diff} mensage${diff === 1 ? "m nova" : "ns novas"} chegou${diff === 1 ? "" : "saram"}`);
+          }
+          previousMessageCount = messages.length;
 
-        // Recent messages
-        const msgsBox = document.getElementById("recent-messages");
-        messages.slice(0, 3).forEach((m) => {
-          const el = document.createElement("div");
-          el.className = "message";
-          el.innerHTML = `
-            <div>
-              <div class="message__from">${m.nome} ${!m.read ? '<span style="color:var(--accent-deep);font-size:11px;margin-left:6px;">●</span>' : ''}</div>
-              <div class="message__email">${m.email}</div>
-              <div class="message__body">${m.mensagem.slice(0, 140)}${m.mensagem.length > 140 ? "..." : ""}</div>
-            </div>
-            <div class="message__meta">${UI.formatDateTime(m.date)}</div>
-          `;
-          msgsBox.appendChild(el);
-        });
-        if (!messages.length) {
-          msgsBox.innerHTML = '<div class="empty-state"><div class="empty-state__icon">✉</div><div class="empty-state__title">Sem mensagens ainda</div><div class="empty-state__sub">Quando alguém preencher o form de /contato, aparece aqui.</div></div>';
+          // Recent posts
+          const tbody = document.querySelector("#recent-posts tbody");
+          tbody.innerHTML = "";
+          posts.slice(0, 5).forEach((p) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="col-title">${p.title}</td>
+              <td><span class="col-tag">${p.tag}</span></td>
+              <td class="col-date">${UI.formatDate(p.date)}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          // Recent messages
+          const msgsBox = document.getElementById("recent-messages");
+          msgsBox.innerHTML = "";
+          messages.slice(0, 3).forEach((m) => {
+            const el = document.createElement("div");
+            el.className = "message";
+            el.innerHTML = `
+              <div>
+                <div class="message__from">${m.nome} ${!m.read ? '<span style="color:var(--accent-deep);font-size:11px;margin-left:6px;">●</span>' : ''}</div>
+                <div class="message__email">${m.email}</div>
+                <div class="message__body">${m.mensagem.slice(0, 140)}${m.mensagem.length > 140 ? "..." : ""}</div>
+              </div>
+              <div class="message__meta">${UI.formatDateTime(m.date)}</div>
+            `;
+            msgsBox.appendChild(el);
+          });
+          if (!messages.length) {
+            msgsBox.innerHTML = '<div class="empty-state"><div class="empty-state__icon">✉</div><div class="empty-state__title">Sem mensagens ainda</div><div class="empty-state__sub">Quando alguém preencher o form de /contato, aparece aqui.</div></div>';
+          }
+        } catch (err) {
+          if (!silent) UI.toast("Erro ao carregar: " + err.message, "error");
         }
-      } catch (err) {
-        UI.toast("Erro ao carregar: " + err.message, "error");
-      }
+      };
+
+      await loadDashboard();
+      // Auto-refresh a cada 15s
+      setInterval(() => loadDashboard(true), 15000);
     })();
   </script>
 </body>

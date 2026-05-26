@@ -41,9 +41,15 @@
       <header class="main__header">
         <div>
           <h1 class="main__title">Mensagens</h1>
-          <p class="main__sub">Submissões do formulário de /contato — <span id="count-info">0 mensagens · 0 não lidas</span></p>
+          <p class="main__sub">
+            Submissões do formulário de /contato — <span id="count-info">0 mensagens · 0 não lidas</span>
+            <span id="last-refresh" style="margin-left:8px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;"></span>
+          </p>
         </div>
-        <div style="display:flex;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <button id="refresh-btn" class="btn-admin btn-admin--ghost" title="Atualizar agora">
+            <span id="refresh-icon" style="display:inline-block;margin-right:4px;">↻</span> Atualizar
+          </button>
           <button id="mark-all-btn" class="btn-admin btn-admin--ghost">Marcar todas como lidas</button>
         </div>
       </header>
@@ -165,6 +171,50 @@
           UI.toast("Erro: " + err.message, "error");
         }
       };
+
+      // Botão de refresh manual
+      const refreshBtn = document.getElementById("refresh-btn");
+      const refreshIcon = document.getElementById("refresh-icon");
+      const lastRefreshEl = document.getElementById("last-refresh");
+
+      const updateRefreshTime = () => {
+        const now = new Date();
+        const hh = now.getHours().toString().padStart(2, "0");
+        const mm = now.getMinutes().toString().padStart(2, "0");
+        const ss = now.getSeconds().toString().padStart(2, "0");
+        lastRefreshEl.textContent = `· atualizado ${hh}:${mm}:${ss}`;
+      };
+
+      let previousCount = 0;
+      const renderAndTrack = async (silent = false) => {
+        if (refreshIcon && !silent) {
+          refreshIcon.style.transition = "transform .6s ease";
+          refreshIcon.style.transform = "rotate(360deg)";
+          setTimeout(() => {
+            refreshIcon.style.transition = "none";
+            refreshIcon.style.transform = "rotate(0deg)";
+          }, 600);
+        }
+        await render();
+        updateRefreshTime();
+
+        // Toast quando aparece mensagem nova (só no polling silencioso)
+        try {
+          const fresh = await Storage.messages.all();
+          if (silent && fresh.length > previousCount) {
+            const diff = fresh.length - previousCount;
+            UI.toast(`${diff} mensage${diff === 1 ? "m nova" : "ns novas"} chegou${diff === 1 ? "" : "saram"}`);
+          }
+          previousCount = fresh.length;
+        } catch (_) {}
+      };
+
+      refreshBtn.onclick = () => renderAndTrack(false);
+
+      // Auto-refresh a cada 15s
+      setInterval(() => renderAndTrack(true), 15000);
+
+      updateRefreshTime();
 
       render();
     })();
