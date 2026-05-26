@@ -3236,6 +3236,9 @@ a.case__media:hover .case__media__inner { transform: scale(1.04); }
 /* ==========================================================================
    CONTATO — TELA DE SUCESSO APÓS ENVIO
    ========================================================================== */
+.contato-success[hidden] {
+  display: none !important;
+}
 .contato-success {
   display: flex;
   flex-direction: column;

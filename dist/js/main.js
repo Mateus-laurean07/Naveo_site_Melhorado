@@ -327,8 +327,7 @@ if (contatoForm) {
       successEl.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    // Abre WhatsApp em nova aba (depois do success aparecer)
-    window.open(waUrl, "_blank", "noopener");
+    // WhatsApp NÃO abre automaticamente — só quando user clicar no botão da tela de sucesso
   });
 }
 
