@@ -272,6 +272,21 @@ if (contatoForm) {
       mensagem,
     ].filter(Boolean);
 
+    // Persiste a mensagem no localStorage pra aparecer no admin
+    try {
+      const raw = localStorage.getItem("naveo_messages");
+      const list = raw ? JSON.parse(raw) : [];
+      list.unshift({
+        id: "m" + Date.now(),
+        nome, email, telefone, empresa, interesse, mensagem,
+        date: new Date().toISOString(),
+        read: false,
+      });
+      localStorage.setItem("naveo_messages", JSON.stringify(list));
+    } catch (err) {
+      // silencioso — não bloqueia o fluxo de WhatsApp
+    }
+
     const text = encodeURIComponent(lines.join("\n"));
     const wa = `https://wa.me/5565996865004?text=${text}`;
     window.open(wa, "_blank", "noopener");
@@ -311,6 +326,134 @@ if (heroLaptopWrap && heroLaptopEl && window.matchMedia("(hover: hover)").matche
     heroLaptopEl.style.transform = "";
   });
 }
+
+// ============================================================
+// PORTAL TRANSITION — clica no nav vendo o laptop = entra pela tela
+// Intercepta clicks em Cases / Blog / Quem somos / Contato.
+// Se o laptop tá visível: animação de "zoom in" pela tela do laptop.
+// Senão: navegação normal.
+// ============================================================
+(function () {
+  const portalLaptop = document.querySelector(".hero__laptop");
+  if (!portalLaptop) return; // só ativa na home (onde existe o laptop)
+
+  // Respeita prefers-reduced-motion
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) return;
+
+  // Observa se o laptop tá visível
+  let laptopVisible = true;
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      (entries) => {
+        laptopVisible = entries[0].isIntersecting;
+      },
+      { threshold: 0.25 }
+    ).observe(portalLaptop);
+  }
+
+  // Pega só os links internos do menu (não Início nem Portfólio)
+  const portalHrefs = ["/cases", "/blog", "/quem-somos", "/contato"];
+  const allNavLinks = document.querySelectorAll('.site-nav__links a, .site-nav a');
+  const portalLinks = Array.from(allNavLinks).filter((a) => {
+    const href = a.getAttribute("href") || "";
+    // suporta /cases, /en/cases, /es/cases etc.
+    return portalHrefs.some((p) => href === p || href.endsWith(p));
+  });
+
+  function runPortal(href, label) {
+    // Marca pra próxima página fazer a entrada
+    try {
+      sessionStorage.setItem("naveo_portal_enter", "1");
+    } catch (_) {}
+
+    // 1. Insere overlay "conectando" dentro da tela do laptop ANTES do zoom
+    const screen = portalLaptop.querySelector(".laptop__screen");
+    if (screen) {
+      const portal = document.createElement("div");
+      portal.className = "laptop__portal";
+      portal.innerHTML =
+        '<div class="laptop__portal__loader">' +
+          '<div class="laptop__portal__label">conectando</div>' +
+          '<div class="laptop__portal__dest"><span class="arrow">→</span>' + label + '</div>' +
+          '<div class="laptop__portal__bar"><div class="laptop__portal__bar-fill"></div></div>' +
+        '</div>';
+      screen.appendChild(portal);
+      requestAnimationFrame(() => portal.classList.add("show"));
+    }
+
+    // 2. Calcula transform-final do laptop (centro da viewport, escala pra cobrir)
+    const rect = portalLaptop.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const tx = vw / 2 - cx;
+    const ty = vh / 2 - cy;
+    const scale = Math.max(vw / rect.width, vh / rect.height) * 1.35;
+
+    portalLaptop.style.setProperty("--portal-tx", tx + "px");
+    portalLaptop.style.setProperty("--portal-ty", ty + "px");
+    portalLaptop.style.setProperty("--portal-scale", scale);
+
+    // 3. Cria o bridge overlay (cor da tela do laptop) — invisível ainda
+    const bridge = document.createElement("div");
+    bridge.className = "portal-bridge";
+    document.body.appendChild(bridge);
+
+    // 4. Depois de 300ms (user viu "conectando"), começa o zoom do laptop
+    setTimeout(() => {
+      document.body.classList.add("portal-leaving");
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          portalLaptop.classList.add("hero__laptop--portal");
+        });
+      });
+    }, 300);
+
+    // 5. Aos 680ms (laptop quase no fim do zoom) — bridge overlay aparece
+    //    pra esconder o flash branco entre páginas
+    setTimeout(() => {
+      bridge.classList.add("show");
+    }, 680);
+
+    // 6. Aos 900ms — navega. Overlay já 100% opaco em #0d1117.
+    setTimeout(() => {
+      window.location.href = href;
+    }, 900);
+  }
+
+  portalLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      // Ignora se: laptop não visível, modificadores pressionados, target=_blank
+      if (!laptopVisible) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (link.target === "_blank") return;
+
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#")) return;
+
+      e.preventDefault();
+      const label = (link.textContent || "").trim();
+      runPortal(href, label);
+    });
+  });
+})();
+
+// ============================================================
+// PORTAL ENTRY — se viemos via portal, faz fade-in na chegada
+// ============================================================
+try {
+  if (sessionStorage.getItem("naveo_portal_enter") === "1") {
+    sessionStorage.removeItem("naveo_portal_enter");
+    document.documentElement.classList.add("portal-entering");
+    window.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        document.documentElement.classList.remove("portal-entering");
+      }, 800);
+    });
+  }
+} catch (_) {}
 
 // ============================================================
 // MOBILE NAV TOGGLE

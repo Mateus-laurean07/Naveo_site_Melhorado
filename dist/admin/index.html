@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard · Naveo Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <script src="/admin/admin.js"></script>
+  <script>if (!Naveo.Auth.guard()) throw new Error("redirected");</script>
+
+  <div class="shell">
+    <aside class="side">
+      <div class="side__brand">naveo<span>admin</span></div>
+      <nav class="side__nav">
+        <div class="side__group">Geral</div>
+        <a href="/admin" class="side__link active"><span class="side__link__icon">◆</span>Dashboard</a>
+        <div class="side__group">Conteúdo</div>
+        <a href="/admin/posts" class="side__link"><span class="side__link__icon">¶</span>Blog posts</a>
+        <a href="/admin/cases" class="side__link"><span class="side__link__icon">✦</span>Cases</a>
+        <div class="side__group">Comunicação</div>
+        <a href="/admin/messages" class="side__link"><span class="side__link__icon">✉</span>Mensagens <span id="badge" style="margin-left:auto;font-size:10px;background:var(--accent);color:var(--accent-ink);padding:2px 7px;border-radius:999px;font-weight:700;display:none;"></span></a>
+      </nav>
+      <div class="side__user">
+        <div class="side__avatar" id="user-avatar">N</div>
+        <div>
+          <div class="side__name">Admin Naveo</div>
+          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+        </div>
+      </div>
+      <button class="side__logout" id="logout-btn">Sair</button>
+    </aside>
+
+    <main class="main">
+      <header class="main__header">
+        <div>
+          <h1 class="main__title">Dashboard</h1>
+          <p class="main__sub">Visão geral do site Naveo · <a href="/" target="_blank" style="color:var(--accent-deep);text-decoration:underline;">abrir site ↗</a></p>
+        </div>
+      </header>
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-card__accent"></div>
+          <div class="stat-card__label">Blog posts</div>
+          <div class="stat-card__value" id="stat-posts">0</div>
+          <div class="stat-card__sub">Publicados no /blog</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__accent"></div>
+          <div class="stat-card__label">Cases</div>
+          <div class="stat-card__value" id="stat-cases">0</div>
+          <div class="stat-card__sub">Publicados no /cases</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__accent"></div>
+          <div class="stat-card__label">Mensagens</div>
+          <div class="stat-card__value" id="stat-messages">0</div>
+          <div class="stat-card__sub"><span id="stat-unread">0</span> não lidas</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">Últimos blog posts</h2>
+          <a href="/admin/posts" class="btn-admin btn-admin--ghost btn-admin--small">Ver todos →</a>
+        </div>
+        <table class="table" id="recent-posts"><thead>
+          <tr><th>Título</th><th>Tag</th><th>Data</th></tr>
+        </thead><tbody></tbody></table>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">Mensagens recentes</h2>
+          <a href="/admin/messages" class="btn-admin btn-admin--ghost btn-admin--small">Ver todas →</a>
+        </div>
+        <div id="recent-messages"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      const { Storage, Auth } = Naveo;
+      document.getElementById("user-email").textContent = Auth.email();
+      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("logout-btn").onclick = () => Auth.logout();
+
+      const posts = Storage.posts.all();
+      const cases = Storage.cases.all();
+      const messages = Storage.messages.all();
+      const unread = Storage.messages.unreadCount();
+
+      document.getElementById("stat-posts").textContent = posts.length;
+      document.getElementById("stat-cases").textContent = cases.length;
+      document.getElementById("stat-messages").textContent = messages.length;
+      document.getElementById("stat-unread").textContent = unread;
+
+      if (unread > 0) {
+        const badge = document.getElementById("badge");
+        badge.textContent = unread;
+        badge.style.display = "inline-block";
+      }
+
+      // Recent posts
+      const tbody = document.querySelector("#recent-posts tbody");
+      posts.slice(0, 5).forEach((p) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="col-title">${p.title}</td>
+          <td><span class="col-tag">${p.tag}</span></td>
+          <td class="col-date">${Naveo.UI.formatDate(p.date)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Recent messages
+      const msgsBox = document.getElementById("recent-messages");
+      messages.slice(0, 3).forEach((m) => {
+        const el = document.createElement("div");
+        el.className = "message";
+        el.innerHTML = `
+          <div>
+            <div class="message__from">${m.nome} ${!m.read ? '<span style="color:var(--accent-deep);font-size:11px;margin-left:6px;">●</span>' : ''}</div>
+            <div class="message__email">${m.email}</div>
+            <div class="message__body">${m.mensagem.slice(0, 140)}${m.mensagem.length > 140 ? "..." : ""}</div>
+          </div>
+          <div class="message__meta">${Naveo.UI.formatDateTime(m.date)}</div>
+        `;
+        msgsBox.appendChild(el);
+      });
+      if (!messages.length) {
+        msgsBox.innerHTML = '<div class="empty-state"><div class="empty-state__icon">✉</div><div class="empty-state__title">Sem mensagens ainda</div><div class="empty-state__sub">Quando alguém preencher o form de /contato, aparece aqui.</div></div>';
+      }
+    })();
+  </script>
+</body>
+</html>

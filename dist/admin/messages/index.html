@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mensagens · Naveo Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <script src="/admin/admin.js"></script>
+  <script>if (!Naveo.Auth.guard()) throw new Error("redirected");</script>
+
+  <div class="shell">
+    <aside class="side">
+      <div class="side__brand">naveo<span>admin</span></div>
+      <nav class="side__nav">
+        <div class="side__group">Geral</div>
+        <a href="/admin" class="side__link"><span class="side__link__icon">◆</span>Dashboard</a>
+        <div class="side__group">Conteúdo</div>
+        <a href="/admin/posts" class="side__link"><span class="side__link__icon">¶</span>Blog posts</a>
+        <a href="/admin/cases" class="side__link"><span class="side__link__icon">✦</span>Cases</a>
+        <div class="side__group">Comunicação</div>
+        <a href="/admin/messages" class="side__link active"><span class="side__link__icon">✉</span>Mensagens <span id="badge" style="margin-left:auto;font-size:10px;background:var(--accent);color:var(--accent-ink);padding:2px 7px;border-radius:999px;font-weight:700;display:none;"></span></a>
+      </nav>
+      <div class="side__user">
+        <div class="side__avatar" id="user-avatar">N</div>
+        <div>
+          <div class="side__name">Admin Naveo</div>
+          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+        </div>
+      </div>
+      <button class="side__logout" id="logout-btn">Sair</button>
+    </aside>
+
+    <main class="main">
+      <header class="main__header">
+        <div>
+          <h1 class="main__title">Mensagens</h1>
+          <p class="main__sub">Submissões do formulário de /contato — <span id="count-info">0 mensagens · 0 não lidas</span></p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button id="mark-all-btn" class="btn-admin btn-admin--ghost">Marcar todas como lidas</button>
+        </div>
+      </header>
+
+      <div class="panel" id="messages-panel">
+        <div id="messages-list"></div>
+        <div id="empty" class="empty-state" style="display:none">
+          <div class="empty-state__icon">✉</div>
+          <div class="empty-state__title">Sem mensagens ainda</div>
+          <div class="empty-state__sub">Quando alguém preencher o formulário em /contato, as mensagens aparecem aqui.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      const { Storage, Auth, UI } = Naveo;
+      document.getElementById("user-email").textContent = Auth.email();
+      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("logout-btn").onclick = () => Auth.logout();
+
+      const escapeHtml = (s) => String(s || "").replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+
+      const render = () => {
+        const list = Storage.messages.all().slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+        const container = document.getElementById("messages-list");
+        const empty = document.getElementById("empty");
+        const unread = Storage.messages.unreadCount();
+        const total = list.length;
+
+        document.getElementById("count-info").textContent = `${total} mensage${total === 1 ? "m" : "ns"} · ${unread} não lida${unread === 1 ? "" : "s"}`;
+
+        const badge = document.getElementById("badge");
+        if (unread > 0) {
+          badge.textContent = unread;
+          badge.style.display = "inline-block";
+        } else {
+          badge.style.display = "none";
+        }
+
+        container.innerHTML = "";
+        if (!list.length) {
+          empty.style.display = "block";
+          return;
+        }
+        empty.style.display = "none";
+
+        list.forEach((m) => {
+          const el = document.createElement("div");
+          el.className = "message" + (m.read ? "" : " message--unread");
+          el.innerHTML = `
+            <div style="flex:1;min-width:0;">
+              <div class="message__from">
+                ${escapeHtml(m.nome)}
+                ${!m.read ? '<span style="color:var(--accent-deep);font-size:11px;margin-left:6px;vertical-align:middle;">●</span>' : ''}
+                ${m.empresa ? `<span style="color:var(--text-dim);font-weight:500;margin-left:8px;font-size:13px;">· ${escapeHtml(m.empresa)}</span>` : ''}
+              </div>
+              <div class="message__email">
+                <a href="mailto:${escapeHtml(m.email)}" style="color:var(--accent-deep);text-decoration:none;">${escapeHtml(m.email)}</a>
+                ${m.telefone ? ` · <a href="https://wa.me/55${m.telefone.replace(/\D/g,"")}" target="_blank" style="color:var(--accent-deep);text-decoration:none;">${escapeHtml(m.telefone)}</a>` : ''}
+              </div>
+              ${m.interesse ? `<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;">Interesse: ${escapeHtml(m.interesse)}</div>` : ''}
+              <div class="message__body" style="margin-top:8px;white-space:pre-wrap;">${escapeHtml(m.mensagem)}</div>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                ${!m.read ? `<button data-read="${m.id}" class="btn-admin btn-admin--ghost btn-admin--small">Marcar como lida</button>` : ''}
+                <a href="mailto:${escapeHtml(m.email)}" class="btn-admin btn-admin--ghost btn-admin--small">Responder e-mail</a>
+                ${m.telefone ? `<a href="https://wa.me/55${m.telefone.replace(/\D/g,"")}" target="_blank" class="btn-admin btn-admin--ghost btn-admin--small">WhatsApp</a>` : ''}
+                <button data-del="${m.id}" class="btn-admin btn-admin--danger btn-admin--small">Excluir</button>
+              </div>
+            </div>
+            <div class="message__meta">${UI.formatDateTime(m.date)}</div>
+          `;
+          container.appendChild(el);
+        });
+
+        container.querySelectorAll("[data-read]").forEach((b) => {
+          b.onclick = () => {
+            Storage.messages.markRead(b.dataset.read);
+            UI.toast("Mensagem marcada como lida");
+            render();
+          };
+        });
+        container.querySelectorAll("[data-del]").forEach((b) => {
+          b.onclick = async () => {
+            const id = b.dataset.del;
+            const ok = await UI.confirm("Excluir mensagem?", "Esta ação não pode ser desfeita.");
+            if (ok) {
+              Storage.messages.delete(id);
+              UI.toast("Mensagem excluída");
+              render();
+            }
+          };
+        });
+      };
+
+      document.getElementById("mark-all-btn").onclick = () => {
+        const list = Storage.messages.all();
+        list.forEach((m) => { if (!m.read) Storage.messages.markRead(m.id); });
+        UI.toast("Todas marcadas como lidas");
+        render();
+      };
+
+      render();
+    })();
+  </script>
+</body>
+</html>

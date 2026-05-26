@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editar post · Naveo Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <script src="/admin/admin.js"></script>
+  <script>if (!Naveo.Auth.guard()) throw new Error("redirected");</script>
+
+  <div class="shell">
+    <aside class="side">
+      <div class="side__brand">naveo<span>admin</span></div>
+      <nav class="side__nav">
+        <div class="side__group">Geral</div>
+        <a href="/admin" class="side__link"><span class="side__link__icon">◆</span>Dashboard</a>
+        <div class="side__group">Conteúdo</div>
+        <a href="/admin/posts" class="side__link active"><span class="side__link__icon">¶</span>Blog posts</a>
+        <a href="/admin/cases" class="side__link"><span class="side__link__icon">✦</span>Cases</a>
+        <div class="side__group">Comunicação</div>
+        <a href="/admin/messages" class="side__link"><span class="side__link__icon">✉</span>Mensagens</a>
+      </nav>
+      <div class="side__user">
+        <div class="side__avatar" id="user-avatar">N</div>
+        <div>
+          <div class="side__name">Admin Naveo</div>
+          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+        </div>
+      </div>
+      <button class="side__logout" id="logout-btn">Sair</button>
+    </aside>
+
+    <main class="main">
+      <header class="main__header">
+        <div>
+          <a href="/admin/posts" style="font-family:var(--font-mono);font-size:12px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;">← Posts</a>
+          <h1 class="main__title" id="page-title" style="margin-top:6px;">Novo post</h1>
+        </div>
+      </header>
+
+      <form id="post-form" class="panel">
+        <div class="form-grid">
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="title">Título <em>*</em></label>
+              <input type="text" id="title" name="title" required class="form-input" placeholder="Como o método X transforma..." />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="slug">Slug (URL)</label>
+              <input type="text" id="slug" name="slug" class="form-input" placeholder="gerado-automaticamente" />
+              <div class="form-help">URL final: /blog/<span id="slug-preview">novo-post</span></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="tag">Tag / Categoria <em>*</em></label>
+              <input type="text" id="tag" name="tag" required class="form-input" placeholder="Performance, IA, Vendas..." />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="date">Data de publicação <em>*</em></label>
+              <input type="date" id="date" name="date" required class="form-input" />
+            </div>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="image">URL da imagem destacada</label>
+            <input type="url" id="image" name="image" class="form-input" placeholder="https://images.unsplash.com/..." />
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="excerpt">Resumo (excerpt) <em>*</em></label>
+            <textarea id="excerpt" name="excerpt" required class="form-textarea" placeholder="1-2 frases sobre o que o leitor vai aprender..."></textarea>
+            <div class="form-help">Aparece no card da listagem e no SEO.</div>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="lead">Lead (parágrafo de abertura)</label>
+            <textarea id="lead" name="lead" class="form-textarea" placeholder="Primeiro parágrafo do artigo..."></textarea>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="body">Corpo do artigo</label>
+            <textarea id="body" name="body" class="form-textarea form-textarea--tall" placeholder="Use ## no início da linha pra criar subtítulo H2. Linhas em branco separam parágrafos."></textarea>
+            <div class="form-help">Suporta markdown básico: ## para H2, linhas em branco entre parágrafos.</div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <a href="/admin/posts" class="btn-admin btn-admin--ghost">Cancelar</a>
+          <div style="display:flex;gap:10px;">
+            <button type="button" id="preview-btn" class="btn-admin btn-admin--ghost" style="display:none">Ver no site ↗</button>
+            <button type="submit" class="btn-admin btn-admin--primary">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      const { Storage, Auth, UI } = Naveo;
+      document.getElementById("user-email").textContent = Auth.email();
+      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("logout-btn").onclick = () => Auth.logout();
+
+      const params = new URLSearchParams(location.search);
+      const editId = params.get("id");
+      let isEdit = false;
+      let originalId = null;
+
+      if (editId) {
+        const p = Storage.posts.get(editId);
+        if (p) {
+          isEdit = true;
+          originalId = p.id;
+          document.getElementById("page-title").textContent = "Editar post";
+          document.getElementById("title").value = p.title;
+          document.getElementById("slug").value = p.id;
+          document.getElementById("tag").value = p.tag;
+          document.getElementById("date").value = p.date;
+          document.getElementById("image").value = p.image || "";
+          document.getElementById("excerpt").value = p.excerpt || "";
+          document.getElementById("lead").value = p.lead || "";
+          document.getElementById("body").value = p.body || "";
+          document.getElementById("slug-preview").textContent = p.id;
+          const pv = document.getElementById("preview-btn");
+          pv.style.display = "inline-flex";
+          pv.onclick = () => window.open("/blog/" + p.id, "_blank");
+        }
+      }
+
+      // Default date
+      if (!document.getElementById("date").value) {
+        document.getElementById("date").value = new Date().toISOString().slice(0, 10);
+      }
+
+      // Auto-slug
+      const titleEl = document.getElementById("title");
+      const slugEl = document.getElementById("slug");
+      const slugPreview = document.getElementById("slug-preview");
+      let slugTouched = isEdit;
+      slugEl.addEventListener("input", () => { slugTouched = true; slugPreview.textContent = slugEl.value || "novo-post"; });
+      titleEl.addEventListener("input", () => {
+        if (!slugTouched) {
+          slugEl.value = UI.slugify(titleEl.value);
+          slugPreview.textContent = slugEl.value || "novo-post";
+        }
+      });
+
+      document.getElementById("post-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const post = {
+          id: slugEl.value || UI.slugify(titleEl.value),
+          title: titleEl.value.trim(),
+          tag: document.getElementById("tag").value.trim(),
+          date: document.getElementById("date").value,
+          image: document.getElementById("image").value.trim(),
+          excerpt: document.getElementById("excerpt").value.trim(),
+          lead: document.getElementById("lead").value.trim(),
+          body: document.getElementById("body").value.trim(),
+        };
+        if (isEdit && originalId !== post.id) {
+          Storage.posts.delete(originalId);
+        }
+        Storage.posts.save(post);
+        UI.toast(isEdit ? "Post atualizado" : "Post criado");
+        setTimeout(() => location.href = "/admin/posts", 600);
+      });
+    })();
+  </script>
+</body>
+</html>

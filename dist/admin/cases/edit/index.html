@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editar case · Naveo Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <script src="/admin/admin.js"></script>
+  <script>if (!Naveo.Auth.guard()) throw new Error("redirected");</script>
+
+  <div class="shell">
+    <aside class="side">
+      <div class="side__brand">naveo<span>admin</span></div>
+      <nav class="side__nav">
+        <div class="side__group">Geral</div>
+        <a href="/admin" class="side__link"><span class="side__link__icon">◆</span>Dashboard</a>
+        <div class="side__group">Conteúdo</div>
+        <a href="/admin/posts" class="side__link"><span class="side__link__icon">¶</span>Blog posts</a>
+        <a href="/admin/cases" class="side__link active"><span class="side__link__icon">✦</span>Cases</a>
+        <div class="side__group">Comunicação</div>
+        <a href="/admin/messages" class="side__link"><span class="side__link__icon">✉</span>Mensagens</a>
+      </nav>
+      <div class="side__user">
+        <div class="side__avatar" id="user-avatar">N</div>
+        <div>
+          <div class="side__name">Admin Naveo</div>
+          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+        </div>
+      </div>
+      <button class="side__logout" id="logout-btn">Sair</button>
+    </aside>
+
+    <main class="main">
+      <header class="main__header">
+        <div>
+          <a href="/admin/cases" style="font-family:var(--font-mono);font-size:12px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;">← Cases</a>
+          <h1 class="main__title" id="page-title" style="margin-top:6px;">Novo case</h1>
+        </div>
+      </header>
+
+      <form id="case-form" class="panel">
+        <div class="form-grid">
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="name">Nome do case <em>*</em></label>
+              <input type="text" id="name" name="name" required class="form-input" placeholder="ObraSimples, Cruzeta Club..." />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="slug">Slug (URL)</label>
+              <input type="text" id="slug" name="slug" class="form-input" placeholder="gerado-automaticamente" />
+              <div class="form-help">URL final: /cases/<span id="slug-preview">novo-case</span></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="eyebrow">Eyebrow / Categoria</label>
+              <input type="text" id="eyebrow" name="eyebrow" class="form-input" placeholder="ERP Vertical, Marketplace · IA..." />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="setor">Setor <em>*</em></label>
+              <input type="text" id="setor" name="setor" required class="form-input" placeholder="Healthcare, Construção, Agro..." />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="ano">Ano <em>*</em></label>
+              <input type="text" id="ano" name="ano" required class="form-input" placeholder="2024" />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="live">Link do site live</label>
+              <input type="url" id="live" name="live" class="form-input" placeholder="https://obrasimples.com.br" />
+            </div>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="image">URL da imagem destacada</label>
+            <input type="url" id="image" name="image" class="form-input" placeholder="https://images.unsplash.com/..." />
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="tags">Tags (separadas por vírgula)</label>
+            <input type="text" id="tags" name="tags" class="form-input" placeholder="ERP, Fintech, Micro SaaS" />
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="lead">Lead (subtítulo)</label>
+            <textarea id="lead" name="lead" class="form-textarea" placeholder="1-2 frases que aparecem no topo do case..."></textarea>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="desafio">Desafio</label>
+            <textarea id="desafio" name="desafio" class="form-textarea" placeholder="Qual era o problema do cliente..."></textarea>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="solucao">Solução</label>
+            <textarea id="solucao" name="solucao" class="form-textarea" placeholder="O que a Naveo construiu..."></textarea>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="resultado">Resultado</label>
+            <textarea id="resultado" name="resultado" class="form-textarea" placeholder="Métricas, impacto, depoimento..."></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <a href="/admin/cases" class="btn-admin btn-admin--ghost">Cancelar</a>
+          <div style="display:flex;gap:10px;">
+            <button type="button" id="preview-btn" class="btn-admin btn-admin--ghost" style="display:none">Ver no site ↗</button>
+            <button type="submit" class="btn-admin btn-admin--primary">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      const { Storage, Auth, UI } = Naveo;
+      document.getElementById("user-email").textContent = Auth.email();
+      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("logout-btn").onclick = () => Auth.logout();
+
+      const params = new URLSearchParams(location.search);
+      const editId = params.get("id");
+      let isEdit = false;
+      let originalId = null;
+
+      if (editId) {
+        const c = Storage.cases.get(editId);
+        if (c) {
+          isEdit = true;
+          originalId = c.id;
+          document.getElementById("page-title").textContent = "Editar case";
+          document.getElementById("name").value = c.name;
+          document.getElementById("slug").value = c.id;
+          document.getElementById("eyebrow").value = c.eyebrow || "";
+          document.getElementById("setor").value = c.setor || "";
+          document.getElementById("ano").value = c.ano || "";
+          document.getElementById("live").value = c.live || "";
+          document.getElementById("image").value = c.image || "";
+          document.getElementById("tags").value = c.tags || "";
+          document.getElementById("lead").value = c.lead || "";
+          document.getElementById("desafio").value = c.desafio || "";
+          document.getElementById("solucao").value = c.solucao || "";
+          document.getElementById("resultado").value = c.resultado || "";
+          document.getElementById("slug-preview").textContent = c.id;
+          const pv = document.getElementById("preview-btn");
+          pv.style.display = "inline-flex";
+          pv.onclick = () => window.open("/cases/" + c.id, "_blank");
+        }
+      }
+
+      // Auto-slug
+      const nameEl = document.getElementById("name");
+      const slugEl = document.getElementById("slug");
+      const slugPreview = document.getElementById("slug-preview");
+      let slugTouched = isEdit;
+      slugEl.addEventListener("input", () => { slugTouched = true; slugPreview.textContent = slugEl.value || "novo-case"; });
+      nameEl.addEventListener("input", () => {
+        if (!slugTouched) {
+          slugEl.value = UI.slugify(nameEl.value);
+          slugPreview.textContent = slugEl.value || "novo-case";
+        }
+      });
+
+      document.getElementById("case-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const item = {
+          id: slugEl.value || UI.slugify(nameEl.value),
+          name: nameEl.value.trim(),
+          eyebrow: document.getElementById("eyebrow").value.trim(),
+          setor: document.getElementById("setor").value.trim(),
+          ano: document.getElementById("ano").value.trim(),
+          live: document.getElementById("live").value.trim(),
+          image: document.getElementById("image").value.trim(),
+          tags: document.getElementById("tags").value.trim(),
+          lead: document.getElementById("lead").value.trim(),
+          desafio: document.getElementById("desafio").value.trim(),
+          solucao: document.getElementById("solucao").value.trim(),
+          resultado: document.getElementById("resultado").value.trim(),
+        };
+        if (isEdit && originalId !== item.id) {
+          Storage.cases.delete(originalId);
+        }
+        Storage.cases.save(item);
+        UI.toast(isEdit ? "Case atualizado" : "Case criado");
+        setTimeout(() => location.href = "/admin/cases", 600);
+      });
+    })();
+  </script>
+</body>
+</html>

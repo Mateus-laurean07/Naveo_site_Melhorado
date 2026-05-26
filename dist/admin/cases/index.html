@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cases · Naveo Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <script src="/admin/admin.js"></script>
+  <script>if (!Naveo.Auth.guard()) throw new Error("redirected");</script>
+
+  <div class="shell">
+    <aside class="side">
+      <div class="side__brand">naveo<span>admin</span></div>
+      <nav class="side__nav">
+        <div class="side__group">Geral</div>
+        <a href="/admin" class="side__link"><span class="side__link__icon">◆</span>Dashboard</a>
+        <div class="side__group">Conteúdo</div>
+        <a href="/admin/posts" class="side__link"><span class="side__link__icon">¶</span>Blog posts</a>
+        <a href="/admin/cases" class="side__link active"><span class="side__link__icon">✦</span>Cases</a>
+        <div class="side__group">Comunicação</div>
+        <a href="/admin/messages" class="side__link"><span class="side__link__icon">✉</span>Mensagens</a>
+      </nav>
+      <div class="side__user">
+        <div class="side__avatar" id="user-avatar">N</div>
+        <div>
+          <div class="side__name">Admin Naveo</div>
+          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+        </div>
+      </div>
+      <button class="side__logout" id="logout-btn">Sair</button>
+    </aside>
+
+    <main class="main">
+      <header class="main__header">
+        <div>
+          <h1 class="main__title">Cases</h1>
+          <p class="main__sub">Gerencie os projetos publicados em /cases</p>
+        </div>
+        <a href="/admin/cases/edit" class="btn-admin btn-admin--primary">+ Novo case</a>
+      </header>
+
+      <div class="panel">
+        <table class="table" id="cases-table"><thead>
+          <tr><th>Nome</th><th>Setor</th><th>Ano</th><th class="col-actions">Ações</th></tr>
+        </thead><tbody></tbody></table>
+        <div id="empty" class="empty-state" style="display:none">
+          <div class="empty-state__icon">✦</div>
+          <div class="empty-state__title">Nenhum case ainda</div>
+          <div class="empty-state__sub">Crie o primeiro case no botão acima.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function() {
+      const { Storage, Auth, UI } = Naveo;
+      document.getElementById("user-email").textContent = Auth.email();
+      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("logout-btn").onclick = () => Auth.logout();
+
+      const render = () => {
+        const list = Storage.cases.all();
+        const tbody = document.querySelector("#cases-table tbody");
+        const empty = document.getElementById("empty");
+        const table = document.getElementById("cases-table");
+        tbody.innerHTML = "";
+        if (!list.length) {
+          table.style.display = "none";
+          empty.style.display = "block";
+          return;
+        }
+        table.style.display = "";
+        empty.style.display = "none";
+        list.forEach((c) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="col-title">
+              <div>${c.name}</div>
+              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;">${c.eyebrow || ""}</div>
+            </td>
+            <td><span class="col-tag">${c.setor || "—"}</span></td>
+            <td class="col-date">${c.ano || "—"}</td>
+            <td class="col-actions">
+              <a href="/cases/${c.id}" target="_blank" class="btn-admin btn-admin--ghost btn-admin--small">Ver</a>
+              <a href="/admin/cases/edit?id=${c.id}" class="btn-admin btn-admin--ghost btn-admin--small">Editar</a>
+              <button data-del="${c.id}" class="btn-admin btn-admin--danger btn-admin--small">Excluir</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+        tbody.querySelectorAll("[data-del]").forEach((b) => {
+          b.onclick = async () => {
+            const id = b.dataset.del;
+            const ok = await UI.confirm("Excluir case?", `Esta ação não pode ser desfeita. O case "<strong>${Storage.cases.get(id).name}</strong>" será removido.`);
+            if (ok) {
+              Storage.cases.delete(id);
+              UI.toast("Case excluído");
+              render();
+            }
+          };
+        });
+      };
+
+      render();
+    })();
+  </script>
+</body>
+</html>

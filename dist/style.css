@@ -601,6 +601,181 @@ section { position: relative; }
     0 0 60px rgba(198, 255, 0, 0.45);
 }
 
+/* ==========================================================================
+   PORTAL TRANSITION — laptop zoom + bridge overlay
+   1. Laptop escala pra cobrir a viewport
+   2. Quando atinge o fim, um overlay #0d1117 (cor da tela do laptop) cobre
+      a viewport ANTES da navegação — esse overlay continua presente na
+      próxima página, fazendo fade-out e revelando o destino.
+   Sem flash branco entre saída e chegada.
+   ========================================================================== */
+.hero__laptop--portal {
+  position: relative;
+  z-index: 9999;
+  transition: transform .55s cubic-bezier(.65, 0, .2, 1);
+  will-change: transform;
+  transform-origin: center center;
+  transform:
+    translate3d(var(--portal-tx, 0px), var(--portal-ty, 0px), 0)
+    scale(var(--portal-scale, 1));
+  backface-visibility: hidden;
+}
+/* Congela animações pesadas dentro do laptop durante o zoom
+   (NAVEO glitch, blink, etc), mas mantém o portal__bar-fill rodando */
+.hero__laptop--portal .laptop__naveo,
+.hero__laptop--portal .laptop__naveo::before,
+.hero__laptop--portal .laptop__naveo::after,
+.hero__laptop--portal .code-line--blink,
+.hero__laptop--portal .caret {
+  animation: none !important;
+}
+/* Reset tilt instantâneo (não brigar com o zoom) */
+.hero__laptop--portal .laptop {
+  transition: none !important;
+  transform: rotateX(0deg) rotateY(0deg) !important;
+}
+
+body.portal-leaving {
+  overflow: hidden;
+}
+/* Mata o mesh (animação cara de gradient/blur) */
+body.portal-leaving .hero__mesh {
+  animation: none !important;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+/* Fade leve dos elementos visíveis ao redor */
+body.portal-leaving .site-header,
+body.portal-leaving .hero__content,
+body.portal-leaving .grain,
+body.portal-leaving .cursor,
+body.portal-leaving .cursor-ring,
+body.portal-leaving .scroll-progress {
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+
+/* Overlay "conectando" DENTRO da tela do laptop — substitui o código
+   do hero por uma tela de carregamento antes do zoom começar */
+.laptop__portal {
+  position: absolute;
+  inset: 24px 10px 8px;
+  background: #0d1117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .22s ease;
+  z-index: 50;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+.laptop__portal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(198, 255, 0, 0.04) 0px,
+      rgba(198, 255, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.laptop__portal.show { opacity: 1; }
+.laptop__portal__loader {
+  text-align: center;
+  color: var(--accent, #c6ff00);
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  position: relative;
+  z-index: 2;
+}
+.laptop__portal__label {
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: .9;
+}
+.laptop__portal__dest {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: .04em;
+  color: #fff;
+}
+.laptop__portal__dest .arrow {
+  color: var(--accent, #c6ff00);
+  margin-right: 8px;
+}
+.laptop__portal__bar {
+  width: 160px;
+  height: 2px;
+  background: rgba(198, 255, 0, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.laptop__portal__bar-fill {
+  height: 100%;
+  background: var(--accent, #c6ff00);
+  width: 0;
+  animation: portalLoad .55s cubic-bezier(.6, 0, .2, 1) forwards;
+  box-shadow: 0 0 8px rgba(198, 255, 0, 0.6);
+}
+@keyframes portalLoad {
+  to { width: 100%; }
+}
+
+/* Bridge overlay — cor IDÊNTICA à tela do laptop (#0d1117).
+   Aparece no fim do zoom e persiste durante a navegação, escondendo
+   o flash branco entre páginas. */
+.portal-bridge {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: #0d1117;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.portal-bridge.show {
+  opacity: 1;
+}
+
+/* Entrada — overlay sólido #0d1117 cobrindo, faz fade-out revelando */
+html.portal-entering {
+  overflow: hidden;
+}
+html.portal-entering body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: #0d1117;
+  opacity: 1;
+  pointer-events: none;
+  animation: portalReveal .55s ease-out .08s both;
+}
+@keyframes portalReveal {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Respeitar usuários que pediram menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .hero__laptop--portal { transform: none !important; transition: none; }
+  .portal-bridge,
+  html.portal-entering body::before {
+    display: none !important;
+    animation: none !important;
+  }
+}
+
 
 /* Responsive — stack on small screens */
 @media (max-width: 980px) {

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login · Naveo Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+
+  <main class="login-screen">
+    <div class="login-card">
+      <div class="login-brand">naveo<em>admin</em></div>
+      <h1 class="login-title">Entrar no painel</h1>
+      <p class="login-sub">Acesso restrito à equipe Naveo.</p>
+
+      <form id="login-form">
+        <div class="login-field">
+          <label for="login-email">E-mail</label>
+          <input type="email" id="login-email" name="email" required autofocus autocomplete="username" placeholder="admin@naveo.com.br" />
+        </div>
+        <div class="login-field">
+          <label for="login-password">Senha</label>
+          <input type="password" id="login-password" name="password" required autocomplete="current-password" placeholder="••••••••" />
+        </div>
+        <button type="submit" class="login-btn">Entrar</button>
+        <div class="login-error" id="login-error">E-mail ou senha incorretos.</div>
+      </form>
+
+      <p class="login-hint">Demo · use <strong>admin@naveo.com.br</strong> · senha <strong>naveo2026</strong></p>
+    </div>
+  </main>
+
+  <script src="/admin/admin.js"></script>
+  <script>
+    if (Naveo.Auth.isLogged()) location.href = "/admin";
+
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const pw = document.getElementById("login-password").value;
+      const err = document.getElementById("login-error");
+      if (Naveo.Auth.login(email, pw)) {
+        location.href = "/admin";
+      } else {
+        err.classList.add("show");
+      }
+    });
+  </script>
+</body>
+</html>
