@@ -251,7 +251,7 @@ if (telefoneInput) {
 
 const contatoForm = document.getElementById("contato-form");
 if (contatoForm) {
-  contatoForm.addEventListener("submit", (e) => {
+  contatoForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const data = new FormData(contatoForm);
     const nome = (data.get("nome") || "").toString().trim();
@@ -272,17 +272,63 @@ if (contatoForm) {
       mensagem,
     ].filter(Boolean);
 
-    // Persiste a mensagem no banco (Neon) via /api/messages
-    // — não bloqueia o fluxo: se falhar, o WhatsApp ainda abre.
-    fetch("/api/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome, email, telefone, empresa, interesse, mensagem }),
-    }).catch(() => { /* silencioso */ });
-
     const text = encodeURIComponent(lines.join("\n"));
-    const wa = `https://wa.me/5565996865004?text=${text}`;
-    window.open(wa, "_blank", "noopener");
+    const waUrl = `https://wa.me/5565996865004?text=${text}`;
+
+    // Estado de loading no botão
+    const submitBtn = contatoForm.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn ? submitBtn.innerHTML : "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = "Enviando...";
+    }
+
+    // Persiste a mensagem no banco (Neon) via /api/messages
+    try {
+      await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, telefone, empresa, interesse, mensagem }),
+      });
+    } catch (_) {
+      // silencioso — segue mesmo se API falhar
+    }
+
+    // Mostra a tela de sucesso
+    const successEl = document.getElementById("contato-success");
+    if (successEl) {
+      contatoForm.style.display = "none";
+      // Esconde o head do form (título + lead) já que o sucesso fala por si
+      const head = document.querySelector(".contato-form-head");
+      if (head) head.style.display = "none";
+
+      successEl.hidden = false;
+      const waBtn = document.getElementById("contato-success-wa");
+      if (waBtn) waBtn.href = waUrl;
+
+      // Botão "enviar outra" reseta o form
+      const newBtn = document.getElementById("contato-success-new");
+      if (newBtn) {
+        newBtn.onclick = () => {
+          successEl.hidden = true;
+          contatoForm.reset();
+          contatoForm.style.display = "";
+          if (head) head.style.display = "";
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalLabel;
+          }
+          // Scroll suave de volta pro form
+          contatoForm.scrollIntoView({ behavior: "smooth", block: "start" });
+        };
+      }
+
+      // Scroll pra tela de sucesso ficar visível
+      successEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Abre WhatsApp em nova aba (depois do success aparecer)
+    window.open(waUrl, "_blank", "noopener");
   });
 }
 
