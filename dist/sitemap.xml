@@ -1,34 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ============ HOMES ============ -->
   <url>
     <loc>https://naveo-docs.pages.dev/</loc>
-    <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://naveo-docs.pages.dev/" />
   </url>
   <url>
-    <loc>https://naveo-docs.pages.dev/en</loc>
-    <lastmod>2026-05-22</lastmod>
+    <loc>https://naveo-docs.pages.dev/en/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://naveo-docs.pages.dev/" />
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://naveo-docs.pages.dev/es</loc>
-    <lastmod>2026-05-22</lastmod>
+    <loc>https://naveo-docs.pages.dev/es/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://naveo-docs.pages.dev/" />
+    <priority>0.9</priority>
   </url>
+
+  <!-- ============ INSTITUCIONAL ============ -->
+  <url>
+    <loc>https://naveo-docs.pages.dev/quem-somos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/quem-somos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en/quem-somos" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es/quem-somos" />
+  </url>
+  <url><loc>https://naveo-docs.pages.dev/en/quem-somos</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/quem-somos</loc><priority>0.7</priority></url>
+
+  <url>
+    <loc>https://naveo-docs.pages.dev/contato</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/contato" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en/contato" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es/contato" />
+  </url>
+  <url><loc>https://naveo-docs.pages.dev/en/contato</loc><priority>0.8</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/contato</loc><priority>0.8</priority></url>
+
+  <!-- ============ CASES ============ -->
+  <url>
+    <loc>https://naveo-docs.pages.dev/cases</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/cases" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en/cases" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es/cases" />
+  </url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases</loc><priority>0.8</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases</loc><priority>0.8</priority></url>
+
+  <url><loc>https://naveo-docs.pages.dev/cases/agrodesapego</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/cases/cruzetaclub</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/cases/navbarber</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/cases/pharmagenius</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/cases/obrasimples</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/cases/cuidarbemcard</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/cases/greenfuturehub</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/cases/centrodediagnostico</loc><priority>0.7</priority></url>
+
+  <url><loc>https://naveo-docs.pages.dev/en/cases/agrodesapego</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases/cruzetaclub</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases/navbarber</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases/pharmagenius</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases/obrasimples</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases/cuidarbemcard</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases/greenfuturehub</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/cases/centrodediagnostico</loc><priority>0.6</priority></url>
+
+  <url><loc>https://naveo-docs.pages.dev/es/cases/agrodesapego</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases/cruzetaclub</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases/navbarber</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases/pharmagenius</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases/obrasimples</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases/cuidarbemcard</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases/greenfuturehub</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/cases/centrodediagnostico</loc><priority>0.6</priority></url>
+
+  <!-- ============ BLOG ============ -->
+  <url>
+    <loc>https://naveo-docs.pages.dev/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://naveo-docs.pages.dev/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://naveo-docs.pages.dev/en/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://naveo-docs.pages.dev/es/blog" />
+  </url>
+  <url><loc>https://naveo-docs.pages.dev/en/blog</loc><priority>0.8</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/blog</loc><priority>0.8</priority></url>
+
+  <url><loc>https://naveo-docs.pages.dev/blog/jornada-empreendedor</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/blog/performance-em-vendas</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/blog/mentoria-funil-de-vendas</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/blog/sistema-aquisicao-clientes</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/blog/marketing-orientado-dados</loc><priority>0.7</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/blog/funil-vendas-conversoes</loc><priority>0.7</priority></url>
+
+  <url><loc>https://naveo-docs.pages.dev/en/blog/jornada-empreendedor</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/blog/performance-em-vendas</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/blog/mentoria-funil-de-vendas</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/blog/sistema-aquisicao-clientes</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/blog/marketing-orientado-dados</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/en/blog/funil-vendas-conversoes</loc><priority>0.6</priority></url>
+
+  <url><loc>https://naveo-docs.pages.dev/es/blog/jornada-empreendedor</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/blog/performance-em-vendas</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/blog/mentoria-funil-de-vendas</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/blog/sistema-aquisicao-clientes</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/blog/marketing-orientado-dados</loc><priority>0.6</priority></url>
+  <url><loc>https://naveo-docs.pages.dev/es/blog/funil-vendas-conversoes</loc><priority>0.6</priority></url>
+
 </urlset>

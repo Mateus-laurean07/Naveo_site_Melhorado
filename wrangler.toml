@@ -1,6 +1,9 @@
 name = "naveo-site"
+main = "src/worker.js"
 compatibility_date = "2026-05-25"
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "./dist"
-not_found_handling = "none"
+binding = "ASSETS"
+not_found_handling = "404-page"

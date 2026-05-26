@@ -31,7 +31,7 @@
         <div class="side__avatar" id="user-avatar">N</div>
         <div>
           <div class="side__name">Admin Naveo</div>
-          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+          <div class="side__email" id="user-email">naveo@gmail.com</div>
         </div>
       </div>
       <button class="side__logout" id="logout-btn">Sair</button>
@@ -115,10 +115,10 @@
   </div>
 
   <script>
-    (function() {
+    (async function() {
       const { Storage, Auth, UI } = Naveo;
       document.getElementById("user-email").textContent = Auth.email();
-      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("user-avatar").textContent = (Auth.email() || "N").charAt(0).toUpperCase();
       document.getElementById("logout-btn").onclick = () => Auth.logout();
 
       const params = new URLSearchParams(location.search);
@@ -127,27 +127,31 @@
       let originalId = null;
 
       if (editId) {
-        const c = Storage.cases.get(editId);
-        if (c) {
-          isEdit = true;
-          originalId = c.id;
-          document.getElementById("page-title").textContent = "Editar case";
-          document.getElementById("name").value = c.name;
-          document.getElementById("slug").value = c.id;
-          document.getElementById("eyebrow").value = c.eyebrow || "";
-          document.getElementById("setor").value = c.setor || "";
-          document.getElementById("ano").value = c.ano || "";
-          document.getElementById("live").value = c.live || "";
-          document.getElementById("image").value = c.image || "";
-          document.getElementById("tags").value = c.tags || "";
-          document.getElementById("lead").value = c.lead || "";
-          document.getElementById("desafio").value = c.desafio || "";
-          document.getElementById("solucao").value = c.solucao || "";
-          document.getElementById("resultado").value = c.resultado || "";
-          document.getElementById("slug-preview").textContent = c.id;
-          const pv = document.getElementById("preview-btn");
-          pv.style.display = "inline-flex";
-          pv.onclick = () => window.open("/cases/" + c.id, "_blank");
+        try {
+          const c = await Storage.cases.get(editId);
+          if (c) {
+            isEdit = true;
+            originalId = c.id;
+            document.getElementById("page-title").textContent = "Editar case";
+            document.getElementById("name").value = c.name;
+            document.getElementById("slug").value = c.id;
+            document.getElementById("eyebrow").value = c.eyebrow || "";
+            document.getElementById("setor").value = c.setor || "";
+            document.getElementById("ano").value = c.ano || "";
+            document.getElementById("live").value = c.live || "";
+            document.getElementById("image").value = c.image || "";
+            document.getElementById("tags").value = c.tags || "";
+            document.getElementById("lead").value = c.lead || "";
+            document.getElementById("desafio").value = c.desafio || "";
+            document.getElementById("solucao").value = c.solucao || "";
+            document.getElementById("resultado").value = c.resultado || "";
+            document.getElementById("slug-preview").textContent = c.id;
+            const pv = document.getElementById("preview-btn");
+            pv.style.display = "inline-flex";
+            pv.onclick = () => window.open("/cases/" + c.id, "_blank");
+          }
+        } catch (err) {
+          UI.toast("Erro ao carregar case: " + err.message, "error");
         }
       }
 
@@ -164,8 +168,11 @@
         }
       });
 
-      document.getElementById("case-form").addEventListener("submit", (e) => {
+      document.getElementById("case-form").addEventListener("submit", async (e) => {
         e.preventDefault();
+        const btn = e.target.querySelector("button[type=submit]");
+        btn.disabled = true;
+        btn.textContent = "Salvando...";
         const item = {
           id: slugEl.value || UI.slugify(nameEl.value),
           name: nameEl.value.trim(),
@@ -180,12 +187,18 @@
           solucao: document.getElementById("solucao").value.trim(),
           resultado: document.getElementById("resultado").value.trim(),
         };
-        if (isEdit && originalId !== item.id) {
-          Storage.cases.delete(originalId);
+        try {
+          if (isEdit && originalId !== item.id) {
+            await Storage.cases.delete(originalId);
+          }
+          await Storage.cases.save(item);
+          UI.toast(isEdit ? "Case atualizado" : "Case criado");
+          setTimeout(() => location.href = "/admin/cases", 600);
+        } catch (err) {
+          UI.toast("Erro: " + err.message, "error");
+          btn.disabled = false;
+          btn.textContent = "Salvar";
         }
-        Storage.cases.save(item);
-        UI.toast(isEdit ? "Case atualizado" : "Case criado");
-        setTimeout(() => location.href = "/admin/cases", 600);
       });
     })();
   </script>

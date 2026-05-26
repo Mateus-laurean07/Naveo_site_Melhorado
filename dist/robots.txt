@@ -1,6 +1,10 @@
-# Naveo
+# Naveo · Engenharia Criativa
 User-agent: *
 Allow: /
+
+# Áreas privadas — não indexar
+Disallow: /admin/
+Disallow: /admin
 Disallow: /brand/
 Disallow: /brand
 

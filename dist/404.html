@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR" translate="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 · Página não encontrada · Naveo</title>
+  <meta name="description" content="Essa página não existe ou foi movida. Volte pra home." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="google" content="notranslate" />
+
+  <link rel="icon" type="image/webp" href="/assets/isotipo-verde.webp" />
+  <link rel="apple-touch-icon" href="/assets/isotipo-verde.webp" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .nf-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .nf-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(198, 255, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(198, 255, 0, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .nf-screen__code {
+      font-family: var(--font-mono);
+      font-size: clamp(96px, 22vw, 240px);
+      font-weight: 800;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--accent-deep, #84b500);
+      letter-spacing: -.04em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      animation: nfGlitch 4s ease-in-out infinite;
+    }
+    .nf-screen__code::after {
+      content: "404";
+      position: absolute;
+      inset: 0;
+      color: var(--accent, #c6ff00);
+      -webkit-text-stroke: 0;
+      mix-blend-mode: difference;
+      opacity: .3;
+      transform: translate(4px, 2px);
+    }
+    @keyframes nfGlitch {
+      0%, 92%, 100% { transform: translate(0, 0); }
+      93% { transform: translate(-2px, 1px); }
+      94% { transform: translate(3px, -1px); }
+      95% { transform: translate(-1px, 2px); }
+      96% { transform: translate(2px, -2px); }
+    }
+    .nf-screen__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .nf-screen__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      max-width: 660px;
+    }
+    .nf-screen__title em {
+      font-style: normal;
+      background: var(--accent, #c6ff00);
+      padding: .04em .14em .18em;
+      line-height: 1;
+      margin: 0 .04em;
+      display: inline-block;
+    }
+    .nf-screen__lead {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      margin-bottom: 36px;
+      max-width: 520px;
+      position: relative;
+      z-index: 1;
+    }
+    .nf-screen__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .nf-screen__links {
+      margin-top: 48px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-dim);
+      position: relative;
+      z-index: 1;
+    }
+    .nf-screen__links a {
+      color: var(--text-soft);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .25s, border-color .25s;
+    }
+    .nf-screen__links a:hover {
+      color: var(--accent-deep);
+      border-bottom-color: var(--accent-deep);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="/" class="site-header__home" aria-label="Início"></a>
+
+    <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <div class="site-nav__links">
+        <a href="/">Início</a>
+        <a href="/#portfolio">Portfólio</a>
+        <a href="/cases">Cases</a>
+        <a href="/blog">Blog</a>
+        <a href="/quem-somos">Quem somos</a>
+        <a href="/contato">Contato</a>
+      </div>
+      <div class="site-nav__actions">
+        <div class="lang-switcher">
+          <a href="/" class="lang-switcher__link active">PT</a>
+          <a href="/en/" class="lang-switcher__link">EN</a>
+          <a href="/es/" class="lang-switcher__link">ES</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="nf-screen">
+      <div class="nf-screen__code">404</div>
+      <div class="nf-screen__eyebrow">Tela não encontrada</div>
+      <h1 class="nf-screen__title">Essa rota <em>não existe</em> no mapa.</h1>
+      <p class="nf-screen__lead">A página que você procura foi movida, renomeada ou nunca existiu. Sem stress — volte pra home ou veja os atalhos abaixo.</p>
+
+      <div class="nf-screen__actions">
+        <a href="/" class="btn btn--primary">← Voltar pra home</a>
+        <a href="/contato" class="btn btn--ghost">Falar com a Naveo</a>
+      </div>
+
+      <div class="nf-screen__links">
+        <a href="/cases">Cases</a>
+        <a href="/blog">Blog</a>
+        <a href="/quem-somos">Quem somos</a>
+        <a href="/contato">Contato</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__bottom">
+        <div class="site-footer__copy">© 2026 Naveo · Engenharia Criativa</div>
+        <div class="site-footer__credits">Cuiabá-MT · Operação remota</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -31,7 +31,7 @@
         <div class="side__avatar" id="user-avatar">N</div>
         <div>
           <div class="side__name">Admin Naveo</div>
-          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+          <div class="side__email" id="user-email">naveo@gmail.com</div>
         </div>
       </div>
       <button class="side__logout" id="logout-btn">Sair</button>
@@ -60,50 +60,59 @@
   </div>
 
   <script>
-    (function() {
+    (async function() {
       const { Storage, Auth, UI } = Naveo;
       document.getElementById("user-email").textContent = Auth.email();
-      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("user-avatar").textContent = (Auth.email() || "N").charAt(0).toUpperCase();
       document.getElementById("logout-btn").onclick = () => Auth.logout();
 
-      const render = () => {
-        const list = Storage.posts.all();
-        const tbody = document.querySelector("#posts-table tbody");
-        const empty = document.getElementById("empty");
-        const table = document.getElementById("posts-table");
-        tbody.innerHTML = "";
-        if (!list.length) {
-          table.style.display = "none";
-          empty.style.display = "block";
-          return;
+      const render = async () => {
+        try {
+          const list = await Storage.posts.all();
+          const tbody = document.querySelector("#posts-table tbody");
+          const empty = document.getElementById("empty");
+          const table = document.getElementById("posts-table");
+          tbody.innerHTML = "";
+          if (!list.length) {
+            table.style.display = "none";
+            empty.style.display = "block";
+            return;
+          }
+          table.style.display = "";
+          empty.style.display = "none";
+          list.forEach((p) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="col-title">${p.title}</td>
+              <td><span class="col-tag">${p.tag}</span></td>
+              <td class="col-date">${UI.formatDate(p.date)}</td>
+              <td class="col-actions">
+                <a href="/blog/${p.id}" target="_blank" class="btn-admin btn-admin--ghost btn-admin--small">Ver</a>
+                <a href="/admin/posts/edit?id=${p.id}" class="btn-admin btn-admin--ghost btn-admin--small">Editar</a>
+                <button data-del="${p.id}" data-title="${p.title.replace(/"/g, '&quot;')}" class="btn-admin btn-admin--danger btn-admin--small">Excluir</button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+          tbody.querySelectorAll("[data-del]").forEach((b) => {
+            b.onclick = async () => {
+              const id = b.dataset.del;
+              const title = b.dataset.title;
+              const ok = await UI.confirm("Excluir post?", `Esta ação não pode ser desfeita. O post "<strong>${title}</strong>" será removido.`);
+              if (ok) {
+                try {
+                  await Storage.posts.delete(id);
+                  UI.toast("Post excluído");
+                  render();
+                } catch (err) {
+                  UI.toast("Erro: " + err.message, "error");
+                }
+              }
+            };
+          });
+        } catch (err) {
+          UI.toast("Erro ao carregar posts: " + err.message, "error");
         }
-        table.style.display = "";
-        empty.style.display = "none";
-        list.forEach((p) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="col-title">${p.title}</td>
-            <td><span class="col-tag">${p.tag}</span></td>
-            <td class="col-date">${UI.formatDate(p.date)}</td>
-            <td class="col-actions">
-              <a href="/blog/${p.id}" target="_blank" class="btn-admin btn-admin--ghost btn-admin--small">Ver</a>
-              <a href="/admin/posts/edit?id=${p.id}" class="btn-admin btn-admin--ghost btn-admin--small">Editar</a>
-              <button data-del="${p.id}" class="btn-admin btn-admin--danger btn-admin--small">Excluir</button>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
-        tbody.querySelectorAll("[data-del]").forEach((b) => {
-          b.onclick = async () => {
-            const id = b.dataset.del;
-            const ok = await UI.confirm("Excluir post?", `Esta ação não pode ser desfeita. O post "<strong>${Storage.posts.get(id).title}</strong>" será removido.`);
-            if (ok) {
-              Storage.posts.delete(id);
-              UI.toast("Post excluído");
-              render();
-            }
-          };
-        });
       };
 
       render();

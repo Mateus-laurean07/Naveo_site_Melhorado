@@ -1,5 +1,17 @@
 {
+  "name": "naveo-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
     "framer-motion": "^12.38.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.95.0"
   }
 }

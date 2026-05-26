@@ -31,7 +31,7 @@
         <div class="side__avatar" id="user-avatar">N</div>
         <div>
           <div class="side__name">Admin Naveo</div>
-          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+          <div class="side__email" id="user-email">naveo@gmail.com</div>
         </div>
       </div>
       <button class="side__logout" id="logout-btn">Sair</button>
@@ -99,10 +99,10 @@
   </div>
 
   <script>
-    (function() {
+    (async function() {
       const { Storage, Auth, UI } = Naveo;
       document.getElementById("user-email").textContent = Auth.email();
-      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("user-avatar").textContent = (Auth.email() || "N").charAt(0).toUpperCase();
       document.getElementById("logout-btn").onclick = () => Auth.logout();
 
       const params = new URLSearchParams(location.search);
@@ -111,23 +111,27 @@
       let originalId = null;
 
       if (editId) {
-        const p = Storage.posts.get(editId);
-        if (p) {
-          isEdit = true;
-          originalId = p.id;
-          document.getElementById("page-title").textContent = "Editar post";
-          document.getElementById("title").value = p.title;
-          document.getElementById("slug").value = p.id;
-          document.getElementById("tag").value = p.tag;
-          document.getElementById("date").value = p.date;
-          document.getElementById("image").value = p.image || "";
-          document.getElementById("excerpt").value = p.excerpt || "";
-          document.getElementById("lead").value = p.lead || "";
-          document.getElementById("body").value = p.body || "";
-          document.getElementById("slug-preview").textContent = p.id;
-          const pv = document.getElementById("preview-btn");
-          pv.style.display = "inline-flex";
-          pv.onclick = () => window.open("/blog/" + p.id, "_blank");
+        try {
+          const p = await Storage.posts.get(editId);
+          if (p) {
+            isEdit = true;
+            originalId = p.id;
+            document.getElementById("page-title").textContent = "Editar post";
+            document.getElementById("title").value = p.title;
+            document.getElementById("slug").value = p.id;
+            document.getElementById("tag").value = p.tag;
+            document.getElementById("date").value = p.date;
+            document.getElementById("image").value = p.image || "";
+            document.getElementById("excerpt").value = p.excerpt || "";
+            document.getElementById("lead").value = p.lead || "";
+            document.getElementById("body").value = p.body || "";
+            document.getElementById("slug-preview").textContent = p.id;
+            const pv = document.getElementById("preview-btn");
+            pv.style.display = "inline-flex";
+            pv.onclick = () => window.open("/blog/" + p.id, "_blank");
+          }
+        } catch (err) {
+          UI.toast("Erro ao carregar post: " + err.message, "error");
         }
       }
 
@@ -149,8 +153,11 @@
         }
       });
 
-      document.getElementById("post-form").addEventListener("submit", (e) => {
+      document.getElementById("post-form").addEventListener("submit", async (e) => {
         e.preventDefault();
+        const btn = e.target.querySelector("button[type=submit]");
+        btn.disabled = true;
+        btn.textContent = "Salvando...";
         const post = {
           id: slugEl.value || UI.slugify(titleEl.value),
           title: titleEl.value.trim(),
@@ -161,12 +168,19 @@
           lead: document.getElementById("lead").value.trim(),
           body: document.getElementById("body").value.trim(),
         };
-        if (isEdit && originalId !== post.id) {
-          Storage.posts.delete(originalId);
+        try {
+          // Se mudou o slug em modo edit, deleta o antigo primeiro
+          if (isEdit && originalId !== post.id) {
+            await Storage.posts.delete(originalId);
+          }
+          await Storage.posts.save(post);
+          UI.toast(isEdit ? "Post atualizado" : "Post criado");
+          setTimeout(() => location.href = "/admin/posts", 600);
+        } catch (err) {
+          UI.toast("Erro: " + err.message, "error");
+          btn.disabled = false;
+          btn.textContent = "Salvar";
         }
-        Storage.posts.save(post);
-        UI.toast(isEdit ? "Post atualizado" : "Post criado");
-        setTimeout(() => location.href = "/admin/posts", 600);
       });
     })();
   </script>

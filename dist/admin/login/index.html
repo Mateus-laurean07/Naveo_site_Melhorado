@@ -22,7 +22,7 @@
       <form id="login-form">
         <div class="login-field">
           <label for="login-email">E-mail</label>
-          <input type="email" id="login-email" name="email" required autofocus autocomplete="username" placeholder="admin@naveo.com.br" />
+          <input type="email" id="login-email" name="email" required autofocus autocomplete="username" placeholder="naveo@gmail.com" />
         </div>
         <div class="login-field">
           <label for="login-password">Senha</label>
@@ -32,7 +32,6 @@
         <div class="login-error" id="login-error">E-mail ou senha incorretos.</div>
       </form>
 
-      <p class="login-hint">Demo · use <strong>admin@naveo.com.br</strong> · senha <strong>naveo2026</strong></p>
     </div>
   </main>
 
@@ -40,15 +39,28 @@
   <script>
     if (Naveo.Auth.isLogged()) location.href = "/admin";
 
-    document.getElementById("login-form").addEventListener("submit", (e) => {
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("login-email").value.trim();
       const pw = document.getElementById("login-password").value;
-      const err = document.getElementById("login-error");
-      if (Naveo.Auth.login(email, pw)) {
-        location.href = "/admin";
-      } else {
-        err.classList.add("show");
+      const errEl = document.getElementById("login-error");
+      const btn = e.target.querySelector("button[type=submit]");
+      btn.disabled = true;
+      btn.textContent = "Entrando...";
+      try {
+        const ok = await Naveo.Auth.login(email, pw);
+        if (ok) {
+          location.href = "/admin";
+        } else {
+          errEl.classList.add("show");
+          btn.disabled = false;
+          btn.textContent = "Entrar";
+        }
+      } catch (err) {
+        errEl.textContent = "Erro ao conectar com o servidor.";
+        errEl.classList.add("show");
+        btn.disabled = false;
+        btn.textContent = "Entrar";
       }
     });
   </script>

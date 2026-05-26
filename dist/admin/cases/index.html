@@ -31,7 +31,7 @@
         <div class="side__avatar" id="user-avatar">N</div>
         <div>
           <div class="side__name">Admin Naveo</div>
-          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+          <div class="side__email" id="user-email">naveo@gmail.com</div>
         </div>
       </div>
       <button class="side__logout" id="logout-btn">Sair</button>
@@ -60,53 +60,62 @@
   </div>
 
   <script>
-    (function() {
+    (async function() {
       const { Storage, Auth, UI } = Naveo;
       document.getElementById("user-email").textContent = Auth.email();
-      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("user-avatar").textContent = (Auth.email() || "N").charAt(0).toUpperCase();
       document.getElementById("logout-btn").onclick = () => Auth.logout();
 
-      const render = () => {
-        const list = Storage.cases.all();
-        const tbody = document.querySelector("#cases-table tbody");
-        const empty = document.getElementById("empty");
-        const table = document.getElementById("cases-table");
-        tbody.innerHTML = "";
-        if (!list.length) {
-          table.style.display = "none";
-          empty.style.display = "block";
-          return;
+      const render = async () => {
+        try {
+          const list = await Storage.cases.all();
+          const tbody = document.querySelector("#cases-table tbody");
+          const empty = document.getElementById("empty");
+          const table = document.getElementById("cases-table");
+          tbody.innerHTML = "";
+          if (!list.length) {
+            table.style.display = "none";
+            empty.style.display = "block";
+            return;
+          }
+          table.style.display = "";
+          empty.style.display = "none";
+          list.forEach((c) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="col-title">
+                <div>${c.name}</div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;">${c.eyebrow || ""}</div>
+              </td>
+              <td><span class="col-tag">${c.setor || "—"}</span></td>
+              <td class="col-date">${c.ano || "—"}</td>
+              <td class="col-actions">
+                <a href="/cases/${c.id}" target="_blank" class="btn-admin btn-admin--ghost btn-admin--small">Ver</a>
+                <a href="/admin/cases/edit?id=${c.id}" class="btn-admin btn-admin--ghost btn-admin--small">Editar</a>
+                <button data-del="${c.id}" data-name="${c.name.replace(/"/g, '&quot;')}" class="btn-admin btn-admin--danger btn-admin--small">Excluir</button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+          tbody.querySelectorAll("[data-del]").forEach((b) => {
+            b.onclick = async () => {
+              const id = b.dataset.del;
+              const name = b.dataset.name;
+              const ok = await UI.confirm("Excluir case?", `Esta ação não pode ser desfeita. O case "<strong>${name}</strong>" será removido.`);
+              if (ok) {
+                try {
+                  await Storage.cases.delete(id);
+                  UI.toast("Case excluído");
+                  render();
+                } catch (err) {
+                  UI.toast("Erro: " + err.message, "error");
+                }
+              }
+            };
+          });
+        } catch (err) {
+          UI.toast("Erro ao carregar cases: " + err.message, "error");
         }
-        table.style.display = "";
-        empty.style.display = "none";
-        list.forEach((c) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="col-title">
-              <div>${c.name}</div>
-              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;">${c.eyebrow || ""}</div>
-            </td>
-            <td><span class="col-tag">${c.setor || "—"}</span></td>
-            <td class="col-date">${c.ano || "—"}</td>
-            <td class="col-actions">
-              <a href="/cases/${c.id}" target="_blank" class="btn-admin btn-admin--ghost btn-admin--small">Ver</a>
-              <a href="/admin/cases/edit?id=${c.id}" class="btn-admin btn-admin--ghost btn-admin--small">Editar</a>
-              <button data-del="${c.id}" class="btn-admin btn-admin--danger btn-admin--small">Excluir</button>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
-        tbody.querySelectorAll("[data-del]").forEach((b) => {
-          b.onclick = async () => {
-            const id = b.dataset.del;
-            const ok = await UI.confirm("Excluir case?", `Esta ação não pode ser desfeita. O case "<strong>${Storage.cases.get(id).name}</strong>" será removido.`);
-            if (ok) {
-              Storage.cases.delete(id);
-              UI.toast("Case excluído");
-              render();
-            }
-          };
-        });
       };
 
       render();

@@ -31,7 +31,7 @@
         <div class="side__avatar" id="user-avatar">N</div>
         <div>
           <div class="side__name">Admin Naveo</div>
-          <div class="side__email" id="user-email">admin@naveo.com.br</div>
+          <div class="side__email" id="user-email">naveo@gmail.com</div>
         </div>
       </div>
       <button class="side__logout" id="logout-btn">Sair</button>
@@ -87,57 +87,63 @@
   </div>
 
   <script>
-    (function() {
-      const { Storage, Auth } = Naveo;
+    (async function() {
+      const { Storage, Auth, UI } = Naveo;
       document.getElementById("user-email").textContent = Auth.email();
-      document.getElementById("user-avatar").textContent = Auth.email().charAt(0).toUpperCase();
+      document.getElementById("user-avatar").textContent = (Auth.email() || "N").charAt(0).toUpperCase();
       document.getElementById("logout-btn").onclick = () => Auth.logout();
 
-      const posts = Storage.posts.all();
-      const cases = Storage.cases.all();
-      const messages = Storage.messages.all();
-      const unread = Storage.messages.unreadCount();
+      try {
+        const [posts, cases, messages] = await Promise.all([
+          Storage.posts.all(),
+          Storage.cases.all(),
+          Storage.messages.all(),
+        ]);
+        const unread = messages.filter((m) => !m.read).length;
 
-      document.getElementById("stat-posts").textContent = posts.length;
-      document.getElementById("stat-cases").textContent = cases.length;
-      document.getElementById("stat-messages").textContent = messages.length;
-      document.getElementById("stat-unread").textContent = unread;
+        document.getElementById("stat-posts").textContent = posts.length;
+        document.getElementById("stat-cases").textContent = cases.length;
+        document.getElementById("stat-messages").textContent = messages.length;
+        document.getElementById("stat-unread").textContent = unread;
 
-      if (unread > 0) {
-        const badge = document.getElementById("badge");
-        badge.textContent = unread;
-        badge.style.display = "inline-block";
-      }
+        if (unread > 0) {
+          const badge = document.getElementById("badge");
+          badge.textContent = unread;
+          badge.style.display = "inline-block";
+        }
 
-      // Recent posts
-      const tbody = document.querySelector("#recent-posts tbody");
-      posts.slice(0, 5).forEach((p) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td class="col-title">${p.title}</td>
-          <td><span class="col-tag">${p.tag}</span></td>
-          <td class="col-date">${Naveo.UI.formatDate(p.date)}</td>
-        `;
-        tbody.appendChild(tr);
-      });
+        // Recent posts
+        const tbody = document.querySelector("#recent-posts tbody");
+        posts.slice(0, 5).forEach((p) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="col-title">${p.title}</td>
+            <td><span class="col-tag">${p.tag}</span></td>
+            <td class="col-date">${UI.formatDate(p.date)}</td>
+          `;
+          tbody.appendChild(tr);
+        });
 
-      // Recent messages
-      const msgsBox = document.getElementById("recent-messages");
-      messages.slice(0, 3).forEach((m) => {
-        const el = document.createElement("div");
-        el.className = "message";
-        el.innerHTML = `
-          <div>
-            <div class="message__from">${m.nome} ${!m.read ? '<span style="color:var(--accent-deep);font-size:11px;margin-left:6px;">●</span>' : ''}</div>
-            <div class="message__email">${m.email}</div>
-            <div class="message__body">${m.mensagem.slice(0, 140)}${m.mensagem.length > 140 ? "..." : ""}</div>
-          </div>
-          <div class="message__meta">${Naveo.UI.formatDateTime(m.date)}</div>
-        `;
-        msgsBox.appendChild(el);
-      });
-      if (!messages.length) {
-        msgsBox.innerHTML = '<div class="empty-state"><div class="empty-state__icon">✉</div><div class="empty-state__title">Sem mensagens ainda</div><div class="empty-state__sub">Quando alguém preencher o form de /contato, aparece aqui.</div></div>';
+        // Recent messages
+        const msgsBox = document.getElementById("recent-messages");
+        messages.slice(0, 3).forEach((m) => {
+          const el = document.createElement("div");
+          el.className = "message";
+          el.innerHTML = `
+            <div>
+              <div class="message__from">${m.nome} ${!m.read ? '<span style="color:var(--accent-deep);font-size:11px;margin-left:6px;">●</span>' : ''}</div>
+              <div class="message__email">${m.email}</div>
+              <div class="message__body">${m.mensagem.slice(0, 140)}${m.mensagem.length > 140 ? "..." : ""}</div>
+            </div>
+            <div class="message__meta">${UI.formatDateTime(m.date)}</div>
+          `;
+          msgsBox.appendChild(el);
+        });
+        if (!messages.length) {
+          msgsBox.innerHTML = '<div class="empty-state"><div class="empty-state__icon">✉</div><div class="empty-state__title">Sem mensagens ainda</div><div class="empty-state__sub">Quando alguém preencher o form de /contato, aparece aqui.</div></div>';
+        }
+      } catch (err) {
+        UI.toast("Erro ao carregar: " + err.message, "error");
       }
     })();
   </script>

@@ -3232,3 +3232,110 @@ a.case__media:hover .case__media__inner { transform: scale(1.04); }
   .site-footer__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer-brand { grid-column: 1 / -1; }
 }
+
+/* ==========================================================================
+   WHATSAPP FLOATING BUTTON
+   Botão fixo no canto inferior direito, sempre acessível em todas as páginas.
+   ========================================================================== */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow:
+    0 8px 24px rgba(37, 211, 102, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: transform .25s cubic-bezier(.4, 0, .2, 1), box-shadow .25s ease;
+  animation: waFloatIn .6s cubic-bezier(.4, 0, .2, 1) .8s both;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 12px 32px rgba(37, 211, 102, 0.45),
+    0 3px 12px rgba(0, 0, 0, 0.16);
+}
+.wa-float:active {
+  transform: scale(0.96);
+}
+.wa-float svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+/* Pulse ring atrás do botão pra chamar atenção sutil */
+.wa-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  opacity: 0;
+  animation: waPulse 2.4s cubic-bezier(.4, 0, .2, 1) infinite;
+  z-index: -1;
+}
+@keyframes waPulse {
+  0%   { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@keyframes waFloatIn {
+  0%   { opacity: 0; transform: translateY(20px) scale(.8); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Label tooltip ao hover */
+.wa-float__tip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  background: #0a0a0a;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s cubic-bezier(.4, 0, .2, 1);
+  font-family: var(--font-sans);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.wa-float__tip::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: #0a0a0a;
+}
+.wa-float:hover .wa-float__tip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+@media (max-width: 560px) {
+  .wa-float {
+    bottom: 16px;
+    right: 16px;
+    width: 54px;
+    height: 54px;
+  }
+  .wa-float svg { width: 26px; height: 26px; }
+  .wa-float__tip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-float,
+  .wa-float::before {
+    animation: none;
+  }
+}
