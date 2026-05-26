@@ -1001,7 +1001,7 @@ html.portal-entering body::before {
   background: var(--bg-1);
 }
 .partner-cell:hover img {
-  filter: grayscale(100%) brightness(0);
+  filter: grayscale(0%);
   opacity: 1;
   transform: scale(1.06);
 }
@@ -1017,15 +1017,32 @@ html.portal-entering body::before {
 .partner-cell:has(img[src*="serrasummit"]) img {
   filter: grayscale(100%) invert(1) brightness(0.4);
 }
+.partner-cell:has(img[src*="bassanimoveis"]):hover img,
+.partner-cell:has(img[src*="alternativa"]):hover img,
+.partner-cell:has(img[src*="saolucas"]):hover img,
+.partner-cell:has(img[src*="matrezan"]):hover img,
+.partner-cell:has(img[src*="bellomo"]):hover img,
+.partner-cell:has(img[src*="gestaobpo"]):hover img,
+.partner-cell:has(img[src*="camicias"]):hover img,
+.partner-cell:has(img[src*="serrasummit"]):hover img {
+  filter: grayscale(100%) invert(1) brightness(0.2);
+  opacity: 1;
+}
 
-/* Centro de Diagnóstico tem muito padding interno na imagem — aumentar levemente */
-.partner-cell:has(img[src*="centrodediagnostico"]) img {
+/* Festi Pizza é ilustrada — colorida no hover */
+.partner-cell:has(img[src*="festipizza"]):hover img {
+  filter: grayscale(0%);
+}
+
+/* Centro de Diagnóstico e Cruzeta Club com muito padding — aumentar levemente */
+.partner-cell:has(img[src*="centrodediagnostico"]) img,
+.partner-cell:has(img[src*="cruzetaclub"]) img {
   max-height: 72px;
 }
 
-/* Festi Pizza é ilustrada — não fica boa como silhueta, manter colorida no hover */
-.partner-cell:has(img[src*="festipizza"]):hover img {
-  filter: grayscale(0%);
+/* Cruzeta logo é redonda — ficar quadrada com border-radius */
+.partner-cell:has(img[src*="cruzetaclub"]) img {
+  border-radius: 50%;
 }
 .partner-cell--text span {
   font-family: var(--font-display);
@@ -2680,6 +2697,17 @@ a.case__media:hover .case__media__inner { transform: scale(1.04); }
   align-items: end;
   padding-bottom: 64px;
 }
+.case-detail__logo {
+  margin-bottom: 20px;
+}
+.case-detail__logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+}
 .case-detail__tags {
   display: flex;
   flex-wrap: wrap;
@@ -2775,6 +2803,65 @@ a.case__media:hover .case__media__inner { transform: scale(1.04); }
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+/* Variante "logo" — logo centralizada num fundo escuro elegante */
+.case-detail__media--logo {
+  background:
+    radial-gradient(circle at 30% 30%, #1f1f1f 0%, #0a0a0a 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.case-detail__media--logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  pointer-events: none;
+}
+.case-detail__media--logo img {
+  width: auto;
+  height: 50%;
+  max-width: 60%;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.4),
+    0 0 0 6px rgba(255, 255, 255, 0.04);
+  position: relative;
+  z-index: 1;
+}
+
+/* Portfolio hero da home — variante logo (Cruzeta etc.) */
+.portfolio-hero__media--logo {
+  background-color: #0a0a0a !important;
+  background-size: 40% auto !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+/* Case card da listagem — img com logo, centralizada num fundo escuro */
+.case-card__media:has(.case-card__media__logo) {
+  background: radial-gradient(circle at 30% 30%, #1f1f1f 0%, #0a0a0a 60%);
+}
+.case-card__media__logo {
+  width: auto !important;
+  height: 60% !important;
+  max-width: 50% !important;
+  object-fit: contain !important;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  position: absolute;
+  inset: 0;
 }
 
 /* Body */
